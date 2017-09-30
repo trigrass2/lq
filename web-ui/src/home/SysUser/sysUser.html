@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用户信息</title>
+    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet"/>
+    <link href="../../../css/bootstrap-small.css" rel="stylesheet"/>
+    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../../dep/zTree/css/metroStyle/metroStyle.css" rel="stylesheet"/>
+    <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
+    <!--[if lt IE 9]>
+    <script src="../../../dep/html5shiv.js"></script>
+    <script src="../../../dep/respond.min.js"></script>
+    <![endif]-->
+    <!--@RenderSection("Styles", false)-->
+</head>
+<body style="height:100%;">
+<div>
+    <div id="divTop"></div>
+    <div class="panel-body">
+        <div class="panel panel-default" style="margin-bottom: 5px;">
+            <div class="panel-heading"><span class="dot"></span>查询
+                <span class="closeBtn" onclick="closeBtn()"></span>
+                <span class="openBtn" onclick="openBtn()"></span>
+            </div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label" for="no">用户名</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="no" name="noL"/>
+                        </div>
+                        <label class="control-label" for="name">中文姓名</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="name" name="nameL"/>
+                        </div>
+                        <label class="control-label" for="remark">备注</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="remark" name="remarkL"/>
+                        </div>
+
+                        <div>
+                            <button type="button" id="btn_query" class="btn btn-primary">
+                                搜索
+                            </button>
+                        </div>
+                        <div>
+                            <button type="reset" id="btn_clear" class="btn  btn-danger">
+                                清除
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="div_tableleft" class="col-xs-6" style="padding-left:0px;">
+            <div id="divContentLeft inputPlace">
+                <div id="toolbarL" class="btn-group">
+
+                    <!--@Html.PermissionButton("btnAdd", Buttons.Add)
+                    @Html.PermissionButton("btnEdit", Buttons.Edit)
+                    @Html.PermissionButton("btnDelete", Buttons.Delete)-->
+                    <div id="toolbar" class="btn-group1">
+                        <div style="width: 100%;">
+                            <button id="btnAdd" data-toggle="modal" data-target="#myModal" onclick="type_addNew()"
+                                    type="button" class="btn btn-primary">
+                                新增
+                            </button>
+                            <button id="btnEdit" data-target="#myModalUpdate" onclick="type_edit()" type="button"
+                                    class="btn btn-info">
+                                编辑
+                            </button>
+                            <button id="btnDelete" type="button" class="btn btn-danger" onclick="deleteInfo()">
+                                删除
+                            </button>
+                            <button id="btnImport" data-toggle="modal" data-target="#myModalInput" type="button" onclick="importInfo()"
+                                    class="btn btn-danger">
+                                导入
+                            </button>
+                            <button id="btnExport" onclick="exportUser()" type="button" class="btn btn-danger">
+                                导出
+                            </button>
+                        </div>
+                        <button id="btnPassword" onclick="initPwd()" type="button" class="btn btn-info">
+                            初始密码
+                        </button>
+
+                        <button id="btnRole" data-target="#myModalRole" onclick="type_addRole()" type="button"
+                                class="btn btn-info">
+                            角色设置
+                        </button>
+                    </div>
+                </div>
+                <table id="tb_Type"></table>
+            </div>
+        </div>
+        <div id="div_tableright" class="col-xs-6" style="padding-right:0px">
+
+            <div id="divContentRight">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#home" data-toggle="tab">
+                            角色信息
+                        </a>
+                    </li>
+                    <li><a href="#ios" data-toggle="tab">资源信息</a></li>
+
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="home">
+                        <div style="margin-bottom:3px; margin-left:3px;">
+                            <button id="btnRole2" data-target="#myModalRole" onclick="type_addRole()" type="button"
+                                    class="btn btn-info">
+                                角色设置
+                            </button>
+                            <button id="btnDelete2" onclick="deleteUserRole()" type="button" class="btn btn-primary">
+                                删除
+                            </button>
+                        </div>
+                        <table id="tb_List"></table>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="ios">
+                        <div role="tabpanel" class="tab-pane" id="Resource">
+                            <div style="padding-top:3px;">
+                                <div id="Resource_tree"
+                                     style="overflow:auto; border-top:1px solid #e5e5e5; height:500px">
+                                    <ul id="menu_tree" class="ztree"
+                                        style="margin-top:0;height:500px;overflow-y:scroll; overflow-x:auto;"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divBottom"></div>
+</div>
+
+<input type="hidden" name="noC" id="noC"/>
+<input type="hidden" name="nameC" id="nameC"/>
+<input type="hidden" name="nameEnC" id="nameEnC"/>
+<input type="hidden" name="emailC" id="emailC"/>
+<input type="hidden" name="mobileC" id="mobileC"/>
+<input type="hidden" name="sexC" id="sexC"/>
+<input type="hidden" name="remarkC" id="remarkC"/>
+<input type="hidden" name="statusC" id="statusC"/>
+
+
+<!---Add增加 start-->
+
+<!-- 模态框（Modal） -->
+<form class="form-horizontal" role="form" id="addUserForm">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        新增
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="noA">  <span class="x-red">*</span>用户名</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="noA" name="noA"/>
+                            </div>
+                            <label class="col-sm-2 control-label" for="nameA"> <span class="x-red">*</span>中文姓名</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="nameA" name="nameA"/>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="nameEnA">英文姓名</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="nameEnA" name="nameEnA"/>
+                            </div>
+                            <label class="col-sm-2 control-label" for="emailA">邮箱</label>
+                            <div class="col-sm-4">
+                                <input type="email" class="form-control" id="emailA" name="emailA"/>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="mobileA">手机</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="mobileA" name="mobileA"/>
+                            </div>
+                            <label class="col-sm-2 control-label" for="sexA">性别</label>
+                            <div class="col-sm-4">
+                                <input type="radio" name="sexA" id="sexA" value="3" style="margin-left:10px;">男</input>
+                                <input type="radio" name="sexA" id="sexA" value="2" style="margin-left:10px;">女</input>
+                                <input type="radio" name="sexA" id="sexA" value="1" style="margin-left:10px;"
+                                       checked="checked">保密</input>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label for="lastname" class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-4">
+                                <textarea class="form-control" rows="3" name="remarkA" id="remakA"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+
+                            <div class="col-sm-4">
+                                <div class="switch" id="switch_status">
+                                    <input type="checkbox" name="statusA" id="statusA" checked="checked" value="1"/>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="save()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</form>
+
+<!--Add增加 end-->
+
+
+<!---Update增加 start-->
+
+<!-- 模态框（Modal） -->
+<form class="form-horizontal" role="form" id="updateUserForm">
+    <div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        编辑
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="noU">  <span class="x-red">*</span>用户名</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="noU" name="noU" readonly/>
+                            </div>
+                            <label class="col-sm-2 control-label" for="nameU"> <span class="x-red">*</span>中文姓名</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="nameU" name="nameU"/>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="nameEnU">英文姓名</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="nameEnU" name="nameEnU"/>
+                            </div>
+                            <label class="col-sm-2 control-label" for="emailU">邮箱</label>
+                            <div class="col-sm-4">
+                                <input type="email" class="form-control" id="emailU" name="emailU"/>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="mobileU">手机</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="mobileU" name="mobileU"/>
+                            </div>
+                            <label class="col-sm-2 control-label" for="sexU">性别</label>
+                            <div class="col-sm-4">
+                                <input type="radio" name="sexU" id="sexU" value="3" class="boy"
+                                       style="margin-left:10px;display:none;"></input>
+                                <input type="radio" name="sexU" id="sexU" value="3" class="boy"
+                                       style="margin-left:10px; ">男</input>
+                                <input type="radio" name="sexU" id="sexU" value="2" class="gril"
+                                       style="margin-left:10px;">女</input>
+                                <input type="radio" name="sexU" id="sexU" value="1" checked="checked" class="secret"
+                                       style="margin-left:10px;">保密</input>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label for="lastname" class="col-sm-2 control-label">备注</label>
+                            <div class="col-sm-4">
+                                <textarea class="form-control" rows="3" name="remarkU"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+
+                            <div class="col-sm-4">
+                                <div class="switch" id="switch_status">
+                                    <input type="checkbox" name="statusU" id="statusU" checked="checked" value="1"/>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="update()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</form>
+
+<!--Update增加 end-->
+
+
+<!---AddRole 角色设置 start-->
+
+<!-- 模态框（Modal） -->
+<form class="form-horizontal" role="form">
+    <div class="modal fade" id="myModalRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        角色设置
+                    </h4>
+                </div>
+                <div>
+
+
+                    <div class="panel-body">
+                        <div class="panel panel-default" style="margin-bottom: 5px;">
+
+                            <div class="panel-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="noR">角色编号</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control" id="noR" name="noR"/>
+                                                </div>
+                                                <label class="col-sm-2 control-label" for="nameR">角色名称</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control" id="nameR" name="nameR"/>
+                                                </div>
+
+
+                                                <div>
+                                                    <button type="button" id="btn_queryRole" class="btn btn-primary"
+                                                            onclick="lookRole()">搜索
+                                                    </button>
+                                                </div>
+                                                <div>
+                                                    <button type="reset" id="btn_queryClear" class="btn btn-danger">清除
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <table id="tb_roleList"></table>
+
+
+                    </div>
+
+
+                    <input type="hidden" name="userIdHidden" id="userIdHidden"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="updateUserRole()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</form>
+
+<!--AddRole 角色设置 end-->
+
+
+<!---导入增加 start-->
+
+<!-- 模态框（Modal） -->
+<form class="form-horizontal" role="form" id="postForm" enctype="multipart/form-data">
+    <div class="modal fade" id="myModalInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        导入
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="noA"> 用户信息导入<span
+                                    class="x-red">*</span></label>
+                            <div class="col-sm-4">
+                                <input type="file" class="file" id="input-1" name="file"  accept=".xls,.xlsx"/>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-info btn-lg" onclick="downFile()">
+                        <span class="glyphicon glyphicon-download-alt"></span> 导入模板下载
+                    </a>
+                    <button type="button" class="btn btn-primary" onclick="upFile()">
+                        导入
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</form>
+
+<!-- 导入 增加 end-->
+
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../../dep/jquery.cookie.js"></script>
+<script src="../../../js/extensions/jquery-ajax.js"></script>
+<script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../../../js/extensions/bootstrap-table-resetView.js"></script>
+<script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../../dep/toastr/toastr.min.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+
+<script type="text/javascript">
+    jQuery.support.cors = true;
+    var ApiUrl = '';
+</script>
+<script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+<script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+<script src="../../../dep/zTree/js/jquery.ztree.all.min.js"></script>
+<script src="../../../js/EwinCommon/common.js"></script>
+<script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<script src="sysUser.js"></script>
+</body>
+</html>

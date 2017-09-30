@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>易往 MES 平台登录</title>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="../../css/login.css" rel="stylesheet" />
+    <link href="../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../css/EwinCommon/style.css" rel="stylesheet" media="all">
+</head>
+<body style="width: 100%; height: auto">
+        <div class="nav" style="height: 80px">
+            <div class="navMain">
+                <div class="navLeft">
+                    <ul>
+                        <li><img src="../../img/Login/logo1.png" /></li>
+                    </ul>
+
+                </div>
+                <div class="navRight">
+                    <ul>
+                        <li class="navNum">400-888-7975</li>
+                        <li ><font color="#000000">服务热线:&nbsp;</font></li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="main" style=" position: absolute;width: 100%;top:80px;bottom: 130px; background: url(../../img/Login/bg1.png) 100% 100% no-repeat">
+            <div style="position: relative;width: 100%; height: 100%">
+                <div class="dh_bg" style="position:absolute;margin:5% 0 0 22%">
+                    <div class="dh"></div>
+                    <span class="dhsp">微服务架构，业务弹性扩展</span>
+                </div>
+                <div class="dh_bg" style="position:absolute;margin:11% 0 0 12%; display: none">
+                    <div class="dh"></div>
+                    <span class="dhsp">柔性化生产，订单排产灵活</span>
+                </div>
+                <div class="dh_bg" style="position:absolute;margin:16% 0 0 10%; display: none">
+                    <div class="dh"></div>
+                    <span class="dhsp">自动化采集，设备无缝链接</span>
+                </div>
+                <div class="dh_bg" style="position:absolute;margin:20% 0 0 20%; display: none">
+                    <div class="dh"></div>
+                    <span class="dhsp">关键件追溯，质量全程可控</span>
+                </div>
+                <div class="dh_bg" style="position:absolute;margin:25% 0 0 12%; display: none">
+                    <div class="dh"></div>
+                    <span class="dhsp">可视化管理，人机界面友好</span>
+                </div>
+
+                <div class="dh_bg1" style="position:absolute;margin:5% 0 0 22%">
+                    <div class="dh1"></div>
+                </div>
+                <div class="dh_bg1" style="position:absolute;margin:11% 0 0 12%">
+                    <div class="dh1"></div>
+                </div>
+                <div class="dh_bg1" style="position:absolute;margin:16% 0 0 10%">
+                    <div class="dh1"></div>
+                </div>
+                <div class="dh_bg1" style="position:absolute;margin:20% 0 0 20%">
+                    <div class="dh1"></div>
+                </div>
+                <div class="dh_bg1" style="position:absolute;margin:25% 0 0 12%">
+                    <div class="dh1"></div>
+                </div>
+            </div>
+            <div class="mainBox">
+                <div class="mainLogin">
+                    <form class="form-horizontal"  method="post" id="loginForm">
+                        <span class="heading">欢迎登录</span>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input  type="text" class="form-control" id="no" placeholder="请输入您的账号">
+                                <p id="connount_tip" style="color: red; display: none">账号为必填项</p>
+                            </div>
+                        </div>
+                        <div class="form-group help">
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" placeholder="请输入您的密码">
+                                <p id="password_tip" style="color: red; display: none">密码为必填项</p>
+                            </div>
+                        </div>
+                        <div class="form-group" id="rem-me">
+                            <div class="main-checkbox">
+                                <input type="checkbox" value="None" id="remeberMe" name="check"/>
+                                <label for="remeberMe"></label>
+                            </div>
+                            <span class="text">自动登录</span>
+
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" id="btnLogin" onclick="login();">登录</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer foot-bg" style="position: absolute; bottom: 0">
+            <div align="footer_font">
+                <p class="foot-state">
+                    <a>关于我们</a><span class="a-line">|</span>
+                    <a>商务合作</a><span class="a-line">|</span>
+                    <a>法律声明</a><span class="a-line">|</span>
+                    <a>隐私策略</a><span class="a-line">|</span>
+                    <a>联系我们</a><span class="a-line">|</span>
+                    <a>服务条款</a>
+                </p>
+                <p>
+                    <img src="../../img/Login/yw-logo.png" alt=""> Copyright&nbsp;© &nbsp;2010-2017 易往信息技术有限公司&nbsp;版权所有
+                </p>
+            </div>
+        </div>
+
+
+    <script src="../../dep/jquery-1.9.1.min.js"></script>
+    <script src="../../dep/jquery.cookie.js"></script>
+    <script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../dep/toastr/toastr.min.js"></script>
+    <script src="../../dep/layui/layui.js" charset="utf-8"></script>
+    <script src="../../dep/layui/x-layui.js" charset="utf-8"></script>
+    <script src="../../js/EwinCommon/common.js"></script>
+    <script src="login.js"></script>
+    <script src="../../js/EwinCommon/iealert.js"></script>
+    <script type="text/javascript">
+      $("body").iealert();
+      jQuery.support.cors = true;
+    </script>
+</body>
+</html>

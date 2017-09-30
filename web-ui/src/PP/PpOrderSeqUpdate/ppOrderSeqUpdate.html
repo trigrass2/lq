@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html style="height:100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>车间</title>
+
+    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+    <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="../../../dep/jqGrid-v5.2.1/css/ui.jqgrid-bootstrap.css" rel="stylesheet" />
+    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <link href="../../../dep/select2-4.0.3/dist/css/select2.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-datapicker/dist-min/css/datepicker3.css" rel="stylesheet" />
+    <link href="../../../css/EwinCommon/newcommon.css" rel="stylesheet" />
+	<link href="../../../dep/bootstrap-datetimepicker_new/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+    <script src="../../../Scripts/html5shiv.js"></script>
+    <script src="../../../Scripts/respond.min.js"></script>
+    <![endif]-->
+    <!--@RenderSection("Styles", false)-->
+    <style type="text/css">
+        .panel-body #formSearch label {
+            min-width: 95px;
+            margin-left: 30px;
+        }
+        .div-search{
+            margin-left: 0;
+            margin-right: 0;
+        }
+        .positionr-w100 {
+		    width: 100%;
+		    float: left;
+		    position: relative;
+		}
+	    .SelectBG{
+     		color:#FF0000;
+            /*background-color:#FF0000;*/
+        }
+
+    </style>
+</head>
+<body style="height:100%;">
+<div>
+    <div id="divTop"></div>
+    <div class="panel-body">
+    
+		<!--搜索框-->
+        <div class="panel panel-default demoSearch"></div>
+    
+       <!--弹出框1-->
+       <div id="demoadd" class="modal fade" role="dialog" data-backdrop="static"></div>
+    
+        <div class="panel">
+            <div class="panel-body">
+                <div id="order_ajust" class="positionr-w100 mp0">
+                    <div class="jqGrid_wrapper mr50"> 
+                    <div id="divContentLeft inputPlace">
+                <div id="toolbarL" class="btn-group">
+                    <div id="toolbar" class="btn-group1">
+                        <div style="width: 100%;">
+                            <button id="btnUpdate" onclick="openAddWin();" style="display: none"  data-target="#modalAddEdit" data-toggle="modal"  type="button" class="btn btn-primary"  >
+                                调整
+                            </button>
+                            <button id="btnSave" data-target="#modalAddEdit"  type="button" class="btn btn-primary" style="display: none">
+                                保存
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+					 <table id="dataListChild" class="order_ajust"></table>
+                    </div>
+                    <div class="p-mr50">
+                        <div>
+                            <div id="moveRowUp" class="b-move-div">
+                                <i class="fa fa-angle-double-up b-move-table"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div id="moveRowDown" class="b-move-div">
+                                <i class="fa fa-angle-double-down b-move-table"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../../dep/jqGrid-v5.2.1/js/jquery.jqGrid.js"></script>
+<script src="../../../dep/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<script src="../../../dep/jqGrid-v5.2.1/js/i18n/grid.locale-cn.js"></script>
+<script src="../../../dep/jquery.cookie.js"></script>
+<script src="../../../js/extensions/jquery-ajax.js"></script>
+<script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../dep/bootstrap-table/bootstrap-table.js"></script>
+<script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../../dep/toastr/toastr.min.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+<script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+<script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+<script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="../../../dep/bootstrapValidator/js/bootstrapValidator.js"></script>
+<script src="../../../dep/select2-4.0.3/dist/js/select2.js"></script>
+<script src="../../../dep/bootstrap-datapicker/dist-min/js/bootstrap-datepicker.js"></script>
+<script src="../../../dep/bootstrap-datetimepicker_new/js/bootstrap-datetimepicker.js"></script>
+<script src="../../../dep/bootstrap-datetimepicker_new/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../dep/bootstrap-datetimepicker_new/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../js/EwinCommon/newcommon.js"></script>
+<script src="../../../js/global.js"></script>
+<script src="ppOrderSeqUpdate.js"></script>
+</body>
+</html>

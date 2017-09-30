@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>数据字典</title>
+    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+    <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <link href="../../../css/page/demo/demo-style1.css" rel="stylesheet">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../../css/codemirror.css" rel="stylesheet">
+    <link href="../../../css/rubyblue.css" rel="stylesheet">
+</head>
+<body>
+
+<section class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    搜索条件布局修改
+                </header>
+                <div class="panel-body">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><span class="dot"></span>查询
+                            <span class="closeBtn" onclick="closeBtn()"></span>
+                            <span class="openBtn" onclick="openBtn()"></span>
+                        </div>
+                        <div class="panel-body">
+                            <form id="formSearch" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="row div-search">
+                                        <label class="control-label" for="">类型名称</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control"  name="name">
+                                        </div>
+                                        <label class="control-label" for="">类型名称</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control"  name="name">
+                                        </div>
+                                        <label class="control-label" for="">类型名称</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control"  name="name">
+                                        </div>
+                                    </div>
+                                    <div class="row div-search">
+                                        <label class="control-label" for="">类型名称</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control"  name="name">
+                                        </div>
+                                        <label class="control-label" for="">类型名称</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control"  name="name">
+                                        </div>
+                                        <label class="control-label" for="">类型名称</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control"  name="name">
+                                        </div>
+                                        <div>
+                                            <button type="button" id="btn_query" class="btn btn-primary">搜索</button>
+                                            <button type="button" id="btn_clear" class="btn btn-danger">清除</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">搜索条件布局修改</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="code" name="code">
+/* css start*/
+<link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+/* css end*/
+
+ /* 每一行放3个条件，并且用<div class="row div-search"></div>包起来，把搜索条件用div包起来放最后一行的最末尾
+    <div>
+        <button type="button" class="btn btn-primary">搜索</button>
+        <button type="button" class="btn btn-danger">清除</button>
+    </div>如下所示*/
+/* html start*/
+<div class="row div-search">
+    <label class="control-label" for="">类型名称</label>
+    <div class="col-sm-2">
+        <input type="text" class="form-control"  name="name">
+    </div>
+    <label class="control-label" for="">类型名称</label>
+    <div class="col-sm-2">
+        <input type="text" class="form-control"  name="name">
+    </div>
+    <label class="control-label" for="">类型名称</label>
+    <div class="col-sm-2">
+        <input type="text" class="form-control"  name="name">
+    </div>
+</div>
+<div class="row div-search">
+    <label class="control-label" for="">类型名称</label>
+    <div class="col-sm-2">
+        <input type="text" class="form-control"  name="name">
+    </div>
+    <label class="control-label" for="">类型名称</label>
+    <div class="col-sm-2">
+        <input type="text" class="form-control"  name="name">
+    </div>
+    <label class="control-label" for="">类型名称</label>
+    <div class="col-sm-2">
+        <input type="text" class="form-control"  name="name">
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary">搜索</button>
+        <button type="button" class="btn btn-danger">清除</button>
+    </div>
+</div>
+/* html end*/
+
+/* js  start*/
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../../dep/jquery.cookie.js"></script>
+<script src="../../../js/extensions/jquery-ajax.js"></script>
+<script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../../../js/extensions/bootstrap-table-resetView.js"></script>
+<script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../../dep/toastr/toastr.min.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+<script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+<script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+<script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<!--<script src="../../../Scripts/EwinCommon/common.js"></script>-->
+
+<!--代码格式显示js，无需引用-->
+<script src="../../../js/codemirror.js"></script>
+<script src="../../../js/vim.js"></script>
+<script src="../../../js/javascript.js"></script>
+<script type="text/javascript">
+    /*代码块高亮显示*/
+    CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        keyMap: "vim",
+        theme: "rubyblue"
+    });
+</script>
+</body>
+</html>
+

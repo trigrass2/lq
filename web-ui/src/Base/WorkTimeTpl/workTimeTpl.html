@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>工作日历模板</title>
+		<link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+		<link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+		<link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+		<link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+		<link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+		<link href="../../../dep/bootstrap-datetimepicker_new/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+	</head>
+<body>
+	<div class="panel-body" style="padding-bottom:0px;">
+		<div class="panel panel-default">
+        	<div class="panel-heading"><span class="dot"></span>查询条件
+				<span class="closeBtn" onclick="closeBtn()"></span>
+				<span class="openBtn" onclick="openBtn()"></span>
+			</div>
+			<div class="panel-body">
+				<form id="formSearch" class="form-horizontal">
+					<div class="form-group">
+	            		<div class="form-group">
+		              		<label class="control-label" for="search_type">工作时间类型</label>
+		                	<div class="col-sm-2">
+		                   		<select class="form-control selectpicker" id="search_type" name="search_type">
+							       	<option value="" selected="selected"></option>
+<!-- 				                    <option value="10">产线</option> -->
+<!-- 				                    <option value="20">仓库</option> -->
+<!-- 				                    <option value="30">设备</option> -->
+								</select>
+		                	</div>
+		                	<label class="control-label" for="search_shiftno">班次</label>
+		                	<div class="col-sm-2">
+		                    	<select class="form-control selectpicker" id="search_shiftno" name="search_shiftno">
+								    <option value="" selected="selected"></option>
+	<!-- 			                	<option value="1">早班</option> -->
+	<!-- 			                	<option value="2">中班</option> -->
+	<!-- 			                	<option value="3">晚班</option> -->
+								</select>
+		                	</div>
+		                	<label class="control-label" for="search_tmBasLineId">产线</label>
+		                	<div class="col-sm-2">
+		                    	<select class="form-control selectpicker" id="search_tmBasLineId" name="search_tmBasLineId">
+								    <option value="" selected="selected"></option>
+								</select>
+		                	</div>
+		                	<label class="control-label" for="search_tmBasStorageId">仓库</label>
+		                	<div class="col-sm-2">
+		                    	<select class="form-control selectpicker" id="search_tmBasStorageId" name="search_tmBasStorageId">
+								    <option value="" selected="selected"></option>
+								</select>
+		                	</div>
+		                </div>
+	                	<div class="form-group" style="padding-top:15px;">
+	                		<label class="control-label" for="search_tmBasEquipmentId">
+	                			设备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                		</label>
+	                		<div class="col-sm-2">
+		                    	<select class="form-control selectpicker" id="search_tmBasEquipmentId" name="search_tmBasEquipmentId">
+								    <option value="" selected="selected"></option>
+				                    <option value="1">设备一</option>
+				                    <option value="2">设备二</option>
+				                    <option value="3">设备三</option>
+								</select>
+		                	</div>
+		                	<label class="control-label" for="search_enabled">启用</label>
+	                		<div class="col-sm-2">
+		                    	<select class="form-control selectpicker" id="search_enabled" name="search_enabled">
+								    <option value="" selected="selected"></option>
+				                    <option value="1">是</option>
+				                    <option value="0">否</option>
+								</select>
+		                	</div>
+		                	<div>
+		                        <button type="button" id="btn_query" onclick="queryInfo();" class="btn btn-primary">
+									搜索
+		                        </button>
+		                    </div>
+		                    <div>
+		                        <button type="reset" id="btn_clear" class="btn btn-danger">
+		                          	重置
+		                      	</button>
+		                    </div>
+	                    </div>
+	                </div>    
+          		</form>
+        	</div>
+      	</div>
+      	<div id="div_tableleft" class="col-xs-8" style="padding-left:0px;">
+      		<div id="divContentLeft">
+				<div id="toolbarl" class="btn-group1">
+		            <button id="btn_add" type="button" class="btn btn-primary" onclick="openAddWin();">
+						新增
+		            </button>
+		            <button id="btn_edit" type="button" class="btn btn-info" onclick="openEditWin();">
+						编辑
+		            </button>
+		            <button id="btn_delete" type="button" class="btn btn-danger" onclick="deleteInfo();">
+						删除
+		            </button>
+		            <button id="btn_tpl_dl" type="button" class="btn btn-danger" onclick="tpl_download();">
+						模板下载
+		            </button>
+		            <button id="btn_input" type="button" class="btn btn-danger" onclick="input_excel();">
+						导入
+		            </button>
+		            <button id="btn_output" type="button" class="btn btn-danger" onclick="output_excel();">
+						导出
+		            </button>
+		            <button id="btn_output" type="button" class="btn btn-danger" onclick="creWork();">
+						生成工作日历
+		            </button>
+		        </div>
+		      
+				<div>
+					<table id="tb_worktimetpl"></table>
+				</div>
+      		</div>
+      	</div>
+      	<div id="div_tableright" class="col-xs-4" style="padding-right:0px">
+      		<div id="divContentRight">
+      			<div id="toolbarR" class="btn-group1">
+      				<button id="btn_add" type="button" class="btn btn-primary" onclick="openAddRestWin();">
+						新增
+		            </button>
+		            <button id="btn_edit" type="button" class="btn btn-info" onclick="openEditRestWin();">
+						编辑
+		            </button>
+		            <button id="btn_delete" type="button" class="btn btn-danger" onclick="deleteRestInfo();">
+						删除
+		            </button>
+      			</div>
+      			<div>
+					<table id="tb_worktimetpl_rest"></table>
+				</div>
+      		</div>
+      	</div>
+      	
+      	
+      	<!--新增窗口-->
+		<div class="modal" role="dialog" id="addModal" aria-hidden='true' data-backdrop="static">
+	    	<div class="modal-dialog" style="top:70px;width:800px;hight:600px">
+	        	<div class="modal-content">
+	            	<div class="modal-header" style="border-bottom: 1px solid #F4F4F4;">
+	               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+				   		</button>
+	               		<h4 class="modal-title" id="tpl_mod">新增</h4>
+	            	</div>
+	            	<div class="modal-body">
+	            		<form class="form-horizontal" id="formEdit">
+	            			<div class="form-group" style="margin-bottom: 15px;">
+	            				<input type="text" id="tmBasWorkscheduleId" name="tmBasWorkscheduleId" style="display:none;">
+	                  			<label for="no" class="col-xs-2 control-label"><span class="x-red">*</span>编号</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="text" autocomplete="off" class="form-control" id="no" name="no">
+	                      		</div>
+	                      	</div>
+	                      	<div class="form-group" style="margin-bottom: 15px;">
+	                  			<label for="type" class="col-xs-2 control-label"><span class="x-red">*</span>工作时间类型</label>
+	                      		<div class="col-xs-4">
+	                          		<select class="form-control selectpicker" id="type" name="type">
+<!-- 								        <option value="" selected="selected">无</option> -->
+<!-- 				                        <option value="10">产线</option> -->
+<!-- 				                        <option value="20">仓库</option> -->
+<!-- 				                        <option value="30">设备</option> -->
+								    </select>
+	                      		</div>
+	                      	</div>
+	                      	<div class="form-group" style="margin-bottom: 15px;">
+	                      		<label for="tm_bas_plant_id" class="col-xs-2 control-label"><span class="x-red plant_red">*</span>工厂</label>
+	                      		<div class="col-xs-4 ">
+	                      			<select class="form-control selectpicker class_plant" id="tmBasPlantId" name="tmBasPlantId">
+								        <option value="" selected="selected"></option>
+								    </select>
+	                      		</div>
+	           					<label for="tm_bas_workshop_id" class="col-xs-2 control-label"><span class="x-red plant_red">*</span>车间</label>
+	                      		<div class="col-xs-4 ">
+	                      			<select class="form-control selectpicker class_plant" id="tmBasWorkshopId" name="tmBasWorkshopId">
+								        <option value="" selected="selected"></option>
+								    </select>
+	                      		</div>
+	                      	</div>
+	                      	<div class="form-group" style="margin-bottom: 15px;">
+	                      		<label for="tm_bas_line_id" class="col-xs-2 control-label"><span class="x-red plant_red">*</span>产线</label>
+	                      		<div class="col-xs-4 ">
+	                      			<select class="form-control selectpicker class_plant" id="tmBasLineId" name="tmBasLineId">
+	                      				<option value="" selected="selected"></option>
+								    </select>
+	                      		</div>
+	                      		<label for="jph" class="col-xs-2 control-label">参考JPH</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="number" autocomplete="off" class="form-control class_plant" id="jph" name="jph">
+	                      		</div>
+	                      	</div>
+	           				<div class="form-group" style="margin-bottom: 15px;">
+	                   			<label for="plan_num" class="col-xs-2 control-label">计划上线数</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="number" autocomplete="off" class="form-control class_plant" id="planNum" name="planNum">
+	                      		</div>
+	                      		<label for="act_num" class="col-xs-2 control-label">计划下线数</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="number" autocomplete="off" class="form-control class_plant" id="actNum" name="actNum">
+	                      		</div>
+	           				</div>
+	           				<div class="form-group" style="margin-bottom: 15px;">
+	                      		<label for="tmBasStorageId" class="col-xs-2 control-label"><span class="x-red storage_red">*</span>仓库</label>
+	                      		<div class="col-xs-4 ">
+	                      			<select class="form-control selectpicker class_storage" id="tmBasStorageId" name="tmBasStorageId">
+	                      				<option value="" selected="selected"></option>
+								    </select>
+	                      		</div>
+	           					<label for="tmBasEquipmentId" class="col-xs-2 control-label"><span class="x-red equipment_red">*</span>设备</label>
+	                      		<div class="col-xs-4 ">
+	                      			<select class="form-control selectpicker class_equipment" id="tmBasEquipmentId" name="tmBasEquipmentId">
+								        <option value="" selected="selected"></option>
+				                        <option value="1">设备一</option>
+				                        <option value="2">设备二</option>
+				                        <option value="3">设备三</option>
+								    </select>
+	                      		</div>
+	                      	</div>
+	           				<div class="form-group" style="margin-bottom: 15px;">
+	                   			<label for="shiftno" class="col-xs-2 control-label"><span class="x-red equipment_red">*</span>班次</label>
+	                      		<div class="col-xs-4 ">
+	                      			<select class="form-control selectpicker" id="shiftno" name="shiftno">
+								        <option value="" selected="selected">无</option>
+<!-- 				                        <option value="1">早班</option> -->
+<!-- 				                        <option value="2">中班</option> -->
+<!-- 				                        <option value="3">晚班</option> -->
+								    </select>
+	                      		</div>
+	           				</div>
+	           				<div class="form-group" style="margin-bottom: 15px;">
+	           					<label for="startTime" class="col-xs-2 control-label"><span class="x-red equipment_red">*</span>开始时间</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="text" class="form-control pickertime" placeholder="请选择时间" id="startTime" name="startTime">
+	                      		</div>
+	                      		<label for="endTime" class="col-xs-2 control-label"><span class="x-red equipment_red">*</span>结束时间</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="text" class="form-control pickertime" placeholder="请选择时间" id="endTime" name="endTime">
+	                      		</div>
+	           				</div>
+	           				<div class="form-group" style="margin-bottom: 15px;">
+	           					<div class="checkbox">
+								    <label class="col-xs-2 control-label">
+								      	<input type="checkbox" name="mon" id="mon" value="0" onchange="this.value=(this.value==0)?1:0" checked='checked'>星期一
+								    </label>
+								    <label>
+								      	<input type="checkbox" name="tue" id="tue" value="0" onchange="this.value=(this.value==0)?1:0" checked='checked'>星期二
+								    </label>
+								    <label>
+								      	<input type="checkbox" name="wed" id="wed" value="0" onchange="this.value=(this.value==0)?1:0" checked='checked'>星期三
+								    </label>
+								    <label>
+								      	<input type="checkbox" name="thu" id="thu" value="0" onchange="this.value=(this.value==0)?1:0" checked='checked'>星期四
+								    </label>  	
+								    <label>
+								      	<input type="checkbox" name="fri" id="fri" value="0" onchange="this.value=(this.value==0)?1:0" checked='checked'>星期五
+								    </label>    
+								    <label>
+								      	<input type="checkbox" name="sat" id="sat" value="0" onchange="this.value=(this.value==0)?1:0" checked='checked'>星期六
+								    </label>  
+								    <label>
+								      	<input type="checkbox" name="sun" id="sun" value="0" onchange="this.value=(this.value==0)?1:0" checked='checked'>星期日
+								    </label>  
+								</div>
+	           				</div>
+	           				<div class="form-group" style="margin-bottom: 15px;">
+	           					<label for="enabled" class="col-xs-2 control-label">状态</label>
+	           					<div class="col-xs-8">
+		                   			<div class="switch" id="switch_status">
+									    <input type="checkbox" name="enabled" id="enabled" checked="checked" value="1" />
+									</div>
+								</div>
+	           				</div>
+	              		</form>
+	            	</div>
+	            	<div class="modal-footer">
+	                     <button type="button" class="btn btn-default saveBtn" onclick="saveInfo()">保存</button>
+	                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		            </div>
+	        	</div>
+	    	</div>
+		</div>
+		
+		<!--新增窗口-->
+		<div class="modal" role="dialog" id="addModalRest" aria-hidden='true' data-backdrop="static">
+	    	<div class="modal-dialog" style="top:70px;width:800px;hight:140px">
+	        	<div class="modal-content">
+	            	<div class="modal-header" style="border-bottom: 1px solid #F4F4F4;">
+	               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+				   		</button>
+	               		<h4 class="modal-title" id="tpl_rest_mod">新增</h4>
+	            	</div>
+	            	<div class="modal-body" style="height:120px">
+	            		<form class="form-horizontal" id="formRestEdit">
+	            			<div class="form-group" style="margin-bottom: 15px;">
+	            				<input type="text" id="tmBasWorkscheduleRestId" name="tmBasWorkscheduleRestId" style="display:none;">
+	                  			<label for="tpl_no" class="col-xs-2 control-label"><span class="x-red">*</span>编号</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="text" autocomplete="off" class="form-control" id="tpl_no" readonly>
+	                      		</div>
+	                      	</div>
+	           				<div class="form-group" style="margin-bottom: 15px;">
+	           					<label for="restStartTime" class="col-xs-2 control-label"><span class="x-red equipment_red">*</span>休息开始时间</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="text" class="form-control pickertime" placeholder="请选择时间" id="restStartTime" name="restStartTime">
+	                      		</div>
+	                      		<label for="restEndTime" class="col-xs-2 control-label"><span class="x-red equipment_red">*</span>休息结束时间</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="text" class="form-control pickertime" placeholder="请选择时间" id="restEndTime" name="restEndTime">
+	                      		</div>
+	           				</div>
+	              		</form>
+	            	</div>
+	            	<div class="modal-footer">
+	                     <button type="button" class="btn btn-default saveBtn" onclick="saveRestInfo()">保存</button>
+	                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		            </div>
+	        	</div>
+	    	</div>
+		</div>
+    </div>
+	<script src="../../../dep/jquery-1.9.1.min.js"></script>
+	<script src="../../../dep/jquery.cookie.js"></script>
+	<script src="../../../js/extensions/jquery-ajax.js"></script>
+	<script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+	<script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+	<script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+	<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+	<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+	<script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+	<script src="../../../dep/bootstrap-datetimepicker_new/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="../../../dep/bootstrap-datetimepicker_new/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="../../../js/global.js"></script>
+	<script src="../../../js/EwinCommon/common.js"></script>
+	<script src="workTimeTpl.js"></script>
+</body>
+</html>

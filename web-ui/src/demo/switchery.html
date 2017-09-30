@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>切换开关</title>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/switchery/switchery.min.css" rel="stylesheet">
+    <link href="../../css/page/demo/demo-style1.css" rel="stylesheet">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../css/codemirror.css" rel="stylesheet">
+    <link href="../../css/rubyblue.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap-small.css">
+</head>
+<body>
+<section class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    切换开关及值获取
+                </header>
+                <div class="panel-body t-center l-height50">
+                    <input type="checkbox" id="js-switch1" checked /><label class="t-indent20" id="l-switch1"></label>
+                    <br/>
+                    <input type="checkbox" id="js-switch_2" checked /><label class="t-indent20" id="l-switch2"></label>
+                    <br/>
+                    <input type="checkbox" id="js-switch_3" /><label class="t-indent20" id="l-switch3"></label>
+                    <br/>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">切换开关及值获取</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="codeSwitch1" name="Code">
+/* css start*/
+<link href="../../dep/switchery/switchery.min.css" rel="stylesheet">
+/* css end*/
+
+/* html start*/
+ <input type="checkbox" id="codejs-switch1" checked /><label class="t-indent20" id="codel-switch1"></label>
+<br/>
+<input type="checkbox" id="codejs-switch_2" checked /><label class="t-indent20" id="codel-switch2"></label>
+<br/>
+<input type="checkbox" id="codejs-switch_3" /><label class="t-indent20" id="codel-switch3"></label>
+<br/>
+/* html end*/
+
+/* js  start*/
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/switchery/switchery.min.js"></script>
+/*初始化切换开关*/
+    var elem = document.querySelector('#codejs-switch1');
+    var switchery = new Switchery(elem, {
+        color: '#1AB394'
+    });
+    var elem_2 = document.querySelector('#codejs-switch_2');
+    var switchery_2 = new Switchery(elem_2, {
+        color: '#ED5565'
+    });
+    var elem_3 = document.querySelector('#codejs-switch_3');
+    var switchery_3 = new Switchery(elem_3, {
+        color: '#1AB394'
+    });
+
+    /*获取切换开关的值*/
+    var changeCheckbox1 = document.querySelector('#codejs-switch1');
+    var changeCheckbox2 = document.querySelector('#codejs-switch_2');
+    var changeCheckbox3 = document.querySelector('#codejs-switch_3');
+    $('#codel-switch1').text('  状态→'+changeCheckbox1.checked);
+    $('#codel-switch2').text('  状态→'+changeCheckbox2.checked);
+    $('#codel-switch3').text('  状态→'+changeCheckbox3.checked);
+    changeCheckbox1.onchange = function() {
+        $('#codel-switch1').text('  状态→'+changeCheckbox1.checked);
+    };
+    changeCheckbox2.onchange = function() {
+        $('#codel-switch2').text('  状态→'+changeCheckbox2.checked);
+    };
+    changeCheckbox3.onchange = function() {
+        $('#codel-switch3').text('  状态→'+changeCheckbox3.checked);
+    };
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    常用设置
+                </header>
+                <div class="panel-body t-center l-height50">
+                    <label>设置禁用（默认禁用）</label><input type="checkbox" id="js-switch4" checked />
+                    <button type="button" id="btn-on4" class="btn btn-success btn-xs">启用</button>
+                    <button type="button" id="btn-off4" class="btn btn-success btn-xs">禁用</button>
+                    <br/>
+                    <label class="p-r10">设置颜色</label><input type="checkbox" id="js-switch5" checked />
+                    <br/>
+                    <label class="p-r10">设置大小</label>
+                    <input type="checkbox" id="js-switch6" checked />
+                    <input type="checkbox" id="js-switch7" checked />
+                    <input type="checkbox" id="js-switch8" checked />
+                    <br/>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">常用设置</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="codeSwitch2" name="Code">
+/* css start*/
+<link href="../../dep/switchery/switchery.min.css" rel="stylesheet">
+/* css end*/
+
+/* html start*/
+<label>设置禁用（默认禁用）</label><input type="checkbox" id="codejs-switch4" checked />
+<button type="button" id="codebtn-on4" class="btn btn-success btn-xs">启用</button>
+<button type="button" id="codebtn-off4" class="btn btn-success btn-xs">禁用</button>
+<br/>
+<label class="p-r10">设置颜色</label><input type="checkbox" id="codejs-switch5" checked />
+<br/>
+<label class="p-r10">设置大小</label>
+<input type="checkbox" id="codejs-switch6" checked />
+<input type="checkbox" id="codejs-switch7" checked />
+<input type="checkbox" id="codejs-switch8" checked />
+<br/>
+/* html end*/
+
+/* js  start*/
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/switchery/switchery.min.js"></script>
+/*常用设置*/
+    var elem4 = document.querySelector('#codejs-switch4');
+    var switchery4 = new Switchery(elem4, {
+        color: '#1AB394'
+    });
+    switchery4.disable();//默认禁用
+    /*设置禁用*/
+    document.querySelector('#codebtn-off4').addEventListener('click', function() {
+        switchery4.disable();
+    });
+    /*设置启用*/
+    document.querySelector('#codebtn-on4').addEventListener('click', function() {
+        switchery4.enable();
+    });
+
+    /*
+    * 颜色设置
+    * color---true状态下背景色
+    * jackColor---true状态下原点色
+    * jackSecondaryColor---false状态下原点色
+    * secondaryColor---false状态下背景色
+    * */
+    var elem5 = document.querySelector('#codejs-switch5');
+    var switchery5 = new Switchery(elem5, { color: '#473fe9', secondaryColor: '#e93f67', jackColor: '#3fe977', jackSecondaryColor: '#b73fe9' });
+
+    /*
+    * 大小设置
+    * small小开关
+    * large大开关
+    * */
+    var elem6 = document.querySelector('#codejs-switch6');
+    var switchery6 = new Switchery(elem6, { size: 'small' });
+    var elem7 = document.querySelector('#codejs-switch7');
+    var switchery7 = new Switchery(elem7);
+    var elem8 = document.querySelector('#codejs-switch8');
+    var switchery8 = new Switchery(elem8, { size: 'large' });
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../dep/switchery/switchery.min.js"></script>
+
+<!--代码格式显示js，无需引用-->
+<script src="../../js/codemirror.js"></script>
+<script src="../../js/vim.js"></script>
+<script src="../../js/javascript.js"></script>
+
+<script src="../../js/demo/switchery/index.js"></script>

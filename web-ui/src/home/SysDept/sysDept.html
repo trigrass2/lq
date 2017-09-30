@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>部门信息</title>
+	    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+	    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet"/>
+	    <link href="../../../css/bootstrap-small.css" rel="stylesheet"/>
+	    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+	   
+	    <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+	    <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
+	    <link href="../../../dep/zTree/css/metroStyle/metroStyle.css" rel="stylesheet"/>
+	</head>
+	<body>
+		<div class="panel-body" style="padding-bottom:0px;">
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="dot"></span>查询
+					<span class="closeBtn" onclick="closeBtn()"></span>
+					<span class="openBtn" onclick="openBtn()"></span>
+				</div>
+				<div class="panel-body">
+					<form id="formSearch" class="form-horizontal">
+						<div class="form-group">
+							<div class="row">
+								<label class="control-label" for="deptNoS">部门编号</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="deptNoS" name="deptNo">
+								</div>
+								<label class="control-label" for="deptNameS">部门名称</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="deptNameS" name="deptName">
+								</div>
+								<label class="control-label" for="userNoS">用户名</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="userNoS" name="userNo ">
+								</div>
+								<label class="control-label" for="userNameS">中文姓名</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="userNameS" name="userName ">
+								</div>								
+								<div>
+									<button type="button" id="btn_query" class="btn btn-primary">
+										搜索
+									</button>
+									<button type="button" id="btn_clear" class="btn btn-danger">
+										清除
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+	      	<div id="div_tableleft" class="col-xs-6" style="padding-left:0px;margin-top:5px;">
+	          	<div id="divContentLeft">
+	              	<div id="toolbarL" class="btn-group1" style="padding-left:0px;margin-top:5px;">
+	                  	<button id="btnAdd" onclick="openAddWin();" type="button" class="btn btn-primary">
+	                      	新增
+                      	</button>
+                      	<button id="btnEdit" onclick="openEditWin();"  type="button" class="btn btn-info">
+                          	编辑
+                      	</button>
+                      	<button id="btnDelete" onclick="deleteInfo();" type="button" class="btn btn-danger">
+                          	删除
+                      	</button>
+	              	</div>
+	              	<table id="tb_dept"></table>
+	          	</div>
+	      	</div>
+	        <div id="div_tableright" class="col-xs-6" style="padding-right:0px">
+	            <div id="divContentRight">
+	                <div id="toolbarR" class="btn-group1">
+	                    <button id="btnUserAdd" onclick="openUserAddWin();" type="button" class="btn btn-primary">新增</button>
+	                    <button id="btnUserDelete"  onclick="deleteUserInfo()"  type="button" class="btn btn-danger">删除</button>
+	
+	                    <!--@Html.PermissionButton("btnAddList", Buttons.Add)
+	                    @Html.PermissionButton("btnEditList", Buttons.Edit)
+	                    @Html.PermissionButton("btnDeleteList", Buttons.Delete)-->
+	                </div>
+	                <table id="tb_dept_user"></table>
+	            </div>
+	        </div>	 
+		</div>
+
+		<!--部门新增窗口-->
+		<div class="modal fade" role="dialog" id="addModal">
+			<div class="modal-dialog" style="top:70px;width:800px;hight:600px">
+				<div class="modal-content">
+					<div class="modal-header" style="border-bottom: 1px solid #F4F4F4;">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="titleId">新增</h4>
+					</div>
+					<div class="modal-body" style="height:195px">
+						<form class="form-horizontal" id="formEdit">
+							<div class="form-group" style="margin-bottom: 15px;">
+								<input type="text" id="tsSysDeptId" name="tsSysDeptId" style="display:none;">
+								<input type="text" id="level" name="level" style="display:none;">
+								<input type="text" id="parentId" name="parentId" style="display:none;">
+								<label for="no" class="col-xs-2 control-label"><span class="x-red">*</span>部门编号</label>
+								<div class="col-xs-4">
+									<input type="text" autocomplete="off" class="form-control" id="no" name="no">
+								</div>
+								<label for="name" class="col-xs-2 control-label"><span class="x-red">*</span>部门名称</label>
+								<div class="col-xs-4">
+									<input type="text" autocomplete="off" class="form-control" id="name" name="name">
+								</div>
+							</div>
+							<div class="form-group" style="margin-bottom: 15px;">
+								<label for="manager" class="col-xs-2 control-label">负责人</label>
+								<div class="col-xs-4">
+									<input type="text" autocomplete="off" class="form-control" id="manager" name="manager">
+								</div>
+								<label for="seq" class="col-xs-2 control-label">顺序号</label>
+								<div class="col-xs-4">
+									<input type="text" autocomplete="off" class="form-control" id="seq" name="seq">
+								</div>
+							</div>
+							<div class="form-group" style="margin-bottom: 15px;">
+								<label for="remark" class="col-xs-2 control-label">备注</label>
+								<div class="col-xs-8">
+									<input type="text" autocomplete="off" class="form-control" id="remark" name="remark">
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default saveBtn" onclick="saveInfo()">保存</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 新增用户 -->
+		<!-- 模态框（Modal） -->
+		<form class="form-horizontal" role="form">
+		    <div class="modal fade" id="deptUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		         aria-hidden="true">
+		        <div class="modal-dialog modal-lg">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+		                        &times;
+		                    </button>
+		                    <h4 class="modal-title">
+		                        	用户设置
+		                    </h4>
+		                </div>
+		                <div>
+		                    <div class="panel-body">
+		                        <div class="panel panel-default" style="margin-bottom: 5px;">
+		                            <div class="panel-body">
+		                                <form class="form-horizontal">
+		                                    <div class="form-group">
+		                                        <fieldset>
+		                                            <div class="form-group">
+		                                                <label class="col-sm-2 control-label" for="noR">用户名</label>
+		                                                <div class="col-sm-2">
+		                                                    <input type="text" class="form-control" id="noR" name="noR"/>
+		                                                </div>
+		                                                <label class="col-sm-2 control-label" for="nameR">中文名称</label>
+		                                                <div class="col-sm-2">
+		                                                    <input type="text" class="form-control" id="nameR" name="nameR"/>
+		                                                </div>
+		                                                <div>
+		                                                    <button type="button" id="btn_queryUser" class="btn btn-primary"
+		                                                            onclick="userSearch()">搜索
+		                                                    </button>
+		                                                    <button type="reset" id="btn_clearUser" class="btn btn-danger">清除
+		                                                    </button>
+		                                                </div>
+		                                            </div>
+		                                        </fieldset>
+		                                    </div>
+		                                </form>
+		                            </div>
+		                        </div>
+		
+		                        <table id="tb_userList"></table>
+		                    </div>
+		
+		                    <input type="hidden" name="deptIdHidden" id="deptIdHidden"/>
+		                </div>
+		                <div class="modal-footer">
+		                    <button type="button" class="btn btn-primary" onclick="saveUserInfos()">
+		                        保存
+		                    </button>
+		                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+		                    </button>
+		                </div>
+		            </div><!-- /.modal-content -->
+		        </div><!-- /.modal -->
+		    </div>
+		</form>
+		
+		<script src="../../../dep/jquery-1.9.1.min.js"></script>
+	    <script src="../../../dep/jquery.cookie.js"></script>
+	    <script src="../../../js/extensions/jquery-ajax.js"></script>
+	    <script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+	    <script src="../../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+	    <script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+	    <script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+	    <script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+	    <script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+	    <script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+	    <script src="../../../dep/zTree/js/jquery.ztree.all.min.js"></script>
+		<script src="../../../js/extensions/bootstrap-table-treeview.js"></script>	    
+	    <script src="../../../js/EwinCommon/common.js"></script>
+		<script src="sysDept.js"></script>
+	</body>
+</html>

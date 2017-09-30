@@ -1,0 +1,361 @@
+﻿body {
+    padding: 10px;
+}
+
+
+/*************************** - start - 整个头部菜单的样式***************************/
+
+
+/*下拉菜单单个选项的样式*/
+.divMenuCell {
+    clear: both;
+    color: #333333;
+    display: block;
+    font-weight: normal;
+    line-height: 18px;
+    padding: 3px 9px;
+    white-space: nowrap;
+    border: 1px;
+}
+
+    /*鼠标移到下拉菜单单个选项的样式*/
+    .divMenuCell:hover {
+        color: #333333;
+        text-decoration: none;
+        background-color: #e6e6e6;
+        background-position: 0 -15px;
+        -webkit-transition: background-position 0.1s linear;
+        -moz-transition: background-position 0.1s linear;
+        -ms-transition: background-position 0.1s linear;
+        -o-transition: background-position 0.1s linear;
+        transition: background-position 0.1s linear;
+        cursor: pointer;
+    }
+
+/*改写bootstrap的样式*/
+.dropdown {
+    display: inline;
+}
+
+.divider {
+    margin: 2px 1px;
+}
+
+.dropdown-menu {
+    font-size: 12px;
+}
+.dropdown-menu li{
+
+}
+.row {
+    margin: 0;
+}
+/*页面头部logo样式*/
+#imgLogo {
+    height: 30px;
+}
+
+/*下拉菜单图标所在div的样式*/
+.divMenuImg {
+    height: 100%;
+    display: inline-block;
+    width: 22px;
+    /*border-right: 1px solid;*/
+}
+/*下拉菜单条div的样式*/
+.divMenuBar {
+    background-color: #fff;
+    height: 50px;
+    margin-top: 10px;
+    /*padding-top: 15px;*/
+    border: 1px solid #333;
+    border-top: 1px solid #333;
+}
+
+/*菜单按钮样式*/
+.divMenuBtn {
+    border-style: none;
+    /*改写bootstrap的样式*/
+    background-image: none;
+    /*改写bootstrap的样式*/
+    /*margin-left: 2px;*/
+    vertical-align: middle;
+    margin-top: 14px;
+    padding: 2px 8px;
+    font-size: 15px;
+    /*margin-top: 2px;*/
+    -ms-border-radius: 0px;
+    border-radius: 0px;
+}
+/*菜单按钮内图片样式*/
+.divMenuBtn i{
+    margin-right: 10px;
+    font-size: 20px;
+    vertical-align: middle;
+    color: #337ab7;
+}
+.divMenuHover{
+    background-color: transparent !important;
+    color: #0d0d89;
+    font-weight: 700;
+}
+.font-size-16{
+    font-size: 16px;
+}
+.divVerticalLine {
+    border-left: 1px solid #9ac6ff;
+    border-right: 1px solid white;
+    display: inline-block;
+    height: 26px;
+}
+.right-line {
+    border-right: 1px solid #cbcbcb;
+}
+.left-line {
+    border-left: 1px solid #cbcbcb;
+}
+/*jqueryUI中鼠标拖动改变div大小的Icon图标样式*/
+.ui-icon {
+    width: 10px;
+    height: 10px;
+    bottom: -3px;
+    right: -3px;
+}
+
+.ui-resizable-e {
+    right: -1px;
+    width: 4px;
+}
+
+.ui-resizable-s {
+    bottom: -1px;
+    height: 4px;
+}
+/*************************** - end - 整个头部菜单的样式***************************/
+
+#divContent {
+    position: relative;
+    overflow: hidden;
+}
+
+#divContentLeftMenu {
+    position: absolute;
+    width: 200px;
+    overflow: visible;
+}
+#divRight {
+    position: absolute;
+    width: 300px;
+    overflow: visible;
+}
+
+#divContent > div {
+    height: 100%;
+}
+
+
+#divCenter {
+    position: relative;
+    border: 1px solid;
+}
+
+div.flow-container {
+}
+
+#main-nav {
+    margin-left: 1px;
+    height: 100%;
+    overflow: auto;
+    margin-top: 10px;
+}
+
+    #main-nav.nav-tabs.nav-stacked > li > a {
+        padding: 10px 8px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #4A515B;
+        background: #E9E9E9;
+        background: -moz-linear-gradient(top, #FAFAFA 0%, #E9E9E9 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FAFAFA), color-stop(100%,#E9E9E9));
+        background: -webkit-linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%);
+        background: -o-linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%);
+        background: -ms-linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%);
+        background: linear-gradient(top, #FAFAFA 0%,#E9E9E9 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9');
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAFAFA', endColorstr='#E9E9E9')";
+        border: 1px solid #D5D5D5;
+        border-radius: 4px;
+    }
+
+        #main-nav.nav-tabs.nav-stacked > li > a > span {
+            color: #4A515B;
+        }
+
+        #main-nav.nav-tabs.nav-stacked > li.active > a, #main-nav.nav-tabs.nav-stacked > li > a:hover {
+            color: #FFF;
+            background: #3C4049;
+            background: -moz-linear-gradient(top, #4A515B 0%, #3C4049 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4A515B), color-stop(100%,#3C4049));
+            background: -webkit-linear-gradient(top, #4A515B 0%,#3C4049 100%);
+            background: -o-linear-gradient(top, #4A515B 0%,#3C4049 100%);
+            background: -ms-linear-gradient(top, #4A515B 0%,#3C4049 100%);
+            background: linear-gradient(top, #4A515B 0%,#3C4049 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4A515B', endColorstr='#3C4049');
+            -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#4A515B', endColorstr='#3C4049')";
+            border-color: #2B2E33;
+        }
+
+            #main-nav.nav-tabs.nav-stacked > li.active > a, #main-nav.nav-tabs.nav-stacked > li > a:hover > span {
+                color: #FFF;
+            }
+
+    #main-nav.nav-tabs.nav-stacked > li {
+        margin-bottom: 4px;
+    }
+
+/*定义二级菜单样式*/
+.secondmenu a {
+    font-size: 12px;
+    color: #4A515B;
+    text-align: center;
+}
+
+.thirdmenu a {
+    font-size: 10px;
+    color: #4A515B;
+    text-align: center;
+}
+
+.navbar-static-top {
+    background-color: #212121;
+    margin-bottom: 5px;
+}
+
+.navbar-brand {
+    background: url('') no-repeat 10px 8px;
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 50px;
+    color: #fff;
+}
+
+.process > span {
+    position: relative;
+    top: 50%;
+}
+
+.process {
+    -moz-border-radius: 0.5em;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    border: 1px solid #dcdee0;
+    width: 60px;
+    text-align: center;
+    z-index: 20;
+    position: absolute;
+    /*background-color: #eeeeef;346789*/
+    color: black;
+    font-size: 9pt;
+    cursor: move;
+    height: 24px;
+    vertical-align: middle;
+    border-radius: 5px;
+}
+
+/*.process img {*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+/*}*/
+
+.process i{
+    margin-right: 10px !important;
+    color: #337ab7;
+}
+.process label{
+    cursor: move;
+    color: #fff;
+    /*color: #c25aee;*/
+    font-weight: 900;
+    font-size: 23px;
+}
+
+#choiceLine{
+    position: relative;
+}
+
+#choiceLine:hover{
+    font-size: 15px;
+}
+
+#choiceLine .select2 {
+    margin-top: -7px;
+}
+
+#choiceLine i{
+    color: #9A32CD;
+    font-size: 20px;
+    position: absolute;
+    top: -4px;
+    right: 26px;
+    font-size: 30px;
+}
+
+.progressnode {
+    -moz-border-radius: 0.5em;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    border: 1px solid #346789;
+    width: 180px;
+    text-align: center;
+    z-index: 20;
+    position: absolute;
+    background-color: #eeeeef;
+    color: black;
+    font-size: 9pt;
+    cursor: pointer;
+    /*height: 24px;*/
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 1px;
+    border-radius: 5px;
+}
+.node-label{
+    /*height: 30px;*/
+    /*margin-bottom: 2px;*/
+}
+.usedprogressnode {
+    -moz-border-radius: 0.5em;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    border: 1px solid #346789;
+    width: 180px;
+    text-align: center;
+    z-index: 20;
+    position: absolute;
+    background-color: #eeeeef;
+    color: #fff;
+    font-size: 9pt;
+    cursor: pointer;
+    /*height: 24px;*/
+    height: 30px;
+    line-height: 30px;
+    background-color: gray;
+    margin-bottom: 1px;
+    border-radius: 5px;
+}
+
+.seled {
+    border: 1px solid #ff0000;
+    background-color: #D6DFF7;
+}
+
+
+
+.current {
+    background-color: #32cd32 !important;
+}
+
+.select-border {
+    border-color: red !important;
+    box-shadow:-1px 0px 20px #ff0012;
+}

@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BOM查询</title>
+	    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+	    <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+	    <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+	    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+	    <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+	   	<link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+    <script src="../../../dep/html5shiv.js"></script>
+    <script src="../../../dep/respond.min.js"></script>
+    <![endif]-->
+    <!--@RenderSection("Styles", false)-->
+</head>
+<body>
+    <div class="panel-body" style="padding-bottom:0px;">
+            <div class="panel panel-default">
+            <div class="panel-heading"><span class="dot"></span>查询条件
+                <span class="closeBtn" onclick="closeBtn()"></span>
+                <span class="openBtn" onclick="openBtn()"></span>
+            </div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label" for="plantId">工厂</label>
+                        <div class="col-sm-2">
+                            <select id="plantId" name="tmBasPlantId" class="form-control"></select>
+                        </div>
+                        <label class="control-label" for="partId">产品</label>
+                        <div class="col-sm-2">
+                        	<input type="text" class="form-control" id="partId" name="tmBasPartId">
+                        </div>
+                        <label class="control-label" for="bomVersion">版本号</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="bomVersion" name="bomVersion">
+                        </div>
+                        <label class="control-label" for="pPartId">物料</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="pPartId" name="tmBasPartId">
+                        </div>
+                    </div>    
+                     <div class="form-group" style="margin-top: 15px">   
+                        <label class="control-label" for="ulocId">工位</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="ulocId" name="tmBasUlocId">
+                        </div>
+                 		<label class="control-label" for="level">展开层数</label>
+                        <div class="col-sm-2">
+                            <select id="level" name="level" class="form-control">
+                            	<option value=""></option>
+                            	<option value="0">第零级</option>
+                            	<option value="1">第一级</option>
+                            	<option value="2">第二级</option>
+                            	<option value="3">第三级</option>
+                            	<option value="4">第四级</option>
+                            	<option value="5">第五级</option>
+                            </select>
+                        </div>
+                        <div>
+                            <button type="button" id="btn_query" class="btn btn-primary">搜索</button>
+                        </div>
+                        <div>
+                            <button type="button" id="btn_clear" class="btn btn-danger">清除</button>
+                        </div>
+                     </div>  
+                </form>
+            </div>
+        </div> 
+        <div id="toolbar" class="btn-group1">
+			<button id="btnExport" onclick="exportBom()" type="button" class="btn btn-primary">导出</button>
+        </div>
+         <table id="tb_bomSearch"></table>
+    </div>
+    
+    <div style="display:none;">
+	    <select id="bomType" name="bomType" class="form-control" disabled="true"></select>
+	    <select id="bomStatus" name="bomStatus" class="form-control" disabled="true"></select>
+	    <select id="baseUnit" name="baseUnit" class="form-control" disabled="true"></select>
+	</div>
+	<script src="../../../dep/jquery-1.9.1.min.js"></script>
+    <script src="../../../dep/jquery.cookie.js"></script>
+    <script src="../../../js/extensions/jquery-ajax.js"></script>
+    <script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="../../../js/extensions/bootstrap-table-resetView.js"></script>
+    <script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../../../dep/toastr/toastr.min.js"></script>
+    <script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+    <script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+    <script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+    <link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+    <script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+    <script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+    <script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+    <script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+    <script src="../../../dep/plupload.full.min.js"></script>
+    <script src="../../../js/EwinCommon/common.js"></script>
+    <script src="bomSearch.js"></script>
+           
+</body>
+</html>
+

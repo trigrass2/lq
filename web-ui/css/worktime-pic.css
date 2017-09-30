@@ -1,0 +1,303 @@
+
+/*图形化模板管理页面样式*/
+/*左边内容*/
+.cont_left {
+    float: left;
+    width: 23%;
+    border: 1px solid #81899c;
+    height: 700px;
+}
+.panel-body {
+    padding: 10px;
+}
+.modal-body {
+    padding: 5px;
+}
+.cont_left .title_top {
+    float: left;
+    width: 100%;
+    height: 150px;
+}
+.cont_left .title_top .top_select {
+    width: 250px;
+    margin: 20px auto;
+}
+.top_select .cont_detail {
+    float:right;
+    width: 150px;
+    margin-left: 5px
+}
+.top_select .title_sub {
+    float: left;
+    line-height: 28px;
+    margin-right: 10px;
+    margin-left: 6px;
+}
+.top_select .title_input {
+    float:left;
+    width:100%;
+    margin-top: 20px;
+}
+.title_input .form-control {
+    float:left;
+    width: 180px;
+    height: 28px;
+}
+.top_select .product_line {
+    display: none;
+}
+.title_bottom .bottom_tree {
+    float: left;
+    display: none;
+}
+.title_bottom .bottom_table {
+    float: left;
+    display: none
+}
+.title_bottom .bottom_equip {
+    float: left;
+    display: none
+}
+.cont_right {
+    float: right;
+    width: 76%;
+    border: 1px solid #81899c;
+    height: 700px;
+}
+.cont_right .mes_nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.mes_nav .btn {
+    width: 14%;
+}
+.cont_right .mes_week {
+    width: 100%;
+    height: 60px;
+    border-top: 1px solid #81899c;
+    border-bottom: 1px solid #81899c;
+    margin-top: 5px;
+}
+.mes_week .week_btn {
+    float:left;
+    margin-top: 10px;
+}
+.mes_week .week_date {
+    float:left;
+    margin-top: 10px;
+    width: 8%;
+    line-height: 30px;
+}
+
+.work_box {
+    height: 90px;
+    border: 1px solid #e5e5e5;
+    margin: 0 auto;
+}
+.work_box .time_line {
+    margin-top: 40px;
+    margin-left: -15px;
+}
+.work_box .time_block {
+    margin-top: 35px;
+    position: relative;
+}
+.time_block .time_select {
+    font-size: 20px;
+    float: left;
+    margin-top: -18px;
+    margin-left: -10px;
+}
+.time_block .time_select span {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    display: block;
+    text-align: center;
+    line-height: 25px;
+    cursor: pointer;
+}
+.time_block .time_select .time_plus {
+    margin-bottom: 5px;
+}
+.time_shift_plus {
+    width: 35px;
+    height: 80px;
+    float: right;
+    position: absolute;
+    right: 50px;
+    top: -18px;
+    display: none;
+}
+.time_shift_plus span {
+    height: 24px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.time_shift_plus span:nth-child(2) {
+    border-top: 0;
+}
+.time_shift_plus span:nth-child(3) {
+    border-top: 0;
+}
+.time_shift_minus {
+    width: 35px;
+    height: 80px;
+    float: right;
+    position: absolute;
+    right: 50px;
+    top: -18px;
+    display: none;
+}
+.time_shift_minus span {
+    height: 24px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.time_shift_minus span:nth-child(2) {
+    border-top: 0;
+}
+.time_shift_minus span:nth-child(3) {
+    border-top: 0;
+}
+.time_gray {
+    background: #ccc;
+    cursor: not-allowed !important;
+}
+.work_box .plan_line {
+    margin-top: 22px;
+    float: right;
+    margin-right: -10px;
+    display: none;
+}
+.time_block .time_select .morn_plus {
+    margin-bottom: 5px;
+}
+.time_block .time_select .noon_plus {
+    margin-bottom: 5px;
+}
+.time_block .time_select .even_plus {
+    margin-bottom: 5px;
+}
+.time_block label {
+    width: 100px;
+    float: left;
+}
+.plan_line span {
+    width: 75px;
+    display: inline-block;
+}
+.plan_line .plan_up {
+    width: 32px;
+}
+.plan_line .plan_down {
+    width: 32px;
+}
+.plan_line .plan_refer {
+    width: 32px;
+}
+.plan_line p {
+    width: 115px;
+    margin-bottom: 2px;
+    float: right;
+}
+.nochoose_btn {
+    background: #337ab7;
+}
+.choose_btn {
+    background: #286090;
+    color: #fff;
+}
+#table .fixed-table-container {
+    height: 335px !important;
+}
+#table .pull-left {
+    margin-bottom: 0 !important;
+}
+#table .pull-right {
+    margin-top: 0 !important;
+}
+
+/*使用媒体查询*/
+@media screen and (max-width: 1400px)  {
+    .time_shift_plus {
+        width: 35px;
+        height: 80px;
+        float: right;
+        position: absolute;
+        right: -18px;
+        top: -18px;
+        display: none;
+        background: #fff;
+        z-index: 4;
+    }
+    .time_shift_minus {
+        width: 35px;
+        height: 80px;
+        float: right;
+        position: absolute;
+        right: -18px;
+        top: -18px;
+        display: none;
+        background: #fff;
+        z-index: 4;
+    }
+    #table {
+        width: 255px;
+    }
+    #table #table1 {
+        width: 225px !important;
+    }
+}
+
+/*图形化工作日历*/
+#cal_edit {
+    position: absolute;
+    display: none;
+}
+#work_cal .work_box {
+    border: 0;
+}
+
+/*用户消息查询页面*/
+.newsMsg {
+    margin-top: 15px;
+}
+.newsMsg .newsLeft {
+    float: left;
+    width: 15%;
+    height: 573px;
+    border: 1px solid #ccc;
+}
+.newsMsg .newsRight {
+    float: left;
+    width: 83%;
+    height: 573px;
+    border: 1px solid #ccc;
+    border-left: 0;
+}
+.newsRight .rTitle {
+    height: 40px;
+    background: #62a8d1;
+    font-size: 16px;
+    line-height: 40px;
+    color: #fff;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+.rBtn button {
+    margin-left: 10px;
+}
+.rBtn .tableCss {
+    margin-top: -30px;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background-color: #62a8d1;
+    cursor: default;
+    font-size: 16px;
+}

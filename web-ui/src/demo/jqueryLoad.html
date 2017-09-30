@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可视化配置化布局内容页</title>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/icheck-1.x/skins/minimal/grey.css" rel="stylesheet">
+    <link href="../../css/page/demo/demo-style1.css" rel="stylesheet">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../css/codemirror.css" rel="stylesheet">
+    <link href="../../css/rubyblue.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap-small.css">
+    <style type="text/css">
+        html,
+        body{
+            width: 100%;
+            height: 100%;
+        }
+        .visualContentBody{
+            height: 500px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<section class="wrapper wrapper-Visual">
+    <div class="visualContent">
+        <div class="visualContentBody" data-moule="1" id="visualContent1"></div>
+        <div class="visualContentBody" data-moule="2" id="visualContent2"></div>
+        <div class="visualContentBody" data-moule="3" id="visualContent3"></div>
+        <div class="visualContentBody" data-moule="4" id="visualContent4"></div>
+        <div class="visualContentBody" data-moule="5" id="visualContent5"></div>
+        <div class="visualContentBody" data-moule="6" id="visualContent6"></div>
+        <div class="visualContentBody" data-moule="7" id="visualContent7"></div>
+        <div class="visualContentBody" data-moule="8" id="visualContent8"></div>
+    </div>
+</section>
+</body>
+</html>
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../dep/echarts/echarts-all.js"></script>
+<script src="../../js/global.js"></script>
+
+<!--代码格式显示js，无需引用-->
+<script src="../../js/codemirror.js"></script>
+<script src="../../js/vim.js"></script>
+<script src="../../js/javascript.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#visualContent1").load("draggable_panels.html .panelBody1");
+        $("#visualContent2").load("draggable_panels.html .panelBody2");
+        $("#visualContent3").load("draggable_panels.html .panelBody3");
+        $("#visualContent4").load("draggable_panels.html .panelBody4");
+        $("#visualContent5").load("draggable_panels.html .panelBody5");
+        $("#visualContent6").load("draggable_panels.html .panelBody6");
+        $("#visualContent7").load("draggable_panels.html .panelBody7");
+        $("#visualContent8").load("draggable_panels.html .panelBody8");
+
+        /**
+         * 系统公共JS、CSS文件统一引用入口
+         * @author 彭灿辉
+         * @data 2017-08-17
+         */
+        /*需要的JS文件对象*/
+        var common_js_files = [
+            '../../js/demo/draggable_panels/index.js'
+        ];
+        /*需要的CSS文件对象*/
+        var common_css_files = [];
+        /**
+         * 导入CSS文件
+         */
+        for(var i = 0; i < common_css_files.length; i++){
+            document.write("<link rel='stylesheet' type='text/css' href='"+common_css_files[i]+"'>");
+        }
+        /**
+         * 导入JS文件
+         */
+        for(var i = 0; i < common_js_files.length; i++){
+            document.write('<script type="text/javascript" src='+common_js_files[i]+'><\/script>');
+        }
+
+    });
+</script>

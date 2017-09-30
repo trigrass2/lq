@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可视化布局</title>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../dep/layui/css/layui.css" rel="stylesheet" />
+    <link href="../../dep/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="../../css/page/demo/demo-style1.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap-small.css">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../css/codemirror.css" rel="stylesheet">
+    <link href="../../css/rubyblue.css" rel="stylesheet">
+    <style type="text/css">
+        html,
+        body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<section class="visualLayout">
+    <div class="visualLayout-left">
+        <div id="visualLeftHeader" class="visual-left-header">
+      	  <div class="input-group input-group-sm margin-b20 input-group30">
+                    <span class="input-group-addon">页面</span>
+                    <select  id="selectPage" class="select2 form-control" data-msg="页面不能为空！">
+                        <option value="0">请选择</option>
+                    </select>
+                    <!--<input disabled id="selectModule" type="text" data-msg="所属模块不能为空！" class="form-control" placeholder="请选择模块" aria-describedby="sizing-addon3">-->
+                </div>
+            <div class="input-group input-group-sm margin-b20 position-r">
+                <span class="input-group-addon">行数</span>
+                <input id="rowNum" type="number" class="form-control" data-msg="行数不能为空！" placeholder="请输入行数">
+            </div>
+            <div class="input-group input-group-sm margin-b20 position-r">
+                <span class="input-group-addon">列数</span>
+                <input id="colNum" type="number" class="form-control" data-msg="列数不能为空！" placeholder="请输入列数">
+            </div>
+            <button type="button" id="generate" class="btn btn-primary btn-sm">生成</button>
+        </div>
+        <div id="visualLeftContent" class="visual-left-content">
+            <button disabled id="visualMove" type="button" class="btn btn-link visual-move"><i  class="fa fa-angle-double-right"></i></button>
+            <div style="margin-right: 50px;">
+                <div class="input-group input-group-sm margin-b20">
+                    <span class="input-group-addon">占用行数</span>
+                    <input disabled id="rowaMain" type="number" data-msg="占用行数不能为空！" class="form-control" placeholder="请输入行数" aria-describedby="sizing-addon3">
+                </div>
+                <div class="input-group input-group-sm margin-b20">
+                    <span class="input-group-addon">占用列数</span>
+                    <input disabled id="colMain" type="number" data-msg="占用列数不能为空！" class="form-control" placeholder="请输入列数" aria-describedby="sizing-addon3">
+                </div>
+                <div class="input-group input-group-sm margin-b20">
+                    <span class="input-group-addon">起始位置</span>
+                    <input disabled id="startPoint" type="number" data-msg="起始位置不能为空！" class="form-control" placeholder="请输入起始位置" aria-describedby="sizing-addon3">
+                </div>
+                <div class="input-group input-group-sm margin-b20 input-group30">
+                    <span class="input-group-addon">所属模块</span>
+                    <select disabled  id="selectModule" class="select2 form-control" data-msg="所属模块不能为空！">
+                        <option value="0">请选择</option>
+                    </select>
+                    <!--<input disabled id="selectModule" type="text" data-msg="所属模块不能为空！" class="form-control" placeholder="请选择模块" aria-describedby="sizing-addon3">-->
+                </div>
+            </div>
+            <button disabled type="button" id="saveLayout" class="btn btn-primary btn-sm">保存</button>
+        </div>
+    </div>
+    <div id="visualLayout-content" class="visualLayout-content">
+        <div class="visual-content-default angled-135 stripes"><div>可视化配置布局</div></div>
+        <div id="visual-content-main" class="visual-content-main" style="display: none;">
+
+        </div>
+    </div>
+</section>
+</body>
+</html>
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../dep/layui/layui.js"></script>
+<!--<script src="../../dep/layer/layer.js"></script>-->
+<script src="../../dep/select2-4.0.3/dist/js/select2.min.js"></script>
+<script src="../../js/global.js"></script>
+
+<!--代码格式显示js，无需引用-->
+<script src="../../js/codemirror.js"></script>
+<script src="../../js/vim.js"></script>
+<script src="../../js/javascript.js"></script>
+<script src="../../dep/select2-4.0.3/dist/js/select2.min.js"></script>
+<script src="../../js/EwinCommon/newcommon.js"></script>
+<script src="../../js/demo/visualLayout/index.js"></script>

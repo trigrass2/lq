@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用户消息查询</title>
+    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../dep/summernote/summernote.css">
+    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../dep/bootstrap/css/bootstrap-theme.css">
+    <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../css/worktime-pic.css">
+    <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <link href="../../../dep/select2-4.0.3/dist/css/select2.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-datapicker/dist-min/css/datepicker3.css" rel="stylesheet" />
+    <link href="../../../css/EwinCommon/newcommon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../dep/switchery/switchery.css">
+    <link href="../../../dep/bootstrap-datetimepicker_new/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../dep/icheck-1.x/skins/minimal/grey.css">
+
+    <!--[if lt IE 9]>
+    <script src="../../../Scripts/html5shiv.js"></script>
+    <script src="../../../Scripts/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div class="newsMsg">
+    <div class="newsLeft">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="active"><a href="#">消息</a></li>
+            <li role="presentation"><a href="#" id="allNews">全部消息<span></span></a></li>
+            <li role="presentation"><a href="#" id="notRead">未读消息<span></span></a></li>
+            <li role="presentation"><a href="#" id="readyRead">已读消息<span></span></a></li>
+            <li role="presentation"><a href="#" id="overNews">过期消息<span></span></a></li>
+        </ul>
+    </div>
+    <div class="newsRight">
+        <div class="rTitle">未读消息</div>
+        <div class="rBtn">
+            <button type="button" class="btn btn-primary" id="all">全部类型</button>
+            <button type="button" class="btn btn-primary" id="notice">通知<span></span></button>
+            <button type="button" class="btn btn-primary" id="task">任务<span></span></button>
+            <button type="button" class="btn btn-primary" id="AND">暗灯<span></span></button>
+            <div class="allTable tableCss"></div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../../dep/switchery/switchery.js"></script>
+<script src="../../../dep/TimeSlider/jquery.range.js"></script>
+<script src="../../../dep/icheck-1.x/icheck.min.js"></script>
+<script src="../../../dep/jquery.cookie.js"></script>
+<script src="../../../js/extensions/jquery-ajax.js"></script>
+<script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../dep/summernote/summernote.js"></script>
+<script src="../../../dep/bootstrap-table/bootstrap-table.js"></script>
+<script src="../../../js/extensions/bootstrap-table-resetView.js"></script>
+<script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+<script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+<script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+<script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<script src="../../../dep/select2-4.0.3/dist/js/select2.js"></script>
+<script src="../../../dep/bootstrap-datetimepicker_new/js/bootstrap-datetimepicker.js"></script>
+<script src="../../../dep/zTree/js/jquery.ztree.all.min.js"></script>
+<!--<script src="../../../js/global.js"></script>-->
+<script src="../../../js/EwinCommon/newcommon.js"></script>
+<script src="../../../js/global.js"></script>
+<script src="../../../js/EwinCommon/common.js"></script>
+<script src="userNewsQuery.js"></script>
+</html>

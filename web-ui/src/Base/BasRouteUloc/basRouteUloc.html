@@ -1,0 +1,1174 @@
+
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <title>工艺路径模式维护</title>
+        <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+        <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+        <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+        <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+        <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+        <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+        <link href="../../../dep/select2-4.0.3/dist/css/select2.css" rel="stylesheet" />
+        <link href="../../../dep/bootstrap-datapicker/dist-min/css/datepicker3.css" rel="stylesheet" />
+        <link href="../../../css/EwinCommon/newcommon.css" rel="stylesheet" />
+				<link href="../../../dep/bootstrap-datetimepicker_new/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+	   <!--[if lt IE 9]>
+	    <script src="../../../Scripts/html5shiv.js"></script>
+	    <script src="../../../Scripts/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body style="min-width: 1024px">
+		<div class="panel-body" style="padding-bottom:0px;">
+            <!--搜索框-->
+            <div class="panel panel-default demoSearch"></div>
+            <!--表格-->
+            <div class="demoTable" style="float: left; width: 50%"></div>
+            <div class="demoTable1" style="float: right; width: 49%">
+            	<ul id="myTab" class="nav nav-tabs">
+                    <li class="active"><a href="#home" data-toggle="tab">站点内容</a></li>
+                    <li><a href="#iosFile" data-toggle="tab">工艺文件</a></li>
+                    <li><a href="#iosService" data-toggle="tab">后台服务</a></li>
+                    <li><a href="#quality" data-toggle="tab">质检内容</a></li>
+                    <li><a href="#scrap" data-toggle="tab">报废</a></li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+	                <div class="tab-pane fade in active home" id="home"></div>
+	                <div class="tab-pane fade iosFile" id="iosFile" ></div>
+	                <div class="tab-pane fade iosService" id="iosService" ></div>
+	                <div class="tab-pane fade quality" id="quality"></div>
+	                <div class="tab-pane fade scrap" id="scrap"></div>
+	            </div>
+            </div>
+            <!--弹出框1-->
+            <div id="demoadd" class="modal fade" role="dialog" data-backdrop="static"></div>
+ 
+	    </div>
+    </body>
+    <script src="../../../dep/jquery-1.9.1.min.js"></script>
+    <script src="../../../dep/jquery.cookie.js"></script>
+    <script src="../../../js/extensions/jquery-ajax.js"></script>
+    <script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../dep/bootstrap-table/bootstrap-table.js"></script>
+    <!-- <script src="../../../js/extensions/bootstrap-table-resetView.js"></script> -->
+    <script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../../../dep/toastr/toastr.min.js"></script>
+    <script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+    <script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+    <script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+    <link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+    <script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+    <script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+    <script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+    <script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="../../../dep/bootstrapValidator/js/bootstrapValidator.js"></script>
+    <script src="../../../dep/select2-4.0.3/dist/js/select2.js"></script>
+    <script src="../../../dep/bootstrap-datapicker/dist-min/js/bootstrap-datepicker.js"></script>
+    <script src="../../../js/EwinCommon/newcommon.js"></script>
+		<script src="../../../dep/bootstrap-datetimepicker_new/js/bootstrap-datetimepicker.js"></script>
+    <script src="basRouteUloc.js"></script>
+    <script src="basQuality.js"></script>
+    <script type="text/javascript">
+    $('#myTab a').click(function (e) {
+    	  e.preventDefault()
+    	  $(this).tab('show')
+    	})
+    </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<!DOCTYPE html>
+<html style="height:100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>工艺路径模式维护</title>
+    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet"/>
+    <link href="../../../css/bootstrap-small.css" rel="stylesheet"/>
+    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../../dep/zTree/css/metroStyle/metroStyle.css" rel="stylesheet"/>
+    <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
+    <link href="../../../dep/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css" rel="stylesheet" />
+    [if lt IE 9]>
+    <script src="../../../dep/html5shiv.js"></script>
+    <script src="../../../dep/respond.min.js"></script>
+    <![endif]
+    @RenderSection("Styles", false)
+</head>
+<body style="height:100%;">
+<div>
+    <div id="divTop"></div>
+    <div class="panel-body">
+        <div class="panel panel-default" style="margin-bottom: 5px;">
+
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label" for="plantL">工厂：</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="plantL" name="plantL" readonly/>
+                        </div>
+                        <label class="control-label" for="ulocL">工艺路径：</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="ulocL" name="ulocL" readonly/>
+                        </div>
+                        <label class="control-label" for="partgroupL">产品/产品组：</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="partgroupL" name="partgroupL" readonly/>
+                        </div>
+                      </div>
+                      <div class="form-group" style="margin-top: 15px">
+                        <label class="control-label" for="routeVersionL">版本：</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="routeVersionL" name="routeVersionL" readonly/>
+                        </div>
+                        <label class="control-label" for="routeStatusL">状态：</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="routeStatusL" name="routeStatusL" readonly/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="div_tableleft" class="col-xs-6" style="padding-left:0px;">
+            <div id="divContentLeft inputPlace">
+                <div id="toolbarL" class="btn-group">
+
+                    @Html.PermissionButton("btnAdd", Buttons.Add)
+                    @Html.PermissionButton("btnEdit", Buttons.Edit)
+                    @Html.PermissionButton("btnDelete", Buttons.Delete)
+                    <div id="toolbar" class="btn-group1">
+                        <div style="width: 100%;">
+                             <button id="btnAdd" data-toggle="modal" data-target="#myModalAdd" onclick="type_addNew()"
+                                    type="button" class="btn btn-primary">
+                                新增
+                            </button>
+                            <button id="btnEdit" data-target="#myModalUpdate" onclick="type_edit()" type="button"
+                                    class="btn btn-info">
+                                编辑
+                            </button>
+                            <button id="btnDelete" type="button" class="btn btn-danger" onclick="deleteMore()">
+                                删除
+                            </button>
+                            <button id="btnImportPanel"  type="button"  onclick="downFile()"
+                                    class="btn btn-danger">
+                                模板下载
+                            </button>
+                            <button id="btnImport" data-toggle="modal" data-target="#myModalInput" type="button" onclick="importInfo()"
+                                    class="btn btn-danger">
+                                导入
+                            </button>
+                            <button id="btnExport" onclick="exportFile()" type="button" class="btn btn-danger">
+                                导出
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <table id="tb_Type"></table>
+            </div>
+        </div>
+        <div id="div_tableright" class="col-xs-6" style="padding-right:0px">
+
+            <div id="divContentRight">
+                <ul id="myTab" class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#home" data-toggle="tab">
+                            站点内容
+                        </a>
+                    </li>
+                    <li><a href="#iosFile" data-toggle="tab">工艺文件</a></li>
+                    <li><a href="#iosService" data-toggle="tab">后台服务</a></li>
+                    <li><a href="#iosBom" data-toggle="tab">BOM信息</a></li>
+
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="home">
+                        <div style="margin-bottom:3px; margin-left:3px;">
+                            <button id="btnAdd" data-toggle="modal" data-target="#myModalContentAdd" onclick="type_addNewContent()"
+                                   type="button" class="btn btn-primary">
+                                新增
+                           </button>
+                           <button id="btnAdd" data-toggle="modal" data-target="#myModalContentUpdate" onclick="type_edit()"
+                                  type="button" class="btn btn-primary">
+                                编辑
+                          </button>
+                          <button id="btnAdd" data-toggle="modal" data-target="#myModalContentAdd" onclick="deleteMore()"
+                                 type="button" class="btn btn-primary">
+                               删除
+                         </button>
+                        </div>
+                        <table id="tb_web"></table>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="iosFile">
+                        <div style="margin-bottom:3px; margin-left:3px;">
+                            <button id="btnAdd" data-toggle="modal" data-target="#myModalFileAdd" onclick="type_addNew()"
+                                   type="button" class="btn btn-primary">
+                                新增
+                           </button>
+                           <button id="btnAdd" data-toggle="modal" data-target="#myModalFileUpdate" onclick="type_edit()"
+                                  type="button" class="btn btn-primary">
+                                编辑
+                          </button>
+                          <button id="btnAdd" data-toggle="modal" data-target="#myModalFileAdd" onclick="deleteMore()"
+                                 type="button" class="btn btn-primary">
+                               删除
+                         </button>
+                        </div>
+                        <table id="tb_file"></table>
+                    </div>
+
+                    <div class="tab-pane fade" id="iosService">
+                        <div style="margin-bottom:3px; margin-left:3px;">
+                            <button id="btnAdd" data-toggle="modal" data-target="#myModalServiceAdd" onclick="type_addNew()"
+                                   type="button" class="btn btn-primary">
+                                新增
+                           </button>
+                           <button id="btnAdd" data-toggle="modal" data-target="#myModalServiceUpdate" onclick="type_edit()"
+                                  type="button" class="btn btn-primary">
+                                编辑
+                          </button>
+                          <button id="btnAdd" data-toggle="modal" data-target="#myModalServiceAdd" onclick="deleteMore()"
+                                 type="button" class="btn btn-primary">
+                               删除
+                         </button>
+                        </div>
+                        <table id="tb_service"></table>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="iosBom">
+                        <div style="margin-bottom:3px; margin-left:3px;">
+                            <button id="btnAdd" data-toggle="modal" data-target="#myModalBomAdd" onclick="type_addNew()"
+                                   type="button" class="btn btn-primary">
+                                新增
+                           </button>
+                           <button id="btnAdd" data-toggle="modal" data-target="#myModalBomUpdate" onclick="type_edit()"
+                                  type="button" class="btn btn-primary">
+                                编辑
+                          </button>
+                          <button id="btnAdd" data-toggle="modal" data-target="#myModalBomAdd" onclick="deleteMore()"
+                                 type="button" class="btn btn-primary">
+                               删除
+                         </button>
+                        </div>
+                        <table id="tb_bom"></table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divBottom"></div>
+</div>
+
+
+
+-Add增加 start
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="addUserForm">
+    <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        新增
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="seqA"> <span class="x-red">*</span>站点顺序</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="seqA" name="seqA"/>
+                            </div>
+                            <label class="col-sm-2 control-label" for="ulocA"><span class="x-red">*</span>当前站点</label>
+                            <div class="col-sm-4">
+                              <select class="form-control" name="ulocA" id="ulocA" data-size="8" >
+                                  <option> </option>
+                                  <option value="0">UC01</option>
+                                  <option value="1">UC02</option>
+                                  <option value="2">UC03</option>
+                                  <option value="3">UC04</option>
+                                  <option value="4">UC05</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="typeA"><span class="x-red">*</span>类型</label>
+                            <div class="col-sm-4">
+                              <select class="form-control" name="typeA" id="typeA" data-size="8">
+                                  <option></option>
+                                  <option value="0">顺序</option>
+                                  <option value="1">条件</option>
+                              </select>
+                            </div>
+                            <label class="col-sm-2 control-label" for="standardHourA">标准工时</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="standardHourA" name="standardHourA"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="routeConditionA">条件</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="routeConditionA" name="routeConditionA"/>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="nextUlocIdA">下一站点</label>
+                            <div class="col-sm-4">
+                              <select class="form-control" name="nextUlocIdA" id="nextUlocIdA" data-size="8">
+                                  <option></option>
+                              </select>
+                            </div>
+                            <label class="col-sm-2 control-label" for="rlUlocIdA">左右工位</label>
+                            <div class="col-sm-4">
+                                <select class="form-control" name="rlUlocIdA" id="rlUlocIdA" data-size="8">
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="contentA">站点内容</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="contentA" name="contentA"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="attentionA">注意事项</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="attentionA" name="attentionA"/>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                              <label class="col-sm-2 control-label" for="remarkA">备注</label>
+                              <div class="col-sm-10">
+                                <input type="text" class="form-control" id="remarkA" name="remarkA"/>
+                              </div>
+                        </div>
+                    </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="save()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+Add增加 end
+
+
+
+-Update增加 start
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="updateUserForm">
+    <div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        编辑
+                    </h4>
+                </div>
+                <div class="modal-body">
+                  <fieldset>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="seqU"> <span class="x-red">*</span>站点顺序</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="seqU" name="seqU"/>
+                          </div>
+                          <label class="col-sm-2 control-label" for="ulocU"><span class="x-red">*</span>当前站点</label>
+                          <div class="col-sm-4">
+                            <select class="form-control" name="ulocU" id="ulocU" data-size="8" >
+                                <option> </option>
+
+                            </select>
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="typeU">类型</label>
+                          <div class="col-sm-4">
+                            <select class="form-control" name="typeU" id="typeU" data-size="8">
+                                <option></option>
+                                <option value="0">顺序</option>
+                                <option value="1">条件</option>
+                            </select>
+                          </div>
+                          <label class="col-sm-2 control-label" for="standardHourU">标准工时</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="standardHourU" name="standardHourU"/>
+                          </div>
+                      </div>
+
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="routeConditionU">条件</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" id="routeConditionU" name="routeConditionU"/>
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="nextUlocIdU">下一站点</label>
+                          <div class="col-sm-4">
+                            <select class="form-control" name="nextUlocIdU" id="nextUlocIdU" data-size="8">
+                                <option></option>
+                            </select>
+                          </div>
+                          <label class="col-sm-2 control-label" for="rlUlocIdU">左右工位</label>
+                          <div class="col-sm-4">
+                              <select class="form-control" name="rlUlocIdU" id="rlUlocIdU" data-size="8">
+                                  <option></option>
+                              </select>
+                          </div>
+                      </div>
+
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="contentU">站点内容</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" id="contentU" name="contentU" />
+                          </div>
+                      </div>
+
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="attentionU">注意事项</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="attentionU" name="attentionU"/>
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="remarkU">备注</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="remarkU" name="remarkU"/>
+                            </div>
+                      </div>
+                  </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="update()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+Update增加 end
+
+
+-AddRole 角色设置 start
+
+模态框（Modal）
+<form class="form-horizontal" role="form">
+    <div class="modal fade" id="myModalRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        站点要求
+                    </h4>
+                </div>
+                <div>
+
+
+                    <div class="panel-body">
+                        <div class="panel panel-default" style="margin-bottom: 5px;">
+
+                            <div class="panel-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="noR">角色编号</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control" id="noR" name="noR"/>
+                                                </div>
+                                                <label class="col-sm-2 control-label" for="nameR">角色名称</label>
+                                                <div class="col-sm-2">
+                                                    <input type="text" class="form-control" id="nameR" name="nameR"/>
+                                                </div>
+
+
+                                                <div>
+                                                    <button type="button" id="btn_queryRole" class="btn btn-primary"
+                                                            onclick="lookRole()">搜索
+                                                    </button>
+                                                </div>
+                                                <div>
+                                                    <button type="reset" id="btn_queryClear" class="btn btn-danger">清除
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <table id="tb_roleList"></table>
+
+
+                    </div>
+
+
+                    <input type="hidden" name="userIdHidden" id="userIdHidden"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="updateUserRole()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+AddRole 角色设置 end
+
+
+-导入增加 start
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="postForm" enctype="multipart/form-data">
+    <div class="modal fade" id="myModalInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        批量导入用户
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="noA"> 用户信息导入<span
+                                    class="x-red">*</span></label>
+                            <div class="col-sm-4">
+                                <input type="file" class="file" id="input-1" name="file"  accept=".xls,.xlsx"/>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-info btn-lg" onclick="downFile()">
+                        <span class="glyphicon glyphicon-download-alt"></span> 导入模板下载
+                    </a>
+                    <button type="button" class="btn btn-primary" onclick="upFile()">
+                        导入
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+导入 增加 end
+
+
+   **********************************************右页面增加 start*****************************************************************
+
+- ======================站点内容  start==============================
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="addContentForm">
+    <div class="modal fade" id="myModalContentAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        新增站点内容
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="partgroupA"><span class="x-red">*</span>产品组</label>
+                            <div class="col-sm-4">
+                              <div class="input-group">
+                                 <input type="text" class="form-control" id="partgroupA"  onclick="partgroupASuggest()">
+                                 <div class="input-group-btn">
+                                     <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                         <span class="caret"></span>
+                                     </button>
+                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                     </ul>
+                                 </div>
+                                 /btn-group
+                             </div>
+                            </div>
+                            <label class="col-sm-2 control-label" for="partA"><span class="x-red">*</span>产品</label>
+                            <div class="col-sm-4">
+                              <div class="input-group">
+                                 <input type="text" class="form-control" id="partA"  onclick="partASuggest()">
+                                 <div class="input-group-btn">
+                                     <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                         <span class="caret"></span>
+                                     </button>
+                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                     </ul>
+                                 </div>
+                                 /btn-group
+                             </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="stepA"><span class="x-red">*</span>序号</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="stepA" name="stepA"/>
+                            </div>
+                            <label class="col-sm-2 control-label" for="userInstrumentA">工具</label>
+                            <div class="col-sm-4">
+                              <select class="form-control" name="userInstrumentA" id="userInstrumentA" data-size="8">
+                                  <option></option>
+
+                              </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="stepContentA"><span class="x-red">*</span>工序内容</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="stepContentA" name="stepContentA"/>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="stepRequirementA">技术要求</label>
+                            <div class="col-sm-10">
+                                 <input type="text" class="form-control" id="stepRequirementA" name="stepRequirementA"/>
+                            </div>
+                         </div>
+                         <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="timesA">次数</label>
+                            <div class="col-sm-4">
+                                 <input type="text" class="form-control" id="timesA" name="timesA"/>
+                            </div>
+                              <label class="col-sm-2 control-label" for="standardHourA">标准工时(分钟)</label>
+                            <div class="col-sm-4">
+                                   <input type="text" class="form-control" id="standardHourA" name="standardHourA"/>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="saveContent()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+Add增加 end
+
+
+
+-Update增加 start
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="updateContentForm">
+    <div class="modal fade" id="myModalContentUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        编辑站点内容
+                    </h4>
+                </div>
+                <div class="modal-body">
+                  <fieldset>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="partgroupU"><span class="x-red">*</span>产品组</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="partgroupU" name="partgroupU" readonly/>
+
+                          </div>
+                          <label class="col-sm-2 control-label" for="partU"><span class="x-red">*</span>产品</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="partU" name="partU" readonly/>
+
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="stepU"><span class="x-red">*</span>序号</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="stepU" name="stepU" readonly/>
+                          </div>
+                          <label class="col-sm-2 control-label" for="userInstrumentU">工具</label>
+                          <div class="col-sm-4">
+                            <select class="form-control" name="userInstrumentU" id="userInstrumentU" data-size="8">
+                                <option></option>
+
+                            </select>
+                          </div>
+                      </div>
+
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="stepContentU"><span class="x-red">*</span>工序内容</label>
+                          <div class="col-sm-10">
+                              <input type="text" class="form-control" id="stepContentU" name="stepContentU"/>
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="stepRequirementU">技术要求</label>
+                          <div class="col-sm-10">
+                               <input type="text" class="form-control" id="stepRequirementU" name="stepRequirementU"/>
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="timesU">次数</label>
+                          <div class="col-sm-4">
+                               <input type="text" class="form-control" id="timesU" name="timesU"/>
+                          </div>
+                            <label class="col-sm-2 control-label" for="standardHourU">标准工时(分钟)</label>
+                          <div class="col-sm-4">
+                                 <input type="text" class="form-control" id="standardHourU" name="standardHourU"/>
+                          </div>
+                      </div>
+
+                  </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="update()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+Update增加 end
+- ======================站点内容  end==============================
+
+
+
+- ======================工艺文件  start==============================
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="addFileForm">
+    <div class="modal fade" id="myModalFileAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        新增工艺文件
+                    </h4>
+                </div>
+                <div class="modal-body">
+                  <fieldset>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="partgroupA"><span class="x-red">*</span>产品组</label>
+
+                          <div class="col-sm-4">
+                            <div class="input-group">
+                               <input type="text" class="form-control" id="partgroupA"  onclick="partgroupASuggest()">
+                               <div class="input-group-btn">
+                                   <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                       <span class="caret"></span>
+                                   </button>
+                                   <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                   </ul>
+                               </div>
+                               /btn-group
+                           </div>
+                          </div>
+                          <label class="col-sm-2 control-label" for="partA"><span class="x-red">*</span>产品</label>
+
+                          <div class="col-sm-4">
+                            <div class="input-group">
+                               <input type="text" class="form-control" id="partA"  onclick="partASuggest()">
+                               <div class="input-group-btn">
+                                   <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                       <span class="caret"></span>
+                                   </button>
+                                   <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                   </ul>
+                               </div>
+                               /btn-group
+                           </div>
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="stepA"><span class="x-red">*</span>序号</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="stepA" name="stepA"/>
+                          </div>
+                          <label class="col-sm-2 control-label" for="displayTimeA">显示时间</label>
+                          <div class="col-sm-4">
+                               <input type="text" class="form-control" id="displayTimeA" name="displayTimeA"/>
+                          </div>
+                      </div>
+
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="fileAddrA"><span class="x-red">*</span>文件</label>
+                          <div class="col-sm-10">
+                              <input type="file" class="form-control" id="fileAddrA" name="fileAddrA"/>
+                          </div>
+                      </div>
+                  </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="save()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+Add增加 end
+
+
+
+-Update增加 start
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="updateFileForm">
+    <div class="modal fade" id="myModalFileUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        编辑工艺文件
+                    </h4>
+                </div>
+                <div class="modal-body">
+                  <fieldset>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="partgroupU"><span class="x-red">*</span>产品组</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="partgroupU" name="partgroupU" readonly/>
+
+                          </div>
+                          <label class="col-sm-2 control-label" for="partU"><span class="x-red">*</span>产品</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="partU" name="partU" readonly/>
+
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="stepU"><span class="x-red">*</span>序号</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="stepU" name="stepU" readonly/>
+                          </div>
+                          <label class="col-sm-2 control-label" for="displayTimeU">显示时间</label>
+                          <div class="col-sm-4">
+                               <input type="text" class="form-control" id="displayTimeU" name="displayTimeU"/>
+                          </div>
+                      </div>
+
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="fileAddrU"><span class="x-red">*</span>文件</label>
+                          <div class="col-sm-10">
+                              <input type="file" class="form-control" id="fileAddrU" name="fileAddrU"/>
+                          </div>
+                      </div>
+                  </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="update()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+Update增加 end
+- ======================工艺文件  end==============================
+
+
+
+
+
+- ======================后台服务  start==============================
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="addServiceForm">
+    <div class="modal fade" id="myModalServiceAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        新增后台服务
+                    </h4>
+                </div>
+                <div class="modal-body">
+                  <fieldset>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="partgroupA"><span class="x-red">*</span>产品组</label>
+                          <div class="col-sm-4">
+                            <div class="input-group">
+                               <input type="text" class="form-control" id="partgroupA"  onclick="partgroupASuggest()">
+                               <div class="input-group-btn">
+                                   <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                       <span class="caret"></span>
+                                   </button>
+                                   <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                   </ul>
+                               </div>
+                               /btn-group
+                           </div>
+                          </div>
+                        </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="partA"><span class="x-red">*</span>产品</label>
+                          <div class="col-sm-4">
+                            <div class="input-group">
+                               <input type="text" class="form-control" id="partA"  onclick="partASuggest()">
+                               <div class="input-group-btn">
+                                   <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                       <span class="caret"></span>
+                                   </button>
+                                   <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                   </ul>
+                               </div>
+                               /btn-group
+                           </div>
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="typeA"><span class="x-red">*</span>类型</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="typeA" name="typeA"/>
+                          </div>
+                      </div>
+
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="serviceA"><span class="x-red">*</span>服务</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="serviceA" name="serviceA"/>
+                          </div>
+                      </div>
+
+
+                  </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="save()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+Add增加 end
+
+
+
+-Update增加 start
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="updateServiceForm">
+    <div class="modal fade" id="myModalServiceUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        编辑后台服务
+                    </h4>
+                </div>
+                <div class="modal-body">
+                  <fieldset>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="partgroupU"><span class="x-red">*</span>产品组</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="partgroupU" name="partgroupU" readonly/>
+
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="partU"><span class="x-red">*</span>产品</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="partU" name="partU" readonly/>
+
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="typeU"><span class="x-red">*</span>类型</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="typeU" name="typeU" readonly/>
+                          </div>
+
+                      </div>
+
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="serviceU"><span class="x-red">*</span>服务</label>
+                          <div class="col-sm-4">
+                              <input type="file" class="form-control" id="serviceU" name="serviceU"/>
+                          </div>
+                      </div>
+                  </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="update()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+Update增加 end
+- ======================站点内容  end==============================
+
+
+
+
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../../dep/jquery.cookie.js"></script>
+<script src="../../../js/extensions/jquery-ajax.js"></script>
+<script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../../../js/extensions/bootstrap-table-resetView.js"></script>
+<script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../../dep/toastr/toastr.min.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+
+<script type="text/javascript">
+    jQuery.support.cors = true;
+    var ApiUrl = '';
+</script>
+<script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+<script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+<script src="../../../dep/zTree/js/jquery.ztree.all.min.js"></script>
+<script src="../../../js/EwinCommon/common.js"></script>
+<script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<script src="../../../dep/bootstrap-iconpicker/js/iconset/iconset-fontawesome-4.2.0.min.js"></script>
+<script src="../../../dep/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js"></script>
+<script src="../../../dep/suggest/bootstrap-suggest.min.js"></script>
+<script src="basRouteUloc.js"></script>
+<input type="hidden" name="noC" id="noC"/>
+<input type="hidden" name="nameC" id="nameC"/>
+<input type="hidden" name="nameEnC" id="nameEnC"/>
+<input type="hidden" name="emailC" id="emailC"/>
+<input type="hidden" name="mobileC" id="mobileC"/>
+<input type="hidden" name="sexC" id="sexC"/>
+<input type="hidden" name="remarkC" id="remarkC"/>
+<input type="hidden" name="enabledC" id="enabledC"/>
+</body>
+</html>
+ -->

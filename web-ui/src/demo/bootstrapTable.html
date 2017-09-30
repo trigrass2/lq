@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Table</title>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="../../css/page/demo/demo-style1.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../dep/bootstrap-table/extensions/fixed-columns/css/bootstrap-table-fixed-columns.css">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../css/codemirror.css" rel="stylesheet">
+    <link href="../../css/rubyblue.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap-small.css">
+</head>
+<body >
+<section class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    数据较多的列
+                </header>
+                <div class="panel-body">
+                    <table id="exampleTableLargeColumns" data-show-columns="true" data-striped="true" data-height="400" data-mobile-responsive="true"></table>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">数据较多的列</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="CodeMirrortable" name="code">
+/* css start*/
+<link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+/* css end*/
+
+/* html start*/
+<table id="TableLargeColumns" data-show-columns="true" data-height="400" data-striped="true" data-mobile-responsive="true"></table>
+/* html end*/
+
+/* js  start*/
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap table -->
+<script src="../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+buildTable($('#exampleTableLargeColumns'), 50, 50);
+function buildTable($el, cells, rows) {
+    var i, j, row,
+        columns = [{
+            checkbox: true
+        }],
+        data = [];
+
+    for (i = 0; i < cells; i++) {
+        columns.push({
+            class:'bootstrap-table-col-class',
+            field: '字段' + i,
+            title: '单元' + i,
+            valign: 'middle',
+            align:'center',
+            width: 120
+        });
+    }
+    for (i = 0; i < rows; i++) {
+        row = {};
+        for (j = 0; j < cells; j++) {
+            row['字段' + j] = 'Row-' + i + '-' + j;
+        }
+        data.push(row);
+    }
+    $el.bootstrapTable('destroy').bootstrapTable({
+        columns: columns,
+        data: data,
+        iconSize: 'outline',
+        icons: {
+            columns: 'glyphicon-list'
+        }
+    });
+}
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    分页table
+                </header>
+                <div class="panel-body">
+                    <!--<div class="btn-group hidden-xs" id="exampleTableEventsToolbar" role="group">-->
+                        <!--<button type="button" class="btn btn-outline btn-default">-->
+                            <!--<i class="glyphicon glyphicon-plus" aria-hidden="true"></i>-->
+                        <!--</button>-->
+                        <!--<button type="button" class="btn btn-outline btn-default">-->
+                            <!--<i class="glyphicon glyphicon-heart" aria-hidden="true"></i>-->
+                        <!--</button>-->
+                        <!--<button type="button" class="btn btn-outline btn-default">-->
+                            <!--<i class="glyphicon glyphicon-trash" aria-hidden="true"></i>-->
+                        <!--</button>-->
+                    <!--</div>-->
+                    <table id="exampleTableEvents">
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th data-field="state" data-checkbox="true"></th>-->
+                            <!--<th data-sortable="true" data-field="id">ID</th>-->
+                            <!--<th data-field="name">名称</th>-->
+                            <!--<th data-sortable="true" data-field="price">价格</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">分页table</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="code" name="code">
+/* css start*/
+<link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+/* css end*/
+
+/* html start*/
+<!-- data-click-to-select="true"设置单击每行任意地方选中此行-->
+<!-- data-sort-name="First" data-sort-order="desc"开启排序，默认升序，data-sortable="true"开启列排序 data-striped="true"是否开启隔行换色-->
+<table id="TableEvents"></table>
+/* html end*/
+
+/* js  start*/
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap table -->
+<script src="../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+(function() {
+        $('#exampleTableEvents').bootstrapTable({
+        url: "../../js/demo/bootstrapTable/bootstrap_table_test.json",
+        search: true,//是否启用搜索
+        pagination: true,//是否启用分页
+        showRefresh: true,//是否启用刷新
+        showToggle: false,//切换
+        showColumns: false,//显示隐藏列
+        height:300,
+        // sidePagination: "server",//表格分页的位置
+        clickToSelect: true,//点击行即可选中单选/复选框
+        striped: true,     //使表格带有条纹
+        sortOrder:'desc',
+        iconSize: 'outline',
+        toolbar: '#exampleTableEventsToolbar',
+        columns:[{
+            align: 'center',
+            checkbox:true,
+            width:'30',
+            valign: 'middle'
+        },{
+            field: 'name',
+            title: '用户名',
+            align: 'center',
+            width:'100',
+            valign: 'middle'
+        },{
+            field: 'price',
+            title: '价格',
+            sortable:true,
+            width:'300',
+            align: 'center',
+            valign: 'middle'
+        },{
+            field: 'column1',
+            title: '列1',
+            width:300,
+            align: 'center',
+            valign: 'middle'
+        },{
+            field: 'column2',
+            title: '列2',
+            width:300,
+            align: 'center',
+            valign: 'middle'
+        },{
+            field: 'column3',
+            title: '列3',
+            width:300,
+            align: 'center',
+            valign: 'middle'
+        },{
+            field: 'status',
+            title: '状态',
+            width:500,
+            align: 'center',
+            valign: 'middle',
+            formatter:function(value,rowData,rowIndex){
+                if(value==1||value=='1'){
+                    return '有效';
+                }else{
+                    return '无效';
+                }
+            }
+        }],
+        icons: {
+            refresh: 'glyphicon-repeat',//配置刷新图标
+            toggle: 'glyphicon-list-alt',//配置切换图标
+            columns: 'glyphicon-list'//配置显示隐藏列图标
+        }
+    });
+
+        var $result = $('#TableEventsResult');
+
+        $('#TableEvents').on('all.bs.table', function(e, name, args) {
+            console.log('Event:', name, ', data:', args);
+        })
+            .on('click-row.bs.table', function(e, row, $element) {
+                $result.text('Event: click-row.bs.table');
+            })
+            .on('dbl-click-row.bs.table', function(e, row, $element) {
+                $result.text('Event: dbl-click-row.bs.table');
+            })
+            .on('sort.bs.table', function(e, name, order) {
+                $result.text('Event: sort.bs.table');
+            })
+            .on('check.bs.table', function(e, row) {
+                $result.text('Event: check.bs.table');
+            })
+            .on('uncheck.bs.table', function(e, row) {
+                $result.text('Event: uncheck.bs.table');
+            })
+            .on('check-all.bs.table', function(e) {
+                $result.text('Event: check-all.bs.table');
+            })
+            .on('uncheck-all.bs.table', function(e) {
+                $result.text('Event: uncheck-all.bs.table');
+            })
+            .on('load-success.bs.table', function(e, data) {
+                $result.text('Event: load-success.bs.table');
+            })
+            .on('load-error.bs.table', function(e, status) {
+                $result.text('Event: load-error.bs.table');
+            })
+            .on('column-switch.bs.table', function(e, field, checked) {
+                $result.text('Event: column-switch.bs.table');
+            })
+            .on('page-change.bs.table', function(e, size, number) {
+                $result.text('Event: page-change.bs.table');
+            })
+            .on('search.bs.table', function(e, text) {
+                $result.text('Event: search.bs.table');
+            });
+    })();
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    固定表格的列
+                </header>
+                <div class="panel-body">
+                    <table id="exampleTableEventsFixed">
+                        <!--<thead>-->
+                        <!--<tr>-->
+                        <!--<th data-field="state" data-checkbox="true"></th>-->
+                        <!--<th data-sortable="true" data-field="id">ID</th>-->
+                        <!--<th data-field="name">名称</th>-->
+                        <!--<th data-sortable="true" data-field="price">价格</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">固定表格的列</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="codeFixed" name="code">
+/* css start*/
+<link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+                                <link rel="stylesheet" href="../../dep/bootstrap-table/extensions/fixed-columns/css/bootstrap-table-fixed-columns.css">
+/* css end*/
+
+/* html start*/
+                                <!-- data-click-to-select="true"设置单击每行任意地方选中此行-->
+                                <!-- data-sort-name="First" data-sort-order="desc"开启排序，默认升序，data-sortable="true"开启列排序 data-striped="true"是否开启隔行换色-->
+                                1.固定表格的列，不能设置高度，否则显示会有影响
+        2.使用修改后的bootstrap-table-fixed-columns.js和bootstrap-table-fixed-columns.css
+        3.增加fixedColumns:true,fixedNumber:4,(固定多少列)属性
+        4.注意固定后的样式是否有问题
+/* html end*/
+
+/* js  start*/
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+                                <!-- Bootstrap table -->
+<script src="../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+                                <script src="../../dep/bootstrap-table/extensions/fixed-columns/js/bootstrap-table-fixed-columns.js"></script>
+(function() {
+    $('#exampleTableEventsFixed').bootstrapTable({
+        url: "../../js/demo/bootstrapTable/bootstrap_table_test.json",
+        search: true,//是否启用搜索
+        pagination: true,//是否启用分页
+        showRefresh: true,//是否启用刷新
+        showToggle: false,//切换
+        showColumns: false,//显示隐藏列
+        // height:300,
+        // sidePagination: "server",//表格分页的位置
+        fixedColumns:true,
+        fixedNumber:4,
+        clickToSelect: true,//点击行即可选中单选/复选框
+        striped: true,     //使表格带有条纹
+        sortOrder:'desc',
+        iconSize: 'outline',
+        toolbar: '#exampleTableEventsToolbar',
+        columns:[{
+            align: 'center',
+            checkbox:true,
+            width:'30',
+            valign: 'middle'
+        },{
+            field: 'name',
+            title: '用户名',
+            align: 'center',
+            width:'100',
+            valign: 'middle'
+        },{
+            field: 'price',
+            title: '价格',
+            sortable:true,
+            width:'300',
+            align: 'center',
+            valign: 'middle'
+        },{
+            field: 'column1',
+            title: '列1',
+            width:300,
+            align: 'center',
+            valign: 'middle'
+        },{
+            field: 'column2',
+            title: '列2',
+            width:300,
+            align: 'center',
+            valign: 'middle'
+        },{
+            field: 'column3',
+            title: '列3',
+            width:300,
+            align: 'center',
+            valign: 'middle'
+        },{
+            field: 'status',
+            title: '状态',
+            width:500,
+            align: 'center',
+            valign: 'middle',
+            formatter:function(value,rowData,rowIndex){
+                if(value==1||value=='1'){
+                    return '有效';
+                }else{
+                    return '无效';
+                }
+            }
+        }],
+        icons: {
+            refresh: 'glyphicon-repeat',//配置刷新图标
+            toggle: 'glyphicon-list-alt',//配置切换图标
+            columns: 'glyphicon-list'//配置显示隐藏列图标
+        }
+    });
+})();
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap table -->
+<script src="../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../dep/bootstrap-table/extensions/fixed-columns/js/bootstrap-table-fixed-columns.js"></script>
+<script src="../../js/demo/bootstrapTable/index.js"></script>
+
+<!--代码格式显示js，无需引用-->
+<script src="../../js/codemirror.js"></script>
+<script src="../../js/vim.js"></script>
+<script src="../../js/javascript.js"></script>
+
+</body>
+
+</html>

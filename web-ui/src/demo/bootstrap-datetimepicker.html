@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日历封装</title>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/bootstrap-datetimepicker_new/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="../../dep/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/page/demo/demo-style1.css" rel="stylesheet">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../css/codemirror.css" rel="stylesheet">
+    <link href="../../css/rubyblue.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap-small.css">
+</head>
+<body>
+<section class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    日期控件的使用
+                </header>
+                <div class="panel-body t-center">
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">日期</label>
+                        <div class="col-lg-8">
+                            <div class="input-group date" id="Date1">
+                                <input type="text" class="form-control" placeholder="请选择日期">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">开始日期</label>
+                        <div class="col-lg-8">
+                            <div class="input-group date" id="startDate">
+                                <input type="text" class="form-control" placeholder="请选择日期">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">结束日期</label>
+                        <div class="col-lg-8">
+                            <div class="input-group date" id="endDate">
+                                <input type="text" class="form-control" placeholder="请选择日期">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">开始结束日期</label>
+                        <div class="col-lg-8">
+                            <div class="input-group input-daterange">
+                                <input type="text" id="startDaterange" class="form-control">
+                                <div class="input-group-addon">to</div>
+                                <input type="text" id="endDaterange" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">设置可选择开始日期(今天以前不能选)</label>
+                        <div class="col-lg-8">
+                            <div class="input-group date" id="Date2">
+                                <input type="text" class="form-control" placeholder="请选择日期">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">禁用</label>
+                        <div class="col-lg-8">
+                            <div class="input-group date" id="Date3">
+                                <input type="text" class="form-control" placeholder="请选择日期" disabled>
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">年月日</label>
+                        <div class="col-lg-8">
+                            <div class="input-group date" id="yearDate">
+                                <input type="text" class="form-control" placeholder="请选择日期">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">时分秒</label>
+                        <div class="col-lg-8">
+                            <div class="input-group date" id="hourDate">
+                                <input type="text" class="form-control" placeholder="请选择日期">
+                                <div class="input-group-addon">
+                                    <span class="fa fa-clock-o"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">日期控件的使用</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="codeDatapicker" name="code">
+/* css start*/
+<link href="../../dep/bootstrap-datetimepicker_new/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+/* css end*/
+
+/* html start*/
+<div class="row mt20">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">日期</label>
+    <div class="col-lg-8">
+        <div class="input-group date" id="codeDate1">
+            <input type="text" class="form-control" placeholder="请选择日期">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt20">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">开始日期</label>
+    <div class="col-lg-8">
+        <div class="input-group date" id="codestartDate">
+            <input type="text" class="form-control" placeholder="请选择日期">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt20">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">结束日期</label>
+    <div class="col-lg-8">
+        <div class="input-group date" id="codeendDate">
+            <input type="text" class="form-control" placeholder="请选择日期">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt20">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">开始结束日期</label>
+    <div class="col-lg-8">
+        <div class="input-group input-daterange">
+            <input type="text" id="codestartDaterange" class="form-control">
+            <div class="input-group-addon">to</div>
+            <input type="text" id="codeendDaterange" class="form-control">
+        </div>
+    </div>
+</div>
+
+<div class="row mt20">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">设置可选择开始日期(今天以前不能选)</label>
+    <div class="col-lg-8">
+        <div class="input-group date" id="codeDate2">
+            <input type="text" class="form-control" placeholder="请选择日期">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt20">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">禁用</label>
+    <div class="col-lg-8">
+        <div class="input-group date" id="codeDate3">
+            <input type="text" class="form-control" placeholder="请选择日期" disabled>
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt20">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">年月日</label>
+    <div class="col-lg-8">
+        <div class="input-group date" id="codeyearDate">
+            <input type="text" class="form-control" placeholder="请选择日期">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt20">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">时分秒</label>
+    <div class="col-lg-8">
+        <div class="input-group date" id="codehourDate">
+            <input type="text" class="form-control" placeholder="请选择日期">
+            <div class="input-group-addon">
+                <span class="fa fa-clock-o"></span>
+            </div>
+        </div>
+    </div>
+</div>
+/* html end*/
+
+/* js  start*/
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../dep/bootstrap-datetimepicker_new/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../../dep/bootstrap-datetimepicker_new/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../js/global.js"></script>
+/*日期初始化*/
+    $("#codeDate1,#codestartDate,#codeendDate,#codestartDaterange,#codeendDaterange,#codeDate2").datetimepicker({
+        format: "yyyy-mm-dd hh:ii:ss",//时间格式显示年月日时分秒
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left",
+        minuteStep:1,//分钟间隔为1分钟
+        language: "zh-CN"
+    });
+    $("#codeyearDate").datetimepicker({
+        format: "yyyy-mm-dd",//时间格式显示年月日
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left",
+        minView: "month", //选择日期后，不会再跳转去选择时分秒
+        language: "zh-CN"
+    });
+    $("#codehourDate").datetimepicker({
+        format: "hh:ii:ss",//时间格式选择时分秒
+        startView:0,//初始化从分钟开始选
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left",
+        minuteStep:1,//分钟间隔为1分钟
+        language: "zh-CN"
+    });
+
+    $("#codeDate1,#codestartDate,#codeendDate,#codeDate2").find('input').val(new Date().Format("yyyy-MM-dd hh:mm:ss"));//设置日期初始值
+    $("#codestartDaterange,#codeendDaterange").val(new Date().Format("yyyy-MM-dd hh:mm:ss"));//设置日期初始值
+    $("#codeyearDate").find('input').val(new Date().Format("yyyy-MM-dd"));//设置日期初始值
+    $("#codehourDate").find('input').val(new Date().Format("hh:mm:ss"));//设置日期初始值
+    $("#codeDate2").datetimepicker('setStartDate',new Date().Format("yyyy-MM-dd"));//设置可选开始时间
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../dep/bootstrap-datetimepicker_new/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../../dep/bootstrap-datetimepicker_new/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../js/global.js"></script>
+
+<!--代码格式显示js，无需引用-->
+<script src="../../js/codemirror.js"></script>
+<script src="../../js/vim.js"></script>
+<script src="../../js/javascript.js"></script>
+
+<script src="../../js/demo/bootstrap-datetimepicker/index.js"></script>

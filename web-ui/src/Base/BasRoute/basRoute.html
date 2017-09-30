@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <title>工艺路径模式</title>
+			<link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+			<link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+			<link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+			<link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+			<link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+			<link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+			<link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+			<link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+			<link href="../../../dep/select2-4.0.3/dist/css/select2.css" rel="stylesheet" />
+			<link href="../../../dep/bootstrap-datapicker/dist-min/css/datepicker3.css" rel="stylesheet" />
+			<link href="../../../css/EwinCommon/newcommon.css" rel="stylesheet" />
+			<link href="../../../dep/bootstrap-datetimepicker_new/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+	   <!--[if lt IE 9]>
+	    <script src="../../../Scripts/html5shiv.js"></script>
+	    <script src="../../../Scripts/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body style="min-width: 1024px">
+		<div class="panel-body" style="padding-bottom:0px;">
+            <!--搜索框-->
+            <div class="panel panel-default demoSearch"></div>
+            <!--表格-->
+            <div class="demoTable" style="float: left; width: 100%"></div>
+            <!--弹出框1-->
+            <div id="demoadd" class="modal fade" role="dialog" data-backdrop="static"></div>
+	    </div>
+    </body>
+		<script src="../../../dep/jquery-1.9.1.min.js"></script>
+    <script src="../../../dep/jquery.cookie.js"></script>
+    <script src="../../../js/extensions/jquery-ajax.js"></script>
+    <script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../dep/bootstrap-table/bootstrap-table.js"></script>
+    <!-- <script src="../../../js/extensions/bootstrap-table-resetView.js"></script> -->
+    <script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../../../dep/toastr/toastr.min.js"></script>
+    <script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+    <script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+    <script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+    <link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+    <script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+    <script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+    <script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+    <script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="../../../dep/bootstrapValidator/js/bootstrapValidator.js"></script>
+    <script src="../../../dep/select2-4.0.3/dist/js/select2.js"></script>
+    <script src="../../../dep/bootstrap-datapicker/dist-min/js/bootstrap-datepicker.js"></script>
+    <script src="../../../js/EwinCommon/newcommon.js"></script>
+    <script src="../../../js/global.js"></script>
+		<script src="../../../dep/bootstrap-datetimepicker_new/js/bootstrap-datetimepicker.js"></script>
+    <script src="basRoute.js"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+
+
+ <!DOCTYPE html>
+<html style="height:100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>工艺路径模式</title>
+    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet"/>
+    <link href="../../../css/bootstrap-small.css" rel="stylesheet"/>
+    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../../dep/zTree/css/metroStyle/metroStyle.css" rel="stylesheet"/>
+    <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet"/>
+    <link href="../../../dep/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet"/>
+
+
+    [if lt IE 9]>
+    <script src="../../../dep/html5shiv.js"></script>
+    <script src="../../../dep/respond.min.js"></script>
+    <![endif]
+    @RenderSection("Styles", false)
+</head>
+<body style="height:100%;">
+<div>
+    <div id="divTop"></div>
+    <div class="panel-body">
+        <div class="panel panel-default" style="margin-bottom: 5px;">
+            <div class="panel-heading"><span class="dot"></span>查询
+                <span class="closeBtn" onclick="closeBtn()"></span>
+                <span class="openBtn" onclick="openBtn()"></span>
+            </div>
+            <div class="panel-body">
+                <form id="formSearch" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label" for="plantL">工厂</label>
+                        <div class="col-sm-2">
+                          <select class="form-control" name="plantL" id="plantL" data-size="8">
+                              <option></option>
+                          </select>
+                        </div>
+                        <label class="control-label" for="partgroupL">产品组</label>
+
+                        <div class="col-sm-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="partgroupL" name="partgroupL" onclick="partgroupLSuggest()">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                    </ul>
+                                </div>
+                                /btn-group
+                            </div>
+                         </div>
+
+                        <label class="control-label" for="partL">产品</label>
+                        <div class="col-sm-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="partL" name="partL" onclick="partLSuggest()">
+                                <div class="input-group-btnL">
+                                    <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                        <span class="caretL"></span>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                    </ul>
+                                </div>
+                                /btn-group
+                            </div>
+                         </div>
+
+                        <label class="control-label" for="routeNoL">工艺路径编号</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="routeNoL" name="routeNoL"/>
+                        </div>
+                  </div>
+                  <div class="form-group" style="margin-top: 15px">
+                        <label class="control-label" for="routeStatusL">状态</label>
+                        <div class="col-sm-2">
+                          <select class="form-control" name="routeStatusL" id="routeStatusL" data-size="8">
+                              <option></option>
+                              <option value="0">新建</option>
+                              <option value="1">维护中</option>
+                              <option value="2">发布</option>
+                              <option value="3">失效</option>
+                          </select>
+                        </div>
+
+                        <div>
+                            <button type="button" id="btn_query" class="btn btn-primary">
+                                搜索
+                            </button>
+                        </div>
+                        <div>
+                            <button type="reset" id="btn_clear" class="btn  btn-danger">
+                                清除
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+             <div id="divContentLeft inputPlace">
+                <div id="toolbarL" class="btn-group">
+
+                    @Html.PermissionButton("btnAdd", Buttons.Add)
+                    @Html.PermissionButton("btnEdit", Buttons.Edit)
+                    @Html.PermissionButton("btnDelete", Buttons.Delete)
+                    <div id="toolbar" class="btn-group1">
+                        <div style="width: 100%;">
+                            <button id="btnAdd" data-toggle="modal" data-target="#myModal" onclick="type_addNew()"
+                                    type="button" class="btn btn-primary">
+                                新增
+                            </button>
+                            <button id="btnEdit" data-target="#myModalUpdate" onclick="type_edit()" type="button"
+                                    class="btn btn-info">
+                                编辑
+                            </button>
+                            <button id="btnDelete" type="button" class="btn btn-danger" onclick="deleteMore()">
+                                发布
+                            </button>
+                            <button id="btnImportPanel"  type="button"  onclick="exportFile()"
+                                    class="btn btn-danger">
+                                导出
+                            </button>
+                            <button id="btnImport" data-toggle="modal" data-target="#myModalInput" type="button" onclick="importFile()"
+                                    class="btn btn-danger">
+                                复制工艺路径
+                            </button>
+                            <button id="btnExport" onclick="exportFile()" type="button" class="btn btn-danger">
+                                图形展示工艺路径
+                            </button>
+                            <button id="btnExport" onclick="exportFile()" type="button" class="btn btn-danger">
+                                打印文件
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                <table id="tb_Type"></table>
+            </div>
+
+
+
+    </div>
+
+    <div id="divBottom"></div>
+</div>
+
+
+-Add增加 start
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="addUserForm">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        新增
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="plantA"> <span class="x-red">*</span>工厂</label>
+                            <div class="col-sm-4">
+                              <select class="form-control" name="plantA" id="plantA" data-size="8">
+                                  <option></option>
+                              </select>
+                            </div>
+                            <label class="col-sm-2 control-label" for="workshopA"> 车间</label>
+                            <div class="col-sm-4">
+                              <select class="form-control" name="workshopA" id="workshopA" data-size="8">
+                                  <option></option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="lineA"> 产线</label>
+                            <div class="col-sm-4">
+                              <select class="form-control" name="lineA" id="lineA" data-size="8">
+                                  <option></option>
+                              </select>
+                            </div>
+                            <label class="col-sm-2 control-label" for="routeVersionA">版本</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="routeVersionA" name="routeVersionA" readonly/>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="routeNoA"><span class="x-red">*</span>编号</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="routeNoA" name="routeNoA"/>
+                            </div>
+                            <label class="col-sm-2 control-label" for="routeTypeA"> <span class="x-red">*</span>类型</label>
+                            <div class="col-sm-4">
+                              <select class="form-control" name="routeTypeA" id="routeTypeA" data-size="8">
+                                  <option></option>
+                                  <option value="0">正常</option>
+                                  <option value="1">委外</option>
+                                  <option value="2">改制</option>
+                                  <option value="3">返修</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="nameA"><span class="x-red">*</span>名称</label>
+                            <div class="col-sm-10">
+  	                          		<input type="text" autocomplete="off" class="form-control" id="nameA" name="nameA">
+  	                   			</div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="partgroupA"><span class="x-red">*</span>产品组</label>
+                            <div class="col-sm-4">
+                              <div class="input-group">
+                                 <input type="text" class="form-control" id="partgroupA"  onclick="partgroupASuggest()">
+                                 <div class="input-group-btn">
+                                     <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                         <span class="caret"></span>
+                                     </button>
+                                     <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                     </ul>
+                                 </div>
+                                 /btn-group
+                             </div>
+                            </div>
+                            <label class="col-sm-2 control-label" for="partA"><span class="x-red">*</span>产品</label>
+                            <div class="col-sm-4">
+                                   <div class="input-group">
+                                      <input type="text" class="form-control" id="partA"  onclick="partASuggest()">
+                                      <div class="input-group-btn">
+                                          <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
+                                              <span class="caret"></span>
+                                          </button>
+                                          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                          </ul>
+                                      </div>
+                                      /btn-group
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 15px;">
+                            <label class="col-sm-2 control-label" for="routeStartDateA">生效日期</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="routeStartDateA" name="routeStartDateA"/>
+                            </div>
+                            <label class="col-sm-2 control-label" for="routeEndDateA">失效日期</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="routeEndDateA" name="routeEndDateA"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="remarkA">备注</label>
+                          <div class="col-sm-10">
+                                <input type="text" autocomplete="off" class="form-control" id="remarkA" name="remarkA">
+                          </div>
+                        </div>
+                    </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="save()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+Add增加 end
+
+
+-Update增加 start
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="updateUserForm">
+    <div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        编辑
+                    </h4>
+                </div>
+                <div class="modal-body">
+                  <fieldset>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="plantU">  <span class="x-red">*</span>工厂</label>
+                          <div class="col-sm-4">
+                            <select class="form-control" name="plantU" id="plantU" data-size="8" readonly>
+                                <option></option>
+                            </select>
+                          </div>
+                          <label class="col-sm-2 control-label" for="workshopU"> 车间</label>
+                          <div class="col-sm-4">
+                            <select class="form-control" name="workshopU" id="workshopU" data-size="8" >
+                                <option></option>
+                            </select>
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="lineU"> 产线</label>
+                          <div class="col-sm-4">
+                            <select class="form-control" name="lineU" id="lineU" data-size="8">
+                                <option></option>
+                            </select>
+                          </div>
+                          <label class="col-sm-2 control-label" for="routeVersionU">版本</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="routeVersionU" name="routeVersionU" readonly/>
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="routeNoU"><span class="x-red">*</span>编号</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="routeNoU" name="routeNoU" readonly/>
+                          </div>
+                          <label class="col-sm-2 control-label" for="routeTypeU"> <span class="x-red">*</span>类型 </label>
+                          <div class="col-sm-4">
+                            <select class="form-control" name="routeTypeU" id="routeTypeU" data-size="8">
+                                <option></option>
+                                <option value="0">正常</option>
+                                <option value="1">委外</option>
+                                <option value="2">改制</option>
+                                <option value="3">返修</option>
+                            </select>
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="nameU"><span class="x-red">*</span>名称</label>
+                          <div class="col-sm-10">
+                                <input type="text" autocomplete="off" class="form-control" id="nameU" name="nameU">
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="partgroupU"> <span class="x-red">*</span>产品组</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="partgroupU" name="partgroupU" readonly/>
+                          </div>
+                          <label class="col-sm-2 control-label" for="partU"><span class="x-red">*</span>产品</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="partU" name="partU" readonly/>
+                          </div>
+                      </div>
+                      <div class="form-group" style="margin-bottom: 15px;">
+                          <label class="col-sm-2 control-label" for="routeStartDateU">生效日期</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="routeStartDateU" name="routeStartDateU"/>
+                          </div>
+                          <label class="col-sm-2 control-label" for="routeEndDateU">失效日期</label>
+                          <div class="col-sm-4">
+                              <input type="text" class="form-control" id="routeEndDateU" name="routeEndDateU"/>
+                          </div>
+                      </div>
+
+
+                      <div class="form-group" style="margin-bottom: 15px;">
+                        <label class="col-sm-2 control-label" for="remarkU">备注</label>
+                        <div class="col-sm-10">
+                              <input type="text" autocomplete="off" class="form-control" id="remarkU" name="remarkU">
+                        </div>
+                      </div>
+                  </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="update()">
+                        保存
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+Update增加 end
+
+
+
+
+-导入增加 start
+
+模态框（Modal）
+<form class="form-horizontal" role="form" id="postForm" enctype="multipart/form-data">
+    <div class="modal fade" id="myModalInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        批量导入用户
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="noA"> 用户信息导入 <span
+                                    class="x-red">*</span></label>
+                            <div class="col-sm-4">
+                                <input type="file" class="file" id="input-1" name="file"  accept=".xls,.xlsx"/>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="upFile()">
+                        导入
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                    </button>
+                </div>
+            </div>/.modal-content
+        </div>/.modal
+    </div>
+</form>
+
+导入 增加 end
+
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../../dep/jquery.cookie.js"></script>
+<script src="../../../js/extensions/jquery-ajax.js"></script>
+<script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../../../js/extensions/bootstrap-table-resetView.js"></script>
+<script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../../dep/toastr/toastr.min.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+
+<script type="text/javascript">
+    jQuery.support.cors = true;
+    var ApiUrl = '';
+</script>
+<script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+<script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+<script src="../../../dep/zTree/js/jquery.ztree.all.min.js"></script>
+<script src="../../../js/EwinCommon/common.js"></script>
+<script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<script src="../../../dep/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script src="../../../dep/suggest/bootstrap-suggest.min.js"></script>
+<script src="../../../dep/bootstrap-datapicker/dist-min/js/bootstrap-datepicker.js"></script>
+<script src="../../../js/global.js"></script>
+
+<script src="basRoute.js"></script>
+
+</body>
+</html> -->

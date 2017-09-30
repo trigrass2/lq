@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html> 
+	<head>
+	  <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <title>仓库</title>
+	  <link href="../../../Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	  <link href="../../../Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	  <link href="../../../Content/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+	  <link href="../../../Content/css/bootstrap-small.css" rel="stylesheet" />
+	  <link href="../../../Content/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+	  <link href="../../../Content/layui/css/x-admin.css" rel="stylesheet" media="all">
+	  <link href="../../../Content/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+      <link href="../../../Content/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css" rel="stylesheet" />
+	  <link href="../../../Content/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+	  <link href="../../../Content/zTree/css/metroStyle/metroStyle.css" rel="stylesheet" />
+	</head>
+<body>
+    <div class="panel-body" style="padding-bottom:0px;">
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="dot"></span>查询
+			<span class="closeBtn" onclick="closeBtn()"></span>
+			<span class="openBtn" onclick="openBtn()"></span>
+		</div>
+        <div class="panel-body">
+          <form id="formSearch" class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label" for="storageId">仓库：</label>
+                <select data-placeholder="仓库" id="storageId" name="storage" class="col-sm-2" data-rel="chosen">
+                	<!--<option value=''>选择仓库</option>
+                    <c:if test="${!empty storageList}">
+                        <c:forEach items="${storageList}" var="storage">
+                            <option value="${storage.tmBasStorageId}">${storage.name}</option>
+                        </c:forEach>
+                    </c:if>-->
+                </select>
+
+				<label class="control-label" for="areaId">库区：</label>
+                <select data-placeholder="库区" name="area" id="areaId" class="col-sm-2" data-rel="chosen">
+                    <option value=''></option>
+                </select>
+				<label class="control-label" for="locId">库位：</label>
+                <select data-placeholder="库位" name="loc" id="locId" class="col-sm-2" data-rel="chosen">
+                    <option value=''></option>
+                </select>
+                <label class="control-label" >     </label>
+                <div>
+                    <button type="button" id="btn_query" class="btn btn-primary" onclick="queryInfo();">
+                    	搜索
+                    </button>
+                </div>
+                <div>
+                    <button type="button" id="btn_clear" class="btn btn-danger" onclick="clearInfo();">
+                    	清除
+                    </button>
+                </div>
+              </div>
+          </form>
+        </div>
+      </div>
+		
+      <div id="toolbar" class="btn-group1" >
+        <button id="btnAdd" type="button" class="btn btn-primary" onclick="openAddStorageWin('新增仓库资源','800','500');" >
+                新增仓库
+            </button>      	
+        <button id="btnAdd" type="button" class="btn btn-primary" onclick="openAddWin('新增资源','800','500');" >
+                新增
+            </button>
+        <button id="btnEdit" type="button" class="btn btn-info" onclick="openEditWin('编辑资源','800','500');">
+                编辑
+            </button>
+        <button id="btnDelete" type="button" class="btn btn-danger" onclick="deleteInfo();">
+                删除
+            </button>
+      </div>
+      
+      <div>
+      	<table id="tb_basStorage" style="hight:600px"></table>
+      </div>
+
+      	<!--新增仓库窗口-->
+		<div class="modal fade" role="dialog" id="addStorageModal">
+	    	<div class="modal-dialog" style="top:70px;width:800px;hight:600px">
+	        	<div class="modal-content">
+	            <!-- box-header -->
+	            	<div class="modal-header" style="border-bottom: 1px solid #F4F4F4;">
+	               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+				   		</button>
+	               		<h4 class="modal-title" id="addOrEditS">新增仓库</h4>
+	            	</div>
+	            	<div class="modal-body" style="height:450px">
+	            		<form class="form-horizontal" id="formStorage">
+	            			<input type="hidden" name="type" value="1">
+	            			<input type="text" id="storageIdForS" name="tmBasStorageId" style="display:none;">
+	            			<div class="row" style="margin-bottom: 15px;">
+	                  			<label for="storageNo" class="col-xs-2 control-label">仓库编号<span class="x-red">*</span></label>
+	                      		<div class="col-xs-10">
+	                          		<input type="text" autocomplete="off" class="form-control" id="storageNo" name="storageNo">
+	                      		</div>
+	           				</div>
+	            			<div class="row" style="margin-bottom: 15px;">
+	                  			<label for="name" class="col-xs-2 control-label">仓库名称<span class="x-red">*</span></label>
+	                      		<div class="col-xs-10">
+	                          		<input type="text" autocomplete="off" class="form-control" id="name" name="name">
+	                      		</div>
+	           				</div>
+	            			<div class="row" style="margin-bottom: 15px;">
+	                      		<label for="plantId" class="col-xs-2 control-label">工厂</label>
+	                      		<div class="col-xs-4 ">
+	                      			<select class="form-control selectpicker" id="plantId" name="tmBasPlantId">
+								        <option value="" selected="selected"></option>
+								    </select>
+	                      		</div>
+	                      		<label for="workshopId" class="col-xs-2 control-label">车间</label>
+	                      		<div class="col-xs-4 ">
+	                      			<select class="form-control selectpicker" id="workshopId" name="tmBasWorkshopId">
+								        <option value="" selected="selected"></option>
+								    </select>
+	                      		</div>	                      		
+	           				</div>
+	            			<div class="row" style="margin-bottom: 15px;">
+	                      		<label for="dunitId" class="col-xs-2 control-label">承运商</label>
+	                      		<div class="col-xs-4 ">
+	                      			<select class="form-control selectpicker" id="dunitId" name="tmBasDunitId">
+								        <option value="" selected="selected"></option>
+								    </select>
+	                      		</div>
+	                      		<label for="storageType" class="col-xs-2 control-label">仓库类型<span class="x-red">*</span></label>
+	                      		<div class="col-xs-4 ">
+	                      			<select class="form-control selectpicker" id="storageType" name="storageType">
+								    </select>
+	                      		</div>	                      		
+	           				</div>
+	            			<div class="row" style="margin-bottom: 15px;">
+	                      		<label for="sapNo" class="col-xs-2 control-label">SAP库存地点</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="text" autocomplete="off" class="form-control" id="sapNo" name="sapNo">
+	                      		</div>
+	                      		<label for="contact" class="col-xs-2 control-label">联系人</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="text" autocomplete="off" class="form-control" id="contact" name="contact">
+	                      		</div>	                      		                      		
+	           				</div>
+	           				<div class="row" style="margin-bottom: 15px;">
+	                    		<label for="addr" class="col-xs-2 control-label">地址</label>
+	                   			<div class="col-xs-10">
+	                          		<input type="text" autocomplete="off" class="form-control" id="addr" name="addr">
+	                   			</div>
+	           				</div>
+	            			<div class="row" style="margin-bottom: 15px;">
+	                      		<label for="telNo" class="col-xs-2 control-label">电话号码</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="text" autocomplete="off" class="form-control" id="telNo" name="telNo">
+	                      		</div>
+	                      		<label for="mobileNo" class="col-xs-2 control-label">手机号码</label>
+	                      		<div class="col-xs-4">
+	                          		<input type="text" autocomplete="off" class="form-control" id="mobileNo" name="mobileNo">
+	                      		</div>	                      		                      		
+	           				</div>	           				
+	           				<div class="row" style="margin-bottom: 15px;">
+	                    		<label for="remark" class="col-xs-2 control-label">备注</label>
+	                   			<div class="col-xs-10">
+	                          		<input type="text" autocomplete="off" class="form-control" id="remarkS" name="remark">
+	                   			</div>
+	           				</div>
+                        	<div class="row" style="margin-bottom: 15px;">
+	                            <div class="col-sm-4">
+	                                <div class="switch" id="switch_enabled">
+                                    	<input type="checkbox" name="enabled" id="statusA" checked="checked" value=""/>
+                                	</div>
+	                            </div>
+	                        </div>	           				
+	              		</form>
+	            	</div>
+		            <div class="modal-footer">
+	                     <button type="button" class="btn btn-default" onclick="saveInfo(1);" >保存</button>
+	                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		            </div>
+	        	</div>
+	    	</div>
+		</div>
+
+
+      	<!--新增窗口(库区)-->
+		<div class="modal fade" role="dialog" id="addModal">
+	    	<div class="modal-dialog" style="top:70px;width:600px;hight:600px">
+	        	<div class="modal-content">
+	            <!-- box-header -->
+	            	<div class="modal-header" style="border-bottom: 1px solid #F4F4F4;">
+	               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+				   		</button>
+	               		<h4 class="modal-title" id="addOrEdit">新增</h4>
+	               		<input type="hidden" name="type" id="addOrEditType">
+	            	</div>
+	            	<div class="modal-body" id="arealevelAdd" style="display:none;height:220px">
+	            		<form class="form-horizontal" id="formArea">
+	            			<input type="hidden" name="type" value="2">
+	            			<input type="text" id="areaParentId" name="parentId" style="display:none;">
+	            			<input type="text" id="basStorageIdA" name="tmBasStorageId" style="display:none;">
+	            			<input type="text" id="areaStorageType" name="storageType" style="display:none;">
+	           				<div class="row" style="margin-bottom: 15px;">
+	                    		<label for="storageNameA" class="col-xs-2 control-label">仓库</label>
+	                   			<div class="col-xs-8">
+	                          		<input type="text" autocomplete="off" disabled="true" class="form-control" id="storageNameA" >
+	                   			</div>
+	           				</div>
+	           				<div class="row" style="margin-bottom: 15px;">
+	                    		<label for="areaNo" class="col-xs-2 control-label">库区编号<span class="x-red">*</span></label>
+	                   			<div class="col-xs-8">
+	                          		<input type="text" autocomplete="off" class="form-control" id="areaNo" name="storageNo">
+	                   			</div>
+	           				</div>
+	           				<div class="row" style="margin-bottom: 15px;">
+	                    		<label for="areaName" class="col-xs-2 control-label">库区名称<span class="x-red">*</span></label>
+	                   			<div class="col-xs-8">
+	                          		<input type="text" autocomplete="off" class="form-control" id="areaName" name="name">
+	                   			</div>
+	           				</div>
+	           				<div class="row" style="margin-bottom: 15px;">
+	                    		<label for="remark" class="col-xs-2 control-label">备注</label>
+	                   			<div class="col-xs-8">
+	                          		<input type="text" autocomplete="off" class="form-control" id="remark" name="remark">
+	                   			</div>
+	           				</div>
+                        	<div class="row" style="margin-bottom: 15px;">
+	                            <div class="col-sm-4">
+	                                <div class="switch" >
+	                                    <input type="checkbox" name="enabled" id="statusAreaA" checked="checked" value="1"/>
+	                                </div>
+	                            </div>
+	                        </div>	 
+	              		</form>
+	            	</div>
+	            	<div class="modal-body" id="loclevelAdd" style="display:none;height:320px">
+	            		<form class="form-horizontal" id="formLoc">
+	            			<input type="hidden" name="type" value="3">
+	            			<input type="text" id="locParentId" name="parentId" style="display:none;">
+	            			<input type="text" id="locGrandId" name="grandId" style="display:none;">
+	            			<input type="text" id="basStorageIdL" name="tmBasStorageId" style="display:none;">
+	            			<input type="text" id="locStorageType" name="storageType" style="display:none;">
+	           				<div class="row" style="margin-bottom: 15px;">
+	                    		<label for="storageNameL" class="col-xs-2 control-label">仓库</label>
+	                   			<div class="col-xs-8">
+	                          		<input type="text" autocomplete="off" disabled="true" class="form-control" id="storageNameL" >
+	                   			</div>
+	           				</div>
+	           				<div class="row" style="margin-bottom: 15px;">
+	                    		<label for="areaNameL" class="col-xs-2 control-label">库区</label>
+	                   			<div class="col-xs-8">
+	                          		<input type="text" autocomplete="off" disabled="true" class="form-control" id="areaNameL" >
+	                   			</div>
+	           				</div>	           				
+	           				<div class="row" style="margin-bottom: 15px;">
+	                    		<label for="locNo" class="col-xs-2 control-label">库位编号<span class="x-red">*</span></label>
+	                   			<div class="col-xs-8">
+	                          		<input type="text" autocomplete="off" class="form-control" id="locNo" name="storageNo">
+	                   			</div>
+	           				</div>
+	           				<div class="row" style="margin-bottom: 15px;">
+	                    		<label for="locName" class="col-xs-2 control-label">库位名称<span class="x-red">*</span></label>
+	                   			<div class="col-xs-8">
+	                          		<input type="text" autocomplete="off" class="form-control" id="locName" name="name">
+	                   			</div>
+	           				</div>
+                      		<label for="dockId" class="col-xs-2 control-label">道口</label>
+                      		<div class="col-xs-8 ">
+                      			<select class="form-control selectpicker" id="dockId" name="tmBasDockId">
+                      				<option value="" selected="selected"></option>
+							    </select>
+                      		</div>
+	            			<div class="row" style="margin-bottom: 15px;">
+	                      		<label for="length" class="col-xs-3 control-label">长(米)</label>
+	                      		<div class="col-xs-1">
+	                          		<input type="text" autocomplete="off" class="form-control" id="length" name="length">
+	                      		</div>
+	                      		<label for="width" class="col-xs-3 control-label">宽(米)</label>
+	                      		<div class="col-xs-1">
+	                          		<input type="text" autocomplete="off" class="form-control" id="width" name="width">
+	                      		</div>
+	                      		<label for="hight" class="col-xs-3 control-label">高(米)</label>
+	                      		<div class="col-xs-1">
+	                          		<input type="text" autocomplete="off" class="form-control" id="hight" name="hight">
+	                      		</div>	
+	           				</div>	    
+                        	<div class="row" style="margin-bottom: 15px;">
+	                            <div class="col-sm-4">
+	                                <div class="switch" >
+	                                    <input type="checkbox" name="enabled" id="statusLocA" checked="checked" value=""/>
+	                                </div>
+	                            </div>
+	                        </div>	 
+	              		</form>
+	            	</div>	            	
+		            <div class="modal-footer">
+	                     <button type="button" class="btn btn-default" onclick="saveInfo(3);" >保存</button>
+	                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		            </div>
+	        	</div>
+	    	</div>
+		</div>
+    </div>
+    <div id="divBottom"></div>
+  <script src="../../../Scripts/jquery-1.9.1.min.js"></script>
+  <script src="../../../Scripts/jquery.cookie.js"></script>
+  <script src="../../../Scripts/extensions/jquery-ajax.js"></script>
+  <script src="../../../Content/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../../Content/bootstrap-table/bootstrap-table.min.js"></script>
+  <script src="../../../Scripts/extensions/bootstrap-table-resetView.js"></script>
+  <script src="../../../Content/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+  <script src="../../../Scripts/extensions/bootstrap-table-treeview.js"></script>
+  <script type="text/javascript">
+    jQuery.support.cors = true;
+    var ApiUrl = '';
+  </script>
+  <script src="../../../Content/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+  <script src="../../../Content/toastr/toastr.min.js"></script>
+  <script src="../../../Content/layui/layui.js" charset="utf-8"></script>
+  <script src="../../../Content/layui/x-layui.js" charset="utf-8"></script>
+  <script src="../../../Content/bootstrap-iconpicker/js/iconset/iconset-fontawesome-4.2.0.min.js"></script>
+  <script src="../../../Content/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js"></script>
+  <script src="../../../Content/bootstrap-switch/js/bootstrap-switch.min.js"></script>  
+  <script src="../../../Content/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+  <script src="../../../Content/zTree/js/jquery.ztree.all.min.js"></script>
+  <script src="../../../Scripts/EwinCommon/common.js"></script>
+  <script src="basStorage.js"></script>
+</body>
+
+</html>

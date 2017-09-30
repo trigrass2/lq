@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bombBox</title>
+    <link rel="stylesheet" href="../../../dep/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../dep/layer/skin/default/layer.css">
+    <link rel="stylesheet" href="../../../css/page/demo/demo-style1.css">
+    <link rel="stylesheet" href="../../../css/bootstrap-small.css">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../../css/codemirror.css" rel="stylesheet">
+    <link href="../../../css/rubyblue.css" rel="stylesheet">
+</head>
+<body>
+<section class="wrapper">
+    <div id="toolbarL" class="btn-group1">
+        <button id="btnAddList" type="button" class="btn btn-primary">
+            新增编辑(可拖动)
+        </button>
+
+        <div class="modal" aria-hidden='true' data-backdrop='static' role="dialog" id="addModal">
+            <div class="modal-dialog" style="top:50%;margin-top:-200px;width:450px">
+
+                <div class="modal-content">
+                    <!-- box-header -->
+                    <div class="modal-header" style="border-bottom: 1px solid #F4F4F4;">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="titleId">新增</h4>
+                    </div>
+
+                    <div class="modal-body" style="height:250px">
+                        <form class="form-horizontal" id="formEdit">
+                            <div class="row" style="margin-bottom: 15px;">
+                                <input type="text" id="tsSysCodeTypeId" name="tsSysCodeTypeId" style="display:none;">
+                                <label for="no" class="col-xs-3 control-label"><span class="x-red">*</span>编码类型</label>
+                                <div class="col-xs-8">
+                                    <input type="text" onkeyup="value=value.replace(/[^\w\-\\/]/ig,'')" autocomplete="off" class="form-control" id="no" name="no">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 15px;">
+                                <label for="name" class="col-xs-3 control-label"><span class="x-red">*</span>名称</label>
+                                <div class="col-xs-8">
+                                    <input type="text" autocomplete="off" class="form-control" id="name" name="name">
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 15px;">
+                                <label for="isEdit" class="col-xs-3 control-label"><span class="x-red">*</span>可编辑</label>
+                                <div class="col-xs-8">
+                                    <select name="isEdit" class="form-control selectpicker" id="isEdit">
+                                        <option value="1">是</option>
+                                        <option value="0">否</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-bottom: 15px;">
+                                <label for="remark" class="col-xs-3 control-label">备注</label>
+                                <div class="col-xs-8">
+                                    <input type="text" autocomplete="off" class="form-control" id="remark" name="remark">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="saveBtn" class="btn btn-default saveBtn">保存</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button id="noMsgBtn"  type="button" class="btn btn-danger">
+            没有选择数据提示
+        </button>
+        <button id="msgBtn"  type="button" class="btn btn-danger">
+            选择数据且删除
+        </button>
+        <button id="deleteBtn"  type="button" class="btn btn-danger">
+            不能删除
+        </button>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">新增编辑等弹框</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="code" name="code">
+/* css start*/
+<link href="../../../dep/layer/skin/default/layer.css" rel="stylesheet">
+/* css end*/
+
+/* html start*/
+<button id="btnAddList1" type="button" class="btn btn-primary">新增编辑(可拖动)</button>
+<button id="noMsgBtn1"  type="button" class="btn btn-danger">没有选择数据提示</button>
+<button id="msgBtn1"  type="button" class="btn btn-danger">选择数据且不能删除</button>
+<button id="deleteBtn1"  type="button" class="btn btn-danger">删除成功</button>
+/* html end*/
+
+/* js  start*/
+                                <!--注意引入js的顺序-->
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+                                <script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+                                <script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../dep/layer/layer.js"></script>
+/*增删等的弹框*/
+// 新增
+    $('#btnAddList').click(function () {
+        // $('#addModal').modal('show');
+        $('#addModal').modal({backdrop: 'static', keyboard: false});
+                                $( "#addModal" ).draggable();//使新增的模态框可拖动
+    })
+    // 没有选择数据的删除
+    $('body').on('click','#noMsgBtn',function () {
+        $.deleteMsg();
+    })
+    // 有选择数据，并且该条数据不能删除
+    $('body').on('click','#msgBtn',function () {
+        $.deleteMsg('是否确认删除？');
+    })
+    // 保存成功
+    $('body').on('click','#saveBtn',function () {
+        $.saveMsg();
+        $('#addModal').modal('hide');
+    })
+    // 删除成功
+    $('body').on('click','#deleteBtn',function () {
+        $.deleteSuccess();
+    })
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../js/jquery-ui.min.js"></script>
+<script src="../../../dep/layer/layer.js"></script>
+
+
+<!--代码格式显示js，无需引用-->
+<script src="../../../js/codemirror.js"></script>
+<script src="../../../js/vim.js"></script>
+<script src="../../../js/javascript.js"></script>
+
+<script src="../../../js/demo/bombBox/index.js"></script>

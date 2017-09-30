@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>业务权限设置</title>
+		<!--<link href="../../../Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="../../../Content/layui/css/x-admin.css" rel="stylesheet" media="all">
+		<link href="../../../Content/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+		<link href="../../../Content/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+		<link href="../../../Content/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+		<link href="../../../Content/css/bootstrap-small.css" rel="stylesheet" />-->
+		
+		<link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+	    <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+	    <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+	    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+	   	<link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div class="panel-body" style="padding-bottom:0px;">
+			<div class="panel panel-default">
+				<div class="panel-heading"><span class="dot"></span>查询
+					<span class="closeBtn" onclick="closeBtn()"></span>
+					<span class="openBtn" onclick="openBtn()"></span>
+				</div>
+				<div class="panel-body">
+					<form id="formSearch" class="form-horizontal">
+						<div class="form-group">
+							<div class="row">
+								<label class="control-label" for="deptS">部门</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="deptS" name="deptS">
+								</div>
+								<label class="control-label" for="userS">用户名</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="userS" name="userS">
+								</div>
+								<label class="control-label" for="groupS">业务权限组</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="groupS" name="groupS">
+								</div>
+								<label class="control-label" for="columnS">业务字段名</label>
+								<div class="col-sm-2">
+									<input type="text" class="form-control" id="columnS" name="columnS ">
+								</div>								
+								<div>
+									<button type="button" id="btn_query" class="btn btn-primary">
+										搜索
+									</button>
+									<button type="button" id="btn_clear" class="btn btn-danger">
+										重置
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+	        <div id="div_tableleft" class="col-xs-6" style="padding-left:0px;">
+	            <div id="divContentLeft">
+	                <div id="toolbarL" class="btn-group1">
+	
+	                    <!--@Html.PermissionButton("btnAdd", Buttons.Add)
+	                    @Html.PermissionButton("btnEdit", Buttons.Edit)
+	                    @Html.PermissionButton("btnDelete", Buttons.Delete)-->
+	
+						<!--<button id="btn_permissionSetting" type="button" class="btn btn-primary" onclick="openPermissionSetting();">
+							业务权限设置
+						</button>-->
+                        <button id="btn_permissionSetting" data-target="#groupModal" onclick="openPermissionSetting()" type="button" class="btn btn-info">
+                            业务权限设置
+                        </button>						
+						<button id="btn_conditionSetting" type="button" class="btn btn-info" onclick="openConditionSetting();">
+							条件设置
+						</button>	
+	                </div>
+	                <table id="tb_deptUser"></table>
+	            </div>
+	        </div>
+	        
+	        <div id="div_tableright" class="col-xs-6" style="padding-right:0px">
+	            <div id="divContentRight">
+	                <ul id="myTab" class="nav nav-tabs">
+	                    <li class="active">
+	                    	<a href="#group" data-toggle="tab">业务权限组</a>
+	                    </li>
+	                    <li><a href="#condition" data-toggle="tab">条件设置</a></li>
+	
+	                </ul>
+	                <div id="myTabContent" class="tab-content">
+	                    <div class="tab-pane fade in active" id="group">
+	                        <table id="tb_userGroup"></table>
+	                    </div>
+	
+	                    <div class="tab-pane fade" id="condition">
+	                        <div style="margin-bottom:3px; margin-left:3px;">
+			                  	<button id="btnConditionAdd" onclick="openConditionAdd();" type="button" class="btn btn-primary">
+			                      	新增
+		                    	</button>
+		                      	<button id="btnConditionDelete" onclick="deleteConditionInfo();" type="button" class="btn btn-danger">
+		                          	删除
+		                      	</button>	                            
+	                        </div>
+	                        <table id="tb_userCondition"></table>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>       
+		</div>			
+
+			<!--<table id="tb_sysGroup" data-pagination="true"></table>-->
+
+		<!--条件设置窗口-->
+		<div class="modal fade" role="dialog" id="conditionModal">
+			<div class="modal-dialog" style="top:70px;width:600px;hight:600px">
+				<div class="modal-content">
+					<div class="modal-header" style="border-bottom: 1px solid #F4F4F4;">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="titleId">条件设置</h4>
+					</div>
+					<div class="modal-body" style="height:280px">
+						<form class="form-horizontal" id="formCondition">
+							<div class="form-group" style="margin-bottom: 15px;">
+								<input type="text" id="tsSysUserId" name="tsSysUserId" style="display:none;">
+								<input type="text" id="tsSysDeptId" name="tsSysDeptId" style="display:none;">
+								<label for="deptC" class="col-xs-2 control-label"><span class="x-red">*</span>部门</label>
+								<div class="col-xs-4">
+									<input type="text" autocomplete="off" disabled="true" class="form-control" id="deptC" name="deptC">
+								</div>
+								<label for="userC" class="col-xs-2 control-label"><span class="x-red">*</span>用户</label>
+								<div class="col-xs-4">
+									<input type="text" autocomplete="off" disabled="true" class="form-control" id="userC" name="userC">
+								</div>
+							</div>
+							<div class="form-group" style="margin-bottom: 15px;">
+								<label for="tableId" class="col-xs-2 control-label">业务表名</label>
+								<div class="col-xs-8">
+									<!--<input type="text" autocomplete="off" class="form-control" id="tableId" name="table">-->
+									<select id="tableId" name="table" class="form-control"></select>
+								</div>
+							</div>
+							<div class="form-group" style="margin-bottom: 15px;">
+								<label for="columnId" class="col-xs-2 control-label"><span class="x-red">*</span>业务字段名</label>
+								<div class="col-xs-8">
+									<!--<input type="text" autocomplete="off" class="form-control" id="columnId" name="column">-->
+									<select id="columnId" name="column" class="form-control"></select>
+								</div>
+							</div>
+							<div class="form-group" style="margin-bottom: 15px;">
+								<label for="operator" class="col-xs-2 control-label"><span class="x-red">*</span>关系运算符</label>
+								<div class="col-xs-6">
+									<!--<input type="text" autocomplete="off" class="form-control" id="operator" name="operator">-->
+									<select id="operator" name="operator" class="form-control"></select>
+								</div>
+							</div>
+							<div class="form-group" style="margin-bottom: 15px;">
+								<label for="value" class="col-xs-2 control-label"><span class="x-red">*</span>数值</label>
+								<div class="col-xs-8">
+									<input type="text" autocomplete="off" class="form-control" id="value" name="value">
+								</div>
+							</div>							
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default saveBtn" onclick="saveConditionInfo()">保存</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 模态框（Modal） -->
+		<form class="form-horizontal" role="form">
+		    <div class="modal fade" id="groupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		         aria-hidden="true">
+		        <div class="modal-dialog modal-lg">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+		                        &times;
+		                    </button>
+		                    <h4 class="modal-title">
+		                        业务权限设置
+		                    </h4>
+		                </div>
+		                <div>
+		                    <div class="panel-body">
+		                        <div class="panel panel-default" style="margin-bottom: 5px;">
+		                            <div class="panel-body">
+		                                <form class="form-horizontal">
+		                                    <div class="form-group">
+		                                        <fieldset>
+		                                            <div class="form-group">
+		                                                <label class="col-sm-2 control-label" for="noG">权限组编号</label>
+		                                                <div class="col-sm-2">
+		                                                    <input type="text" class="form-control" id="noG" name="noG"/>
+		                                                </div>
+		                                                <label class="col-sm-2 control-label" for="nameG">权限组名称</label>
+		                                                <div class="col-sm-2">
+		                                                    <input type="text" class="form-control" id="nameG" name="nameG"/>
+		                                                </div>
+		                                                <div>
+		                                                    <button type="button" id="btn_queryGroup" class="btn btn-primary"
+		                                                            onclick="groupSearch()">搜索</button>
+		                                                    <button type="reset" id="btn_queryClear" class="btn btn-danger">重置</button>        
+		                                                </div>
+		                                            </div>
+		                                        </fieldset>
+		                                    </div>
+		                                </form>
+		                            </div>
+		                        </div>
+		                        <table id="tb_groupList"></table>
+		                    </div>
+		
+		                    <input type="hidden" name="tsSysDeptIdG" id="tsSysDeptIdG"/>
+		                    <input type="hidden" name="flagG" id="flagG"/>
+		                </div>
+		                <div class="modal-footer">
+		                    <button type="button" class="btn btn-primary" onclick="saveGroupUser()">
+		                        保存
+		                    </button>
+		                    <button type="button" class="btn btn-default" data-dismiss="modal">取消
+		                    </button>
+		                </div>
+		            </div><!-- /.modal-content -->
+		        </div><!-- /.modal -->
+		    </div>
+		</form>
+		<!--<script src="../../../Scripts/jquery-1.9.1.min.js"></script>
+		<script src="../../../Scripts/jquery.cookie.js"></script>
+		<script src="../../../Scripts/extensions/jquery-ajax.js"></script>
+		<script src="../../../Content/bootstrap/js/bootstrap.min.js"></script>
+		<script src="../../../Content/bootstrap-table/bootstrap-table.min.js"></script>
+		<script src="../../../Content/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+		<script src="../../../Content/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+		<script src="../../../Content/layui/layui.js" charset="utf-8"></script>
+		<script src="../../../Content/layui/x-layui.js" charset="utf-8"></script>
+		<script src="../../../Content/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+		<script src="../../../Scripts/EwinCommon/common.js"></script>-->
+		
+		<script src="../../../dep/jquery-1.9.1.min.js"></script>
+	    <script src="../../../dep/jquery.cookie.js"></script>
+	    <script src="../../../js/extensions/jquery-ajax.js"></script>
+	    <script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+	    <script src="../../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+	    <!--<script src="../../../Scripts/extensions/bootstrap-table-resetView.js"></script>-->
+	    <script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+	    <script src="../../../dep/toastr/toastr.min.js"></script>
+	    <script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+	    <script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+	    <script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+	    <link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+	    <script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+	    <script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+	    <script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+    	<script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+    	<script src="../../../js/extensions/bootstrap-table-treeview.js"></script>	 
+    	<script src="../../../js/EwinCommon/common.js"></script>
+		<script src="sysPermissionSetting.js"></script>
+	</body>
+</html>

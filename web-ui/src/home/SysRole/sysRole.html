@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>角色信息</title>
+    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <link href="../../../dep/zTree/css/metroStyle/metroStyle.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+    <div id="divTop"></div>
+    <div class="panel-body" style="padding-bottom:0px;">
+        <div class="panel panel-default">
+	        <div class="panel-heading"><span class="dot"></span>查询条件
+				<span class="closeBtn" onclick="closeBtn()"></span>
+				<span class="openBtn" onclick="openBtn()"></span>
+			</div>
+	        <div class="panel-body">
+	          <form id="formSearch" class="form-horizontal">
+	            <div id="divContentLeft">
+	              <div class="form-group">
+	              	<label class="control-label" for="txt_search_no">角色编号</label>
+	                <div class="col-sm-2">
+	                    <input type="text" class="form-control" id="txt_search_no">
+	                </div>
+	                <label class="control-label" for="txt_search_name">角色名称</label>
+	                <div class="col-sm-2">
+	                    <input type="text" class="form-control" id="txt_search_name">
+	                </div>
+	                <label class="control-label" for="txt_search_remark">备注</label>
+	                <div class="col-sm-2">
+	                    <input type="text" class="form-control" id="txt_search_remark">
+	                </div>
+	                <div>
+	                    <button type="button" id="btn_query" class="btn btn-primary" onclick="queryInfo();">
+	                    	搜索
+	                    </button>
+	                </div>
+	                <div>
+	                    <button type="reset" id="btn_clear" class="btn btn-danger">
+                    		清除
+                    	</button>
+	                </div>
+	              </div>
+	            </div>
+	          </form>
+	        </div>
+      	</div>
+	      <div id="div_tableleft" class="col-xs-6" style="padding-left:0px;margin-top:5px;">
+	          <div id="divContentLeft">
+	              <div id="toolbar" class="btn-group1" style="padding-left:0px;margin-top:5px;">
+	                  <button id="btnAdd" onclick="openAddWin();" type="button" class="btn btn-primary">
+	                      	新增
+                      </button>
+                      <button id="btnEdit" onclick="openEditWin();"  type="button" class="btn btn-info">
+                          	编辑
+                      </button>
+                      <button id="btnDelete" onclick="deleteInfo();" type="button" class="btn btn-danger">
+                          	删除
+                      </button>
+					  <button id="btnImport" onclick="" type="button" class="btn btn-danger">
+						  	导入
+					  </button>
+					  <button id="btnExport" onclick="exportExcel();" type="button" class="btn btn-danger">
+						 	导出
+					  </button>
+					  <button id="btnRole" onclick="role_user();" type="button" class="btn" style="margin-left:5px">
+					  	  	用户设置
+					  </button>
+	              </div>
+	              <table id="tb_role"></table>
+	          </div>
+	      </div>
+        
+	      <div id="div_tableright" class="col-xs-6" style="padding-right:0px">
+	          <div id="divContentRight">
+	              <ul class="nav nav-tabs">
+			          <li class="active"><a href="#Resource" data-toggle="tab">资源信息</a></li>
+			          <li><a href="#User" data-toggle="tab">用户信息</a></li>
+			      </ul>
+			      <div class="tab-content" style="border: 1px solid #c5d0dc; border-top:none;">
+			        <div class="tab-pane active" id="Resource">
+			            <div style="padding-top:3px;">
+			                <div style="margin-bottom:3px; margin-left:3px;">
+			                	<button onclick="saveRoleResource();" type="button" class="btn btn-primary" style="margin-top:3px; margin-left:3px;">
+									保存
+							    </button>
+			                </div>
+			                <div id="Resource_tree" style="overflow:auto; border-top:1px solid #e5e5e5; height:450px">
+			                    <ul id="menu_tree" class="ztree" style="margin-top:0;height:400px;overflow-y:scroll; overflow-x:auto;"></ul>
+			                </div>
+			            </div>
+			        </div>
+			        <div class="tab-pane" id="User">
+			            <div style="padding-top:3px;">
+			            	<div id="toolbar_user" class="btn-group1" style="padding-left:0px;margin-top:5px;">
+				            	<div style="margin-bottom:3px; margin-left:3px;">
+				                	<button onclick="deleteUser();" type="button" class="btn btn-primary" style="margin-top:3px; margin-left:3px;">
+									         删除
+								    </button>
+				                </div>
+				            </div>
+			                <table id="tb_user"></table>
+			            </div>
+			        </div>
+			     </div>
+	          </div>
+	      </div>
+	      
+	        <!--新增窗口-->
+			<div class="modal" id="addModal" data-backdrop="static">
+		    	<div class="modal-dialog">
+		        	<div class="modal-content">
+		            <!-- box-header -->
+		            	<div class="modal-header" style="border-bottom: 1px solid #F4F4F4;">
+		               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+					   		</button>
+		               		<h4 class="modal-title" id="modal-title">新增角色</h4>
+		            	</div>
+		            	<div class="modal-body">
+		            		<form class="form-horizontal" id="formEdit">
+		            			<div class="form-group" style="margin-bottom: 15px;">
+		            				<input type="text" id="tsSysRoleId" name="tsSysRoleId" style="display:none;">
+		                  			<label for="no" class="col-xs-3 control-label"> <span class="x-red">*</span>角色编号</label>
+		                      		<div class="col-xs-8">
+		                          		<input type="text" onkeyup="value=value.replace(/[^\w\-\\/]/ig,'')" autocomplete="off" class="form-control" id="no" name="no">
+		                      		</div>
+		           				</div>
+		           				<div class="form-group" style="margin-bottom: 15px;">
+		                  			<label for="name" class="col-xs-3 control-label"><span class="x-red">*</span>角色名称</label>
+		                      		<div class="col-xs-8">
+		                          		<input type="text" autocomplete="off" class="form-control" id="name" name="name">
+		                      		</div>
+		           				</div>
+		           				<div class="form-group" style="margin-bottom: 15px;">
+		                   			<label for="remark" class="col-xs-3 control-label">备注</label>
+		                   			<div class="col-xs-8">
+		                          		<input type="text" autocomplete="off" class="form-control" id="remark" name="remark"> 
+		                   			</div>
+		           				</div>
+		           				<div class="form-group" style="margin-bottom: 15px;">
+		           					<label for="status" class="col-xs-3 control-label">状态</label>
+		           					<div class="col-xs-8">
+			                   			<div class="switch" id="switch_status">
+										    <input type="checkbox" name="status" id="status" checked="checked" value="1"/>
+										</div>
+									</div>
+		           				</div>
+		              		</form>
+		            	</div>
+			            <div class="modal-footer">
+		                     <button type="button" class="btn btn-default saveBtn" onclick="saveInfo();" >保存</button>
+		                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			            </div>
+		        	</div>
+		    	</div>
+			</div>
+			
+			<!-- 用户设置 -->
+			<div class="modal fade" role="dialog" id="addUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+		    	<div class="modal-dialog modal-lg">
+		        	<div class="modal-content modal-lg">
+		            	<div class="modal-header" style="border-bottom:1px solid #F4F4F4;">
+		               		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+								&times;
+					   		</button>
+		               		<h4 class="modal-title"><span class="dot"></span>用户设置</h4>
+		            	</div>
+		            	<div class="modal-body" >
+		            		<div class="panel panel-default">
+					        	<div class="panel-heading"><span class="dot"></span>查询条件
+					        	</div>
+				        		<div class="panel-body">
+				          			<form id="formSearch" class="form-horizontal" style="margin-top:5px;">
+				            			<div id="divContentLeft">
+				              				<div class="form-group">
+				              					<label class="control-label" for="txt_search_user_no">用户名：</label>
+			                					<div class="col-sm-2">
+				                    				<input type="text" class="form-control" id="txt_search_user_no">
+				                				</div>
+				                				<label class="control-label" for="txt_search_user_name">中文名称：</label>
+			                					<div class="col-sm-2">
+				                    				<input type="text" class="form-control" id="txt_search_user_name">
+				                				</div>
+				                				<div class="col-sm-2" style="text-align:left;">
+				                					<div>
+					                    				<button type="button" id="btn_query" class="btn btn-primary" onclick="queryUser();">
+					                    					搜索
+					                    				</button>
+					                				</div>
+					                				<div>
+					                    				<button type="reset" id="btn_clear" class="btn btn-danger">
+					                    					清除
+					                    				</button>
+					                				</div>
+				              					</div>
+				              				</div>
+				            			</div>	
+				          			</form>
+				        		</div>
+			      			</div>
+	            		</div>
+		            	
+		            	<table id="tb_role_user"></table>
+		            		
+			            <div class="modal-footer">
+		                     <button type="button" class="btn btn-default saveBtn" onclick="saveRoleUser();" >保存</button>
+		                     <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			            </div>
+		        	</div>
+		    	</div>
+			</div>
+	    </div>
+	
+	    <div id="divBottom"></div>
+	</div>
+	<script src="../../../dep/jquery-1.9.1.min.js"></script>
+    <script src="../../../dep/jquery.cookie.js"></script>
+    <script src="../../../js/extensions/jquery-ajax.js"></script>
+    <script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+    <script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+    <script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+    <script src="../../../dep/zTree/js/jquery.ztree.all.min.js"></script>
+    <script src="../../../js/EwinCommon/common.js"></script>
+    <script src="sysRole.js"></script>
+</body>
+</html>

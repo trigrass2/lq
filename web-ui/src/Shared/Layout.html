@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html style="height:100%;">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <link href="/dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link href="~/css/bootstrap-small.css" rel="stylesheet" />
+    <!--[if lt IE 9]>
+    <script src="/dep/html5shiv.js"></script>
+    <script src="/dep/respond.min.js"></script>
+    <![endif]-->
+    @RenderSection("Styles", false)
+</head>
+<body style="height:100%;">
+    @RenderBody()
+    <script src="/dep/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery.cookie.js"></script>
+    <script src="~/Scripts/extensions/jquery-ajax.js"></script>
+    <script src="/dep/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/dep/bootstrap-table/bootstrap-table.min.js"></script>
+    @*<script src="~/Scripts/extensions/bootstrap-table-resetView.js"></script>*@
+    <script src="/dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script type="text/javascript">
+        jQuery.support.cors = true;
+        var ApiUrl = window.top.ApiUrl;
+    </script>
+    @RenderSection("Scripts", false)
+</body>
+</html>

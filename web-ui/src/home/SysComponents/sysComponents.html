@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <title>业务组件库</title>
+	    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	    <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+	    <!-- ui 为智能文本框引入 -->
+	    <link rel="stylesheet" href="../../../css/jquery.ui.all.css" />
+	    <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+	    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+	   	<link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+	    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	    <link href="../../../css/page/demo/demo-style1.css" rel="stylesheet">
+ 	  	 <link href="../../../dep/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+	    <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+	    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+	   	<link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+	   	<link href="../../../dep/layer/skin/default/layer.css" rel="stylesheet" />
+	   <!--[if lt IE 9]>
+	    <script src="../../../Scripts/html5shiv.js"></script>
+	    <script src="../../../Scripts/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body>
+		<div class="panel-body" style="padding-bottom:0px;">
+		
+		
+        <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>1、单独工厂</h2>
+	            <label for="singleTmPlantId" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="singleTmPlantId" name="pTmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	    </div>
+	    <br>
+	    <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>2、工厂加车间</h2>
+	            <label for="tmPlantIdOfPlantAndWorkShop" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPlantIdOfPlantAndWorkShop" name="pTmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmWorkshopIdOfPlantAndWorkShop" class="col-xs-2 control-label">车间</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmWorkshopIdOfPlantAndWorkShop" name="wTmBbasWorkshopId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	    </div>
+	     <br>
+	    <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>3、工厂加车间加产线</h2>
+	            <label for="tmPlantIdOfPlantAndWorkShopAndLine" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPlantIdOfPlantAndWorkShopAndLine" name="pTmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmWorkshopIdOfPlantAndWorkShopAndLine" class="col-xs-2 control-label">车间</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmWorkshopIdOfPlantAndWorkShopAndLine" name="wTmBbasWorkshopId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmLineIdOfPlantAndWorkShopAndLine" class="col-xs-2 control-label">产线</label>
+	            <div class="col-xs-10">
+	            	<select class="form-control selectpicker class_plant" id="tmLineIdOfPlantAndWorkShopAndLine" name="lTmBasLineId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	    </div>
+	     <br>
+	     <div></div>
+	     <br>
+	    <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>4、工厂加车间加工位</h2>
+
+	            <label for="tmPlantIdOfPlantAndWorkShopAndUloc" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPlantIdOfPlantAndWorkShopAndUloc" name="pTmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmWorkshopIdOfPlantAndWorkShopAndUloc" class="col-xs-2 control-label">车间</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmWorkshopIdOfPlantAndWorkShopAndUloc" name="wTmBbasWorkshopId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmUlocIdOfPlantAndWorkShopAndUloc" class="col-xs-2 control-label">工位</label>
+	           		<div class="col-xs-10 parentCls">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasUlocId" name="tmBasUlocId">        
+	                          <input type="text" autocomplete="off" class="form-control inputElem" id="tmUlocIdOfPlantAndWorkShopAndUloc" name="name"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                   		</div>
+	
+	    </div>
+	     <br>
+	    <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>5、工厂加车间加产线加工位</h2>
+
+	            <label for="tmPlantIdOfPlantAndWorkShopAndLineAndUloc" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPlantIdOfPlantAndWorkShopAndLineAndUloc" name="pTmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmWorkshopIdOfPlantAndWorkShopAndLineAndUloc" class="col-xs-2 control-label">车间</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmWorkshopIdOfPlantAndWorkShopAndLineAndUloc" name="wTmBbasWorkshopId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmLineIdOfPlantAndWorkShopAndLineAndUloc" class="col-xs-2 control-label">产线</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmLineIdOfPlantAndWorkShopAndLineAndUloc" name="lTmBasLineId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            	<label for="tmUlocIdOfPlantAndWorkShopAndLineAndUloc" class="col-xs-2 control-label">工位</label>
+	           		<div class="col-xs-4 ">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasUlocId" name="tmBasUlocId">        
+	                          <input type="text" autocomplete="off" class="form-control" id="tmUlocIdOfPlantAndWorkShopAndLineAndUloc" name="name"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                   		</div>
+	
+	    </div>
+ 
+		<div class="form-group" style="margin-bottom: 15px;">
+        		<h2>6、单独仓库</h2>
+	            <label for="singleTmStorageId" class="col-xs-2 control-label">仓库</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="singleTmStorageId" name="pTmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	    </div>
+	    <br>
+		 <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>7、仓库加库区</h2>
+	            <label for="tmStorageIdOfStorageAndAread" class="col-xs-2 control-label">仓库</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_Storage" id="tmStorageIdOfStorageAndAread" name="storage">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmAreadIdOfStorageAndAread" class="col-xs-2 control-label">库区</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_Storage" id="tmAreadIdOfStorageAndAread" name="area">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	    </div>
+	     <br>
+		 <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>8、仓库加库区加库位</h2>
+	            <label for="tmStorageIdOfStorageAndAreadAndLoc" class="col-xs-2 control-label">仓库</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_Storage" id="tmStorageIdOfStorageAndAreadAndLoc" name="storage">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmAreadIdOfStorageAndAreadAndLoc" class="col-xs-2 control-label">库区</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_Storage" id="tmAreadIdOfStorageAndAreadAndLoc" name="area">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmLocIdOfStorageAndAreadAndLoc" class="col-xs-2 control-label">库位</label>
+	           		<div class="col-xs-10 ">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasStorageId" name="loc">        
+	                          <input type="text" autocomplete="off" class="form-control" id="tmLocIdOfStorageAndAreadAndLoc" name="name"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                   		</div>
+	            
+	    </div>
+	     <br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>9、单独道口</h2>
+					<label for="singleTmDockId" class="col-xs-2 control-label">道口</label>
+	           		<div class="col-xs-4 ">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasDockId" name="tmBasDockId">        
+	                          <input type="text" autocomplete="off" class="form-control" id="singleTmDockId" name="name"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                   		</div>
+	            </div>
+	   
+	     <br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>10、单独包装</h2>
+					<label for="singleTmPackageId" class="col-xs-2 control-label">包装</label>
+	           		<div class="col-xs-4 ">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasPackageId" name="tmBasPackageId">        
+	                          <input type="text" autocomplete="off" class="form-control" id="singleTmPackageId" name="name"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                   		</div>
+	      </div>
+	     <br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>11、工厂加包装</h2>
+	            <label for="tmPlantIdOfPlantAndPackage" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPlantIdOfPlantAndPackage" name="pTmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmPackageIdOfPlantAndPackage" class="col-xs-2 control-label">包装</label>
+	           		<div class="col-xs-4">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasPackageId" name="tmBasPackageId">        
+	                          <input type="text" autocomplete="off" class="form-control" id="tmPackageIdOfPlantAndPackage" name="name"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                </div>
+	    </div>
+	     <br>
+	      <br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>12、客户</h2>
+					<label for="custom" class="col-xs-2 control-label">客户</label>
+	           		<div class="col-xs-4 ">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasCustomId" name="tmBasCustomId">        
+	                          <input type="text" autocomplete="off" class="form-control" id="custom" name="name"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                   		</div>
+	      </div>
+	      	<br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>13、供应商</h2>
+					<label for="suppl" class="col-xs-2 control-label">供应商</label>
+	           		<div class="col-xs-4 ">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasSupplId" name="tmBasSupplId">        
+	                          <input type="text" autocomplete="off" class="form-control" id="suppl" name="name"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                   		</div>
+	      </div>
+	     
+	      	<br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>14、承运商</h2>
+					<label for="dunit" class="col-xs-2 control-label">供应商</label>
+	           		<div class="col-xs-4 ">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasDunitId" name="tmBasDunitId">        
+	                          <input type="text" autocomplete="off" class="form-control" id="dunit" name="name"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                   		</div>
+	      </div>
+	     
+	     <br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>15、工厂加物料</h2>
+	            <label for="tmPlantIdOfPlantAndPart" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPlantIdOfPlantAndPart" name="tmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmPartIdOfPlantAndPart" class="col-xs-2 control-label">物料</label>
+	           		<div class="col-xs-4">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasPartId" name="tmBasPartId">        
+	                          <input type="text" autocomplete="off" class="form-control" id="part" name="name"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                </div>
+	    </div>
+	     
+	     <br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>16、工厂加产品</h2>
+	            <label for="tmPlantIdOfPlantAndProduct" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPlantIdOfPlantAndProduct" name="tmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmProductIdOfPlantAndProduct" class="col-xs-2 control-label">产品</label>
+	           		<div class="col-xs-4">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasPartId" name="tmBasPartId">           
+	                          <input type="text" autocomplete="off" class="form-control" id="product" name="name"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                </div>
+	  
+	    </div>
+	     <br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>17、工厂加产品组</h2>
+	            <label for="tmPlantIdOfPlantAndPartgroup" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPlantIdOfPlantAndPartgroup" name="tmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmPartgroupOfPlantAndPartgroup" class="col-xs-2 control-label">产品组</label>
+	           		<div class="col-xs-4">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasPartgroupId" name="tmBasPartgroupId">           
+	                          <input type="text" autocomplete="off" class="form-control" id="partgroup" name="partgroup"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                </div>
+	  
+	    </div>
+	      <br>
+	    <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>18、工厂加产品组加产品</h2>
+
+	            <label for="tmPlantIdOfPlantAndPartgroupAndPart" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPlantIdOfPlantAndPartgroupAndPart" name="pTmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmPartgroupIdOfPlantAndPartgroupAndPart" class="col-xs-2 control-label">产品组</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPartgroupIdOfPlantAndPartgroupAndPart" name="wTmBbasWorkshopId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmPartIdOfPlantAndPartgroupAndPart" class="col-xs-2 control-label">产品</label>
+	           		<div class="col-xs-10 parentCls">    
+	                   		  <input type="hidden" autocomplete="off" id="tmPartgroupPartId" name="tmPartgroupPartId">        
+	                          <input type="text" autocomplete="off" class="form-control inputElem" id="tmPartIdOfPlantAndPartgroupAndPart" name="part"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                   		</div>
+	
+	    </div>
+	     
+	      <br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>19、工厂加物料BOM</h2>
+	            <label for="tmPlantIdOfPlantAndBOM" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPlantIdOfPlantAndBOM" name="tmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmBOMOfPlantAndBOM" class="col-xs-2 control-label">BOM</label>
+	           		<div class="col-xs-4">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasBomId" name="tmBasBomId">           
+	                          <input type="text" autocomplete="off" class="form-control" id="tmBOMOfPlantAndBOM" name="partgroup"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                </div>
+	  
+	    </div>
+	     
+	     
+	      <br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>20、工厂加工艺路径</h2>
+	            <label for="tmPlantIdOfPlantAndRoute" class="col-xs-2 control-label">工厂</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="tmPlantIdOfPlantAndRoute" name="tmBasPlantId">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	            <label for="tmRouteIdOfPlantAndRoute" class="col-xs-2 control-label">工艺路径</label>
+	           		<div class="col-xs-4">    
+	                   		  <input type="hidden" autocomplete="off" id="tmBasRouteId" name="tmBasRouteId">           
+	                          <input type="text" autocomplete="off" class="form-control" id="route" name="route"
+	                          placeholder="按方向键或输入搜索关键字获取列表">
+	                </div>
+	  
+	    </div>
+	     <br>
+	     
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>21、数据词典</h2>
+	            <label for="codeList" class="col-xs-2 control-label">类型</label>
+	            <div class="col-xs-4">
+	            	<select class="form-control selectpicker class_plant" id="codeList" name="codeList">
+					<option value="" selected="selected">请选择</option>
+					</select>
+	            </div>
+	    </div>
+	    <br>
+	     <div class="form-group" style="margin-bottom: 15px;">
+        		<h2>22、启用</h2>
+	             <label class="control-label" for="enabled">启用</label>
+                        <div class="col-sm-2 ">
+                            <select class="form-control col-xs-4" id="enabled">
+                            	<option value="">请选择</option>
+                            	<option value="1">是</option>
+                            	<option value="0">否</option>
+                            </select>
+                        </div>
+	    </div>
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	     
+	   </div>   
+	     
+		
+
+    <script src="../../../js/jquery-1.9.1.min.js"></script>
+ 	<!-- ui 为智能文本框引入 -->
+    <script type="text/javascript" src="../../../js/jquery.ui.core.js"></script>
+	<script type="text/javascript" src="../../../js/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="../../../js/jquery.ui.position.js"></script>
+	<script type="text/javascript" src="../../../js/jquery.ui.menu.js"></script>
+    <script src="../../../js/jquery-ui.min.js"></script>
+    <script src="../../../js/extensions/jquery-ajax.js"></script>
+    <script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../dep/toastr/toastr.min.js"></script>
+    <script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+    <script src="../../../js/EwinCommon/common.js"></script>
+    <script src="sysComponents.js"></script>
+	</body>
+</html>

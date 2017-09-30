@@ -1,0 +1,326 @@
+﻿body, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, html, input, li, ol, p, select, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+.nav{
+    width: 100%;
+    height: 80px;
+}
+.nav .navMain{
+    width: 1200px;
+    margin: 0 auto;
+    color: #fff;
+}
+.nav .navMain .navLeft{
+    width: 480px;
+}
+.nav .navMain .navLeft ul{
+    float: left;
+}
+.nav .navMain .navLeft ul li{
+    float: left;
+    line-height: 80px;
+}
+.nav .navMain .navLeft ul .navText1{
+    font-size: 24px;
+    font-weight: 100;
+    margin-left: 10px;
+}
+.nav .navMain .navLeft ul .navText3{
+    font-size: 20px;
+    margin-left: 40px;
+}
+
+.nav .navMain .navRight{
+    float: right;
+    width: 400px;
+}
+.nav .navMain .navRight ul .navNum {
+    color: #fe6840;
+}
+.nav .navMain .navRight ul li{
+    float: right;
+    font-size: 18px;
+    line-height: 80px;
+}
+.main {
+    position: relative;
+}
+.main img {
+    width: 100%;
+    height: 100%;
+}
+.main .mainBox .mainLogin {
+    width: 380px;
+    height: 385px;
+    background: #fff;
+    position: absolute;
+    top: 20%;
+    right: 18%;
+    z-index: 10000;
+}
+.main .mainBox .mainLogin #no {
+    background: url(../img/Login/username.png) no-repeat 8px 9px;
+    height: 40px;
+    width: 300px;
+    border-radius: 0;
+    border-color: #ddd;
+    padding-left: 30px;
+}
+.main .mainBox .mainLogin #password {
+    background: url(../img/Login/password.png) no-repeat 8px 9px;
+    height: 40px;
+    width: 300px;
+    border-radius: 0;
+    border-color: #ddd;
+    padding-left: 30px;
+}
+.main .mainBox #rem-me {
+    margin-top: 40px;
+}
+.main .mainBox #btnLogin.btn.btn-primary {
+    width: 300px;
+    height: 50px;
+    border-radius: 0;
+    background: #317ee7;
+    border-color: #317ee7;
+    letter-spacing: 5px;
+    font-size: 16px;
+}
+
+.main .mainBox .mainLogin .loginForm {
+    padding-left: 38px;
+    padding-right: 38px;
+    float: right;
+    top: 40px;
+}
+
+.footer.foot-bg {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    background: #fff;
+    font-size: 12px;
+    margin-top: 30px;
+}
+.footer.foot-bg img {
+    padding-right: 15px;
+}
+.footer_font {
+    font-family: tahoma, Arial;
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+    line-height: 22px;
+    text-align: center;
+    border-top: 1px solid rgb(232, 232, 232);
+    padding: 15px 0px;
+}
+.footer a {
+    color: #777;
+    text-decoration: none;
+}
+.footer span {
+    margin: 0 10px;
+    font-size: 16px;
+    color: #b7b7b7;
+}
+.fm-button:hover {
+    background: #fff;
+    border-color: #33b5d4;
+    border: none;
+}
+
+.form-bg{
+    background: #FDFCFC;
+}
+.form-horizontal{
+    padding-bottom: 40px;
+    border-radius: 15px;
+    text-align: left;
+}
+.form-horizontal .heading{
+    display: block;
+    font-size: 24px;
+    font-weight: 100;
+    margin-bottom: 25px;
+    margin-left: 40px;
+    margin-top: 45px;
+}
+.form-horizontal .form-group{
+    padding-left: 55px;
+}
+.form-horizontal .form-control{
+    /*background: #f0f0f0;
+    border: none;
+    border-radius: 20px;
+    box-shadow: none;
+    padding: 0 20px 0 45px;
+    height: 40px;
+    transition: all 0.3s ease 0s;*/
+}
+.form-horizontal .form-control:focus{
+  /*  background: #e0e0e0;*/
+    box-shadow: none;
+    outline: 0 none;
+}
+.form-horizontal .form-group i{
+    position: absolute;
+    top: 12px;
+    left: 60px;
+    font-size: 17px;
+    color: #c8c8c8;
+    transition : all 0.5s ease 0s;
+}
+.form-horizontal .form-control:focus + i{
+    color: #00b4ef;
+}
+.form-horizontal .fa-question-circle{
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    right: 60px;
+    font-size: 20px;
+    color: #808080;
+    transition: all 0.5s ease 0s;
+}
+.form-horizontal .fa-question-circle:hover{
+    color: #FDFCFC;
+}
+.form-horizontal .main-checkbox{
+    float: left;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    margin: 7px 0 0 0;
+    border: 1px solid #ddd;
+}
+.form-horizontal .main-checkbox label{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: -1px;
+    left: -2px;
+    cursor: pointer;
+}
+.form-horizontal .main-checkbox label:after{
+    content: "";
+    width: 10px;
+    height: 5px;
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    border: 3px solid #555;
+    border-top: none;
+    border-right: none;
+    background: transparent;
+    opacity: 0;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.form-horizontal .main-checkbox input[type=checkbox]{
+    visibility: hidden;
+}
+.form-horizontal .main-checkbox input[type=checkbox]:checked + label:after{
+    opacity: 1;
+}
+.form-horizontal .text{
+    float: left;
+    margin-left: 7px;
+    line-height: 20px;
+    padding-top: 5px;
+    text-transform: capitalize;
+}
+.form-horizontal .btn{
+	width: 270px;
+	height: 50px;
+   /* float: right;
+    font-size: 14px;
+    color: #fff;
+    background: #00b4ef;
+    border-radius: 30px;
+    padding: 10px 25px;
+    border: none;
+    text-transform: capitalize;
+    transition: all 0.5s ease 0s;*/
+}
+@media only screen and (max-width: 479px){
+    .form-horizontal .form-group{
+        padding: 0 25px;
+    }
+    .form-horizontal .form-group i{
+        left: 45px;
+    }
+    .form-horizontal .btn{
+        padding: 10px 20px;
+    }
+}
+
+/*设置登录框的媒体查询*/
+@media screen and (max-width: 1400px) and (min-width: 1024px) {
+    .form-horizontal .heading{
+        margin-bottom: 20px;
+        margin-left: 40px;
+        margin-top: 35px;
+    }
+    .footer.foot-bg {
+        margin-top: -20px;
+    }
+    .main .mainBox .mainLogin {
+        width: 340px;
+        height: 345px;
+        top: 10%;
+    }
+    .main .mainBox .mainLogin #no {
+        width: 260px;
+    }
+    .main .mainBox .mainLogin #password {
+        width: 260px;
+    }
+    .main .mainBox #rem-me {
+        margin-top: 30px;
+    }
+    .main .mainBox #btnLogin.btn.btn-primary {
+        width: 260px;
+    }
+}
+
+
+.dh{
+    animation: myfirst 2s infinite linear;
+    position: absolute;width: 50px; height: 50px;background: url(../img/Login/xx.png) no-repeat; background-size: 100% 100%
+}
+
+
+@keyframes myfirst
+{
+    0%   {transform: rotate(0deg) scale(0,0); opacity:0}
+    25%  {transform: rotate(180deg) scale(3,3); opacity:1}
+    50% {transform: rotate(360deg) scale(0,0); opacity:0}
+    75%  {transform: rotate(180deg) scale(3,3); opacity:1}
+    100% {transform: rotate(0deg) scale(0,0); opacity:0}
+}
+
+.dhsp{
+    animation: myfirst1 2s infinite linear
+}
+
+
+@keyframes myfirst1
+{
+    0%   {opacity:0}
+    50%  {opacity:1}
+    100% {opacity:0}
+}
+
+.dhsp{
+    position: absolute; color: #fff;margin: 18px 0 0 70px; width: 500px; font-weight: bold;font-size: 24px;
+}
+
+.dh1{
+    position: absolute;width: 50px; height: 50px;background: url(../img/Login/xx.png) no-repeat; background-size: 100% 100%;transform:scale(0.5,0.5)
+}

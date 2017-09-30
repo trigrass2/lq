@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="shortcut icon" href="img/favicon.html">
+
+    <title>组件库的使用</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link href="../../dep/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="../../css/page/demo/demo-style.css" rel="stylesheet">
+    <link href="../../css/style-responsive.css" rel="stylesheet" />
+    <style type=text/css>
+        html,body,#main-content{
+            height: 100%;
+        }
+        .ml30{
+            margin-left: 30px;
+        }
+        .f-size14{
+            font-size: 14px;
+
+        }
+        .header-tip{
+            height: 60px;
+            line-height: 60px;
+        }
+    </style>
+</head>
+
+<body>
+
+<section id="container" class="">
+    <!--header start-->
+    <header class="header white-bg">
+        <div class="sidebar-toggle-box">
+            <div data-original-title="Toggle Navigation" data-placement="right" class="fa fa-bars tooltips icon-reorder"></div>
+        </div>
+        <!--logo start-->
+        <a href="http://www.ewininfo.cn/" target="_blank" class="logo">ewin<span>info</span></a>
+        <!--logo end-->
+        <span class="ml30 f-size14 header-tip">组件库使用说明</span>
+    </header>
+    <!--header end-->
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar"  class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu">
+                <!--<li class="active">-->
+                    <!--<a class="" href="#" data-href="home.html">-->
+                        <!--<i class="fa fa-file-powerpoint-o"></i>-->
+                        <!--<span>default</span>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-file-powerpoint-o"></i>
+                        <span>UI元素</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" data-href="select2.html" href="#">下拉框</a></li>
+                        <li><a class="" data-href="icheck.html" href="#">单复选框</a></li>
+                        <li><a class="" data-href="jstree.html" href="#">树形菜单</a></li>
+                        <li><a class="" data-href="formValidate.html" href="#">表单验证</a></li>
+                        <li><a class="" data-href="loading.html" href="#">加载中</a></li>
+                        <li><a class="" data-href="switchery.html" href="#">切换开关</a></li>
+                        <li><a class="" data-href="suggest.html" href="#">智能提示文本框</a></li>
+                        <li><a class="" data-href="selectPaste.html" href="#">select2多条件粘贴</a></li>
+                        <li><a class="" data-href="bootstrap-datetimepicker.html" href="#">日期选择</a></li>
+                        <li><a class="" data-href="draggable_panels.html" href="#">可拖动面板</a></li>
+                        <li><a class="" data-href="visualLayout.html" href="#">可视化配置布局</a></li>
+                        <li><a class="" data-href="visualLayoutContent.html" href="#">可视化配置布局展示页</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu open">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-th"></i>
+                        <span>表格</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub" style="overflow: hidden; display: block;">
+                        <li><a class="" data-href="bootstrapTable.html" href="#">bootstrap-table</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-edit"></i>
+                        <span>页面修改</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" data-href="pageEdit/searchPage.html" href="#">搜索条件</a></li>
+                        <li><a class="" data-href="pageEdit/bombBox.html" href="#">删除、保存等弹出框</a></li>
+                        <li><a class="" data-href="pageEdit/jqGrid-demo.html" href="#">操作日志-demo</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-line-chart"></i>
+                        <span>图形界面</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" data-href="gantt.html" href="#">甘特图</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+    <!--main content start-->
+    <section id="main-content">
+        <iframe id="mainIframe" src="bootstrapTable.html" width="100%" height="100%" scrolling="auto" frameborder="0"></iframe>
+    </section>
+</section>
+<!--main content end-->
+</section>
+
+<!-- js placed at the end of the document so the pages load faster -->
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../js/jquery.scrollTo.min.js"></script>
+<script src="../../js/jquery.nicescroll.js" type="text/javascript"></script>
+<!--common script for all pages-->
+<script src="../../js/common-scripts.js"></script>
+<script type="text/javascript">
+    $('body').on('click','#sidebar li a',function () {
+        var $href=$(this).attr('data-href');
+        if($href != undefined && $href.length > 0){
+            document.getElementById("mainIframe").src=$href;
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jqGrid-demo</title>
+    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+    <link href="../../../css/page/demo/demo-style1.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/ui.jqgrid.css">
+    <link rel="stylesheet" href="../../../css/jquery.ui.theme.css">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../../css/codemirror.css" rel="stylesheet">
+    <link href="../../../css/rubyblue.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/bootstrap-small.css">
+</head>
+<body>
+<section class="wrapper">
+    <h3>操作日志-demo</h3>
+
+    <div class="col-lg-12">
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+</section>
+
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">操作日志demo</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="code" name="code">
+/* css start*/
+<link rel="stylesheet" href="../../../css/ui.jqgrid.css">
+    <link rel="stylesheet" href="../../../css/jquery.ui.theme.css">
+/* css end*/
+
+/* html start*/
+<table id="jqGrid-demo"></table>
+                                <div id="jqGridPager-demo"></div>
+/* html end*/
+
+/* js  start*/
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+                                <script src="../../../dep/jqGrid-v5.2.1/js/jquery.jqGrid.js"></script>
+<script src="../../../dep/jqGrid-v5.2.1/js/i18n/grid.locale-cn.js"></script>
+/*操作日志js*/
+                                // ../../../css/images下的图片是分页和+号的图标
+var index6 = '',
+    index1 = '',
+    index2 = '',
+    index3 = '',
+    index4 = '',
+    index5 = '',
+    arr = [{OrderID:'',RequiredDate:'',ShipName:'',ShipCity:'',Freight:''}];
+$(document).ready(function () {
+    // 父表
+    $("#jqGrid").jqGrid({
+        url: '../../../js/demo/jqGrid-demo/data.json',
+        mtype: "GET",
+        datatype: "json",
+        colModel: [
+            { label: 'ID', name: 'CustomerID', key: true, width: 75 },
+            { label: 'Company Name', name: 'CompanyName', width: 150 },
+            { label: 'Contact Name', name: 'ContactName', width: 150 },
+            { label: 'Phone', name: 'Phone', width: 150 },
+            { label: 'City', name: 'City', width: 150 }
+        ],
+        loadonce : true,
+        width: 780,
+        height: 250,
+        multiselect : true,// 多选
+        // cellEdit: true, // 点击单元格跟点击多选框触发不同事件
+        rowNum: 10,
+        subGrid: true, // 首先必须将jqGrid的subGrid选项设置为true，默认为false；当此项设为true的时候，Grid表格的最左边将会添加一列，里面有一个“+”图标，用于展开子格；
+        subGridRowExpanded: showChildGrid, // 当点击“+”展开子表格时，将触发此选项定义的事件方法；
+        subGridOptions : {
+            // 设置为false，展开时仅加载一次数据，随后的点击图标点击操作只是显示或者隐藏子表格，而不会再发送ajax重新获取数据
+            reloadOnExpand :true,
+            // 点击展开是否选中一行
+            // selectOnExpand : true
+        },
+        pager: "#jqGridPager"
+    });
+});
+function showChildGrid(parentRowID, parentRowKey) {
+    var childGridID = parentRowID + "_table";
+    var childGridPagerID = parentRowID + "_pager";
+
+    // 获取子表数据
+    $.getJSON('../../../js/demo/jqGrid-demo/subdata.json',function (data) {
+        for(key in data){
+            var keyVal = key;
+            var val = data[keyVal];
+            var arr1 = []
+            for(var i = 0; i< val.length; i ++){
+                if(val[i].OrderID === parentRowKey){
+                    index1 = val[i].OrderID;
+                    index2 = val[i].RequiredDate;
+                    index3 = val[i].ShipName;
+                    index4 = val[i].ShipCity;
+                    index5 = val[i].Freight;
+                    arr = [{OrderID:index1,RequiredDate:index2,ShipName:index3,ShipCity:index4,Freight:index5}];
+                    arr1.push(arr)
+                }
+            }
+        }
+        // 子表格数据显示，用addRowData
+        for ( var i = 0; i < arr1.length; i++){
+            jQuery("#" + childGridID).jqGrid('addRowData', i + 1, arr1[i]);
+        }
+    })
+
+    // 子表格追加到父级表格下
+    $('#' + parentRowID).append('<table id=' + childGridID + '></table><div id=' + childGridPagerID + ' class=scroll></div>');
+
+    // 子表
+    $("#" + childGridID).jqGrid({
+        datatype:'local',
+        // page: 1,
+        colNames : [ 'OrderID', 'RequiredDate', 'ShipName', 'ShipCity', 'Freight'],
+        colModel: [
+            { label: 'Order ID', name: 'OrderID',index: 'OrderID', key: true, width: 75 },
+            { label: 'Required Date', name: 'RequiredDate',index: 'RequiredDate',width: 100 },
+            { label: 'Ship Name', name: 'ShipName',index: 'ShipName', width: 100 },
+            { label: 'Ship City', name: 'ShipCity',index: 'ShipCity', width: 100 },
+            { label: 'Freight', name: 'Freight',index: 'Freight', width: 75 }
+        ],
+        loadonce: true,
+        width: 500,
+        height: '100%',
+        // pager: "#" + childGridPagerID
+    });
+}
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+<!-- Bootstrap table -->
+<script src="../../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../../dep/jqGrid-v5.2.1/js/jquery.jqGrid.js"></script>
+<script src="../../../dep/jqGrid-v5.2.1/js/i18n/grid.locale-cn.js"></script>
+<script src="../../../js/demo/jqGrid-demo/index.js"></script>
+
+<!--代码格式显示js，无需引用-->
+<script src="../../../js/codemirror.js"></script>
+<script src="../../../js/vim.js"></script>
+<script src="../../../js/javascript.js"></script>
+</body>
+</html>

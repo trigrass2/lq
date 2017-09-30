@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html> 
+	<head>
+	  <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <title>BOM树型查询</title>
+	  <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	  <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	  <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+	  <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+	  <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+	  <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+	  <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+      <link href="../../../dep/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css" rel="stylesheet" />
+	  <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+	  <link href="../../../dep/zTree/css/metroStyle/metroStyle.css" rel="stylesheet" />
+	</head>
+<body>
+    <div class="panel-body" style="padding-bottom:0px;">
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="dot"></span>查询条件
+			<span class="closeBtn" onclick="closeBtn()"></span>
+			<span class="openBtn" onclick="openBtn()"></span>
+		</div>
+        <div class="panel-body">
+          <form id="formSearch" class="form-horizontal">
+              <div class="form-group">
+                <label class="control-label" for="plantId">工厂：</label>
+                <select data-placeholder="工厂" id="tmBasPlantId" name="tmBasPlantId" class="col-sm-2" data-rel="chosen">
+                	 <option value="" selected="selected">请选择</option>
+                </select>
+
+				<label class="control-label" for="areaId">产品：</label>
+                 <div class="col-sm-2">
+                            <input type="text" class="form-control" id="partNameOrNo" name="partNameOrNo">
+                        </div>
+				<label class="control-label" for="locId">版本号：</label>
+                <div class="col-sm-2">
+                            <input type="text" class="form-control" id=bomVersion name="bomVersion">
+                        </div>
+                <label class="control-label" >     </label>
+                <div>
+                    <button type="button" id="btn_query" class="btn btn-primary" onclick="queryInfo();">
+                    	搜索
+                    </button>
+                </div>
+                <div>
+                    <button type="button" id="btn_clear" class="btn btn-danger" onclick="clearInfo();">
+                    	清除
+                    </button>
+                </div>
+              </div>
+          </form>
+        </div>
+      </div>
+		
+      <div id="toolbar" class="btn-group1" >
+        <button id="btnExport" onclick="exportUser()" type="button" class="btn btn-success">
+					<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+				导出
+		</button>
+      </div>
+      
+      <div>
+      	<table id="tb_basbom" style="hight:600px"></table>
+      </div>
+
+    </div>
+    <div id="divBottom"></div>
+  <script src="../../../dep/jquery-1.9.1.min.js"></script>
+  <script src="../../../dep/jquery.cookie.js"></script>
+  <script src="../../../js/extensions/jquery-ajax.js"></script>
+  <script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+  <script src="../../../js/extensions/bootstrap-table-resetView.js"></script>
+  <script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+  <script src="../../../js/extensions/bootstrap-table-treeview.js"></script>
+  <script type="text/javascript">
+    jQuery.support.cors = true;
+    var ApiUrl = '';
+  </script>
+  <script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+  <script src="../../../dep/toastr/toastr.min.js"></script>
+  <script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+  <script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+  <script src="../../../dep/bootstrap-iconpicker/js/iconset/iconset-fontawesome-4.2.0.min.js"></script>
+  <script src="../../../dep/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js"></script>
+  <script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+  <script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+  <script src="../../../dep/zTree/js/jquery.ztree.all.min.js"></script>
+  <script src="../../../js/EwinCommon/common.js"></script>
+  <script src="basBomTree.js"></script>
+</body>
+
+</html>

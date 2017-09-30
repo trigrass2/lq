@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>通知编辑</title>
+    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../dep/summernote/summernote.css">
+    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../dep/bootstrap/css/bootstrap-theme.css">
+    <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+    <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <link href="../../../dep/select2-4.0.3/dist/css/select2.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-datapicker/dist-min/css/datepicker3.css" rel="stylesheet" />
+    <link href="../../../css/EwinCommon/newcommon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../dep/switchery/switchery.css">
+    <link href="../../../dep/bootstrap-datetimepicker_new/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../dep/icheck-1.x/skins/minimal/grey.css">
+
+    <!--[if lt IE 9]>
+    <script src="../../../Scripts/html5shiv.js"></script>
+    <script src="../../../Scripts/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<div id="noti_edit" class="container">
+    <form>
+        <div class="con_title">
+            <label class="con_left">标题</label><input type="text" id="notiTitle" placeholder="在这里输入标题">
+        </div>
+        <div class="con_obj">
+            <label class="con_left">发送对象</label>
+            <select name="" id="sel_list">
+                <option value="0">全部用户</option>
+            </select>
+            <span class="sel_query">查看</span>
+        </div>
+
+        <div class="con_sent">
+            <label class="con_left">立即发送</label>
+            <input type="checkbox" name="checkbox" class="sent_now" id="sentNow" data-size="small"/>
+            <div class="sent_time"></div>
+        </div>
+
+        <div class="con_date">
+            <label class="con_left">消息有效期</label>
+            <input type="radio" value="option1" name="a" id="oneDay">
+            <label>一天</label>
+            <input type="radio" value="option2" name="a" id="oneWeek"><label>一周</label>
+            <input type="radio" value="option3" name="a" id="oneMonth"><label>一个月</label>
+            <input type="radio" value="option4" name="a" id="otherTime"><label>其他</label>
+            <div class="otherTimeDate"></div>
+        </div>
+
+        <div class="con_move">
+            <label class="con_left">推送形式</label>
+            <input type="checkbox" id="sentApp"><label>APP</label>
+            <input type="checkbox" id="sendWeb"><label>WEB</label>
+            <input type="checkbox" id="sendMail"><label>邮件</label>
+            <input type="checkbox" id="sendWeChat"><label>微信</label>
+        </div>
+        <div class="con_text">
+            <label class="con_left">正文</label>
+            <div id="summernote"></div>
+        </div>
+    </form>
+
+    <div class="con_btn">
+        <button type="button" class="btn btn-primary" onclick="saveEdit()">保存</button>
+        <button type="button" class="btn btn-primary" onclick="resetPage()">重置</button>
+        <button type="button" class="btn btn-primary" onclick="cancelEdit()">取消</button>
+    </div>
+
+
+    <!--角色设置-->
+    <div class="modal fade" role="dialog" id="setRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content modal-lg">
+                <div class="modal-header" style="border-bottom:1px solid #F4F4F4;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title"><span class="dot"></span>角色设置</h4>
+                </div>
+                <div class="modal-body" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><span class="dot"></span>查询条件
+                        </div>
+                        <div class="panel-body">
+                            <form id="formSearch" class="form-horizontal">
+                                <div id="divContentLeft">
+                                    <div class="form-group">
+                                        <label class="control-label" for="txt_search_no">角色编号</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="txt_search_no">
+                                        </div>
+                                        <label class="control-label" for="txt_search_name">角色名称</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="txt_search_name">
+                                        </div>
+                                        <label class="control-label" for="txt_search_remark">备注</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="txt_search_remark">
+                                        </div>
+                                        <div>
+                                            <button type="button" id="btn_query" class="btn btn-primary" onclick="queryInfo();">
+                                                搜索
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="reset" id="btn_clear" class="btn btn-danger">
+                                                清除
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="tb_role"></table>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default saveBtn" onclick="saveRole();" >保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--用户设置-->
+    <div class="modal fade" role="dialog" id="setUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content modal-lg">
+                <div class="modal-header" style="border-bottom:1px solid #F4F4F4;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title"><span class="dot"></span>用户设置</h4>
+                </div>
+                <div class="modal-body" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><span class="dot"></span>查询条件
+                        </div>
+                        <div class="panel-body">
+                            <form id="formSearch" class="form-horizontal" style="margin-top:5px;">
+                                <div id="divContentLeft">
+                                    <div class="form-group">
+                                        <label class="control-label" for="txt_search_user_no">用户名：</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="txt_search_user_no">
+                                        </div>
+                                        <label class="control-label" for="txt_search_user_name">中文名称：</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="txt_search_user_name">
+                                        </div>
+                                        <div class="col-sm-2" style="text-align:left;">
+                                            <div>
+                                                <button type="button" id="btn_query" class="btn btn-primary" onclick="queryUser();">
+                                                    搜索
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <button type="reset" id="btn_clear" class="btn btn-danger">
+                                                    清除
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="tb_user"></table>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default saveBtn" onclick="saveUser();" >保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--业务权限组设置-->
+    <div class="modal fade" role="dialog" id="setGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content modal-lg">
+                <div class="modal-header" style="border-bottom:1px solid #F4F4F4;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title"><span class="dot"></span>业务权限组设置</h4>
+                </div>
+                <div class="modal-body" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><span class="dot"></span>查询条件
+                        </div>
+                        <div class="panel-body">
+                            <form id="formSearch" class="form-horizontal" style="margin-top:5px;">
+                                <div id="divContentLeft">
+                                    <div class="form-group">
+                                        <label class="control-label" for="txt_search_group_no">用户名：</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="txt_search_group_no">
+                                        </div>
+                                        <label class="control-label" for="txt_search_group_name">中文名：</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="txt_search_group_name">
+                                        </div>
+                                        <label class="control-label" for="txt_search_group_remark">备注：</label>
+                                        <div class="col-sm-2">
+                                            <input type="text" class="form-control" id="txt_search_group_remark">
+                                        </div>
+                                        <div class="col-sm-2" style="text-align:left;">
+                                            <div>
+                                                <button type="button" id="btn_query" class="btn btn-primary" onclick="queryGroup();">
+                                                    搜索
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <button type="reset" id="btn_clear" class="btn btn-danger">
+                                                    清除
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <table id="tb_group"></table>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default saveBtn" onclick="saveGroup();" >保存</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../../dep/switchery/switchery.js"></script>
+<script src="../../../dep/TimeSlider/jquery.range.js"></script>
+<script src="../../../dep/icheck-1.x/icheck.min.js"></script>
+<script src="../../../dep/jquery.cookie.js"></script>
+<script src="../../../js/extensions/jquery-ajax.js"></script>
+<script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../dep/summernote/summernote.js"></script>
+<script src="../../../dep/bootstrap-table/bootstrap-table.js"></script>
+<script src="../../../js/extensions/bootstrap-table-resetView.js"></script>
+<script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+<script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+<script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+<script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<script src="../../../dep/select2-4.0.3/dist/js/select2.js"></script>
+<script src="../../../dep/bootstrap-datetimepicker_new/js/bootstrap-datetimepicker.js"></script>
+<script src="../../../dep/zTree/js/jquery.ztree.all.min.js"></script>
+<script src="../../../js/global.js"></script>
+<script src="../../../js/EwinCommon/newcommon.js"></script>
+<script src="notiEdit.js"></script>
+</html>

@@ -1,0 +1,1086 @@
+[
+    {
+        "Id": "1111",
+        "Text": "系统设置",
+        "Url": null,
+        "Icon": "fa fa-cog",
+        "Children": [
+            {
+                "Id": "04326cd738834009961c87c3110a1ef9",
+                "Text": "菜单及按钮",
+                "Url": null,
+                "Icon": "fa fa-check-square",
+                "Children": [
+                    {
+                        "Id": "2222",
+                        "Text": "BS菜单",
+                        "Url": "/Basic/Menu/Index?type=1",
+                        "Icon": "fa fa-list",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "bba38cc8223a41c182f03e228af533d6",
+                        "Text": "CS菜单",
+                        "Url": "/Basic/Menu/Index?type=0",
+                        "Icon": "fa fa-bars",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "336440e31146438ea33c0f51ef8bf8fd",
+                        "Text": "按钮管理",
+                        "Url": "/Basic/Button/Index",
+                        "Icon": "fa fa-arrows",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "5f39a313b2df4c0fb9ae3ffba3f71cfe",
+                "Text": "编码管理",
+                "Url": null,
+                "Icon": "fa fa-cc",
+                "Children": [
+                    {
+                        "Id": "7b6550f4bfe14b4784a904a5b3174a6e",
+                        "Text": "系统编码",
+                        "Url": "/Data/TsSetting/Index",
+                        "Icon": "fa fa-building",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "bc6cce8ad1ba46a2bef950cf832119d4",
+                        "Text": "系统参数",
+                        "Url": "/Data/CodeType/Index",
+                        "Icon": "fa fa-bullseye",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "27c65cddcc6b45a8a8871ebb5da10fab",
+                "Text": "用户权限",
+                "Url": null,
+                "Icon": "fa fa-group",
+                "Children": [
+                    {
+                        "Id": "3333",
+                        "Text": "部门管理",
+                        "Url": "/Basic/Dept/Index",
+                        "Icon": "fa fa-cube",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "4444",
+                        "Text": "角色管理",
+                        "Url": "/Basic/Role/Index",
+                        "Icon": "fa fa-adjust",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "5555",
+                        "Text": "用户管理",
+                        "Url": "/Basic/User/Index",
+                        "Icon": "fa fa-user",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            }
+        ],
+        "data": {
+            "IsTab": true
+        }
+    },
+    {
+        "Id": "b33c2dcbb9314bb89a6406b3b0c84627",
+        "Text": "基础数据",
+        "Url": null,
+        "Icon": "fa fa-cubes",
+        "Children": [
+            {
+                "Id": "e9948635cc9940dcac240d0ae1dbd151",
+                "Text": "工厂布局",
+                "Url": null,
+                "Icon": "fa fa-newspaper-o",
+                "Children": [
+                    {
+                        "Id": "0c3bbd3a3c1443689eef3839d5657ef0",
+                        "Text": "节点管理",
+                        "Url": "/Factory/Uloc/index",
+                        "Icon": "fa fa-certificate",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "805875fb8e4a45009b903404ab3d9acd",
+                        "Text": "工厂维护",
+                        "Url": "/Factory/Plant/index",
+                        "Icon": "fa fa-check-circle-o",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "aada85e606964db0a5ff321e7f4775a0",
+                "Text": "作业指示",
+                "Url": null,
+                "Icon": "fa fa-building-o",
+                "Children": [
+                    {
+                        "Id": "a5167e13fb884f4492b49ce83db3f422",
+                        "Text": "装配单配置",
+                        "Url": "/AssemblyConfig/Assembly/Index",
+                        "Icon": "fa fa-calculator",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "ef516faeb2e74933b8eabce8bf287249",
+                "Text": "AVI数据",
+                "Url": null,
+                "Icon": "fa fa-level-down",
+                "Children": [
+                    {
+                        "Id": "229cddcdce1f4f82b72d77a2c75b5f38",
+                        "Text": "站点配置",
+                        "Url": "/Data/Station/index",
+                        "Icon": "fa fa-adjust",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "83a7075d2bf545e3ad46e92e82aa8249",
+                        "Text": "车型与工艺路径关系",
+                        "Url": "/Factory/TmPathModel/Index",
+                        "Icon": "fa fa-adjust",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "a04817e121224802b2194bea7870f8fd",
+                        "Text": "工艺路径设置",
+                        "Url": "/Factory/Path/Index",
+                        "Icon": "fa fa-arrows",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "98f8ce82e473423fa4f5cf2c18a6d66e",
+                "Text": "工作日历",
+                "Url": null,
+                "Icon": "fa fa-calendar",
+                "Children": [
+                    {
+                        "Id": "127376f1dd0e4b3cb6d7f3b41eb9de2b",
+                        "Text": "日历模板管理",
+                        "Url": "/Data/WorkDate/WorkDateModule",
+                        "Icon": "fa fa-bars",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "516f95c8bb834826a635a92c226a5daa",
+                        "Text": "工作日历管理",
+                        "Url": "/Data/WorkDate/Calendar",
+                        "Icon": "fa fa-building",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "ee3d06a2385943ed9dcbe6ebb2264f92",
+                "Text": "车型特征",
+                "Url": null,
+                "Icon": "fa ",
+                "Children": [
+                    {
+                        "Id": "8e928e98fe434ca58f01003d2af565f5",
+                        "Text": "基础特征",
+                        "Url": "/Data/BasicFeature/Index",
+                        "Icon": "fa fa-automobile",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "979f6f43ba744f4ebbcdf91ade6944ef",
+                        "Text": "车型平台",
+                        "Url": "/Data/Model/Index",
+                        "Icon": "fa fa-adjust",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "45b11fb5ff194019b7e1826abce9ff1f",
+                        "Text": "VIN码规则设置",
+                        "Url": "/Data/VIN/Index",
+                        "Icon": "fa fa-barcode",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "7e7cc0d3cfc34d9497d19c8e99fda0c6",
+                        "Text": "特征维护",
+                        "Url": "/Data/Feature/Index",
+                        "Icon": "fa fa-bullseye",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "e71f41b1cdac4f8fbaa9576983aeb1e7",
+                        "Text": "整车编码对比",
+                        "Url": "/Data/ModelContrast/Index",
+                        "Icon": "fa fa-automobile",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "ade5842b9fe44e4bbea55307f702aabb",
+                        "Text": "车型特征模板",
+                        "Url": "/Data/ModelFeaturesTwo/Index",
+                        "Icon": "fa fa-dot-circle-o",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "8146d23710054d6cb5de1e018a56ef12",
+                        "Text": "整车特征",
+                        "Url": "/Data/ModelFeatures/Index",
+                        "Icon": "fa fa-circle-thin",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            }
+        ],
+        "data": {
+            "IsTab": true
+        }
+    },
+    {
+        "Id": "108962021b1b4ddaab31082de3ea511d",
+        "Text": "订单管理",
+        "Url": null,
+        "Icon": "fa fa-clipboard",
+        "Children": [
+            {
+                "Id": "4b8efae412d04904a6cf3729deafa660",
+                "Text": "订单查询",
+                "Url": "/APS/order/query",
+                "Icon": "fa fa-",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "4ccc20ae47814171ac607e6436a5fa79",
+                "Text": "订单导入",
+                "Url": "/APS/order/import",
+                "Icon": "fa fa-",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "81ea2111079e4d92937a3e7603ab5d48",
+                "Text": "订单缓存",
+                "Url": "/APS/Order/Cache",
+                "Icon": "fa ",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "3de65fbec70348e789b251ae46dde882",
+                "Text": "冲压订单管理",
+                "Url": null,
+                "Icon": "fa fa-anchor",
+                "Children": [
+                    {
+                        "Id": "3919c5b41f7d49d0a98170db5cd5e848",
+                        "Text": "冲压订单产品导入",
+                        "Url": "/APS/DTO_TM_PRESSING_PRODUCT/Index",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "6b5eae1881b14bcdbc7dee19c1a44041",
+                        "Text": "冲压订单导入",
+                        "Url": "/APS/DTO_TT_PRESSING_ORDER/Index",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "d93edb22684f49879389a5df940ab5f3",
+                "Text": "订单调整",
+                "Url": null,
+                "Icon": "fa fa-arrows",
+                "Children": [
+                    {
+                        "Id": "22acf5c6e52e4ccaad934debb21b8959",
+                        "Text": "下发配置",
+                        "Url": "/APS/TS_ORDER_LINE/Index",
+                        "Icon": "fa fa-adjust",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "9a80a916c75148568c81d823b7fda02a",
+                        "Text": "订单年份",
+                        "Url": "/APS/order/PlantYear",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "1e22c2d590f845049f4c357b402d3393",
+                        "Text": "订单撤排",
+                        "Url": "/APS/order/cancelproduct",
+                        "Icon": "fa fa-",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "4b6c554415c649abb13e60bd2b905698",
+                        "Text": "订单删除",
+                        "Url": "/APS/order/delete",
+                        "Icon": "fa fa-",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "830c5629261b4eaa855160d8b2dd5d08",
+                        "Text": "订单HOLD",
+                        "Url": "/APS/order/hold",
+                        "Icon": "fa fa-",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "f3819306c99247709232bd7c8dcca336",
+                        "Text": "订单插单",
+                        "Url": "/APS/order/insertorder",
+                        "Icon": "fa fa-",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "85c58136b5e34738b84b5f8389d15d0b",
+                        "Text": "订单解HOLD",
+                        "Url": "/APS/Order/UnHold",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "27d3112aaf4143849d5eecaf2197dcde",
+                "Text": "订单排产",
+                "Url": null,
+                "Icon": "fa ",
+                "Children": [
+                    {
+                        "Id": "9a6bb634bac0457a942c034d4c0b8a25",
+                        "Text": "快速排产",
+                        "Url": "/APS/order/plantproduct",
+                        "Icon": "fa fa-",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "d3a92f94506245ca95160ff4cbc40c90",
+                        "Text": "排产规则",
+                        "Url": "/APS/PlanRule/Index",
+                        "Icon": "fa fa-adjust",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "b7cbc66f39764303b4959206a73f73bb",
+                        "Text": "计划精排",
+                        "Url": "/APS/Order/FineSchedule",
+                        "Icon": "fa fa-adjust",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "9dc67e66eac947f1b56ac72b9a873923",
+                        "Text": "排产周计划",
+                        "Url": "/APS/Order/DayPlan",
+                        "Icon": "fa fa-adjust",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "1fa7a81c4cc54eb299311a5a64408805",
+                        "Text": "计划粗排",
+                        "Url": "/APS/RoughPlan/Index",
+                        "Icon": "fa fa-adjust",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            }
+        ],
+        "data": {
+            "IsTab": true
+        }
+    },
+    {
+        "Id": "6e4f3059890a4449832e6ec832b8f641",
+        "Text": "生产控制与AVI",
+        "Url": null,
+        "Icon": "fa fa-taxi",
+        "Children": [
+            {
+                "Id": "7e87d330d9864ca5916f8daee9947098",
+                "Text": "AVI",
+                "Url": null,
+                "Icon": "fa fa-automobile",
+                "Children": [
+                    {
+                        "Id": "2e03fe88533f4a0c965575c5461aa6bb",
+                        "Text": "缺件零件维护",
+                        "Url": "/Data/DTO_TM_AVI_PART/Index",
+                        "Icon": "fa fa-life-saver",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "e68f88e4e4dc4aadbb9f26400843d22d",
+                        "Text": "PDI月度计划维护",
+                        "Url": "/DATA/DTO_TT_PDI_PLAN/Index",
+                        "Icon": "fa fa-bars",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "0c9a4bf3caed467fa305f4f923c915f4",
+                "Text": "生产控制",
+                "Url": null,
+                "Icon": "fa fa-asterisk",
+                "Children": [
+                    {
+                        "Id": "3b5b7f5b0166487f93000f7e60575e72",
+                        "Text": "式样变更",
+                        "Url": "/APS/OrderAlter/Alter",
+                        "Icon": "fa fa-arrows",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "f9b0d817dccc407c86ef86e4b5aabe73",
+                        "Text": "式样变更设置",
+                        "Url": "/APS/OrderAlter/Setting",
+                        "Icon": "fa fa-arrows-h",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "28e9309cf6ac4fddb374c240a36076d1",
+                        "Text": "式样变更记录查询",
+                        "Url": "/APS/OrderAlter/AlterLog",
+                        "Icon": "fa fa-bar-chart-o",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "79c01a84c757477e8fd9545c046f5234",
+                        "Text": "滞留规则设置",
+                        "Url": "/OrderDelay/DelayRule/Index",
+                        "Icon": "fa fa-book",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "2b055af0f639472e84cc1f3d3e52ce81",
+                        "Text": "滞留车辆实时查询",
+                        "Url": "/OrderDelay/DelayRule/delaySearch",
+                        "Icon": "fa fa-adjust",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "eb5f0222866c4b858f95634afb8fee55",
+                        "Text": "滞留车辆历史查询",
+                        "Url": "/OrderDelay/DelayRule/delayHistory",
+                        "Icon": "fa fa-building",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "e6bb4ad4050143458e1724d88de438fc",
+                        "Text": "滞留信息推送记录",
+                        "Url": "/OrderDelay/DelayRule/delayPostHistory",
+                        "Icon": "fa fa-edit",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "c73c67a5bda14bc3a62a77e369c769a9",
+                        "Text": "系统入库",
+                        "Url": "/APS/SysInWarehouse/Index",
+                        "Icon": "fa fa-check-square",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "73e29c0b38204b0199fe573dac571e6d",
+                        "Text": "系统入库车辆查询",
+                        "Url": "/APS/DTO_TI_VIN_SCAN/Index",
+                        "Icon": "fa fa-newspaper-o",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "ac806450fd2f4a6885ea7e75ca1ea748",
+                        "Text": "车辆报废",
+                        "Url": "/APS/order/discard",
+                        "Icon": "fa fa-history",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            }
+        ],
+        "data": {
+            "IsTab": true
+        }
+    },
+    {
+        "Id": "90b74b67fc9f4a51a9247a2d8b22b6a3",
+        "Text": "ANDON及目视化",
+        "Url": null,
+        "Icon": "fa fa-bullseye",
+        "Children": [
+            {
+                "Id": "b13456bdd25b477787e56ad744f1e409",
+                "Text": "报警点位维护",
+                "Url": "/Monitor/DTO_TT_ALARM_INFO",
+                "Icon": "fa fa-sun-o",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "132935dbbf1e4f3bad89fe1b83c3823a",
+                "Text": "报警音乐管理",
+                "Url": "/Data/DTO_TT_R_ALARMEVENT_AND_MUSIC/Index",
+                "Icon": "fa fa-bell",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            }
+        ],
+        "data": {
+            "IsTab": true
+        }
+    },
+    {
+        "Id": "cff5ac23597b4a1d8d3cb4377360bd59",
+        "Text": "质量管理",
+        "Url": null,
+        "Icon": "fa fa-anchor",
+        "Children": [
+            {
+                "Id": "33ab7c803eb44e3a86bbb952145bd590",
+                "Text": "Audit",
+                "Url": null,
+                "Icon": "fa fa-anchor",
+                "Children": [
+                    {
+                        "Id": "683a7a18ed634584871e35f6f2e73aa0",
+                        "Text": "配置缺陷",
+                        "Url": "/Audit/AuditDefect/Index",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "18649e81c31742e7a50b3ebc16cc89ed",
+                        "Text": "检测类型",
+                        "Url": "/Audit/AuditType/Index",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "f5004bf0b9c64e3397de34c0291b8ca6",
+                        "Text": "缺陷位置",
+                        "Url": "/Audit/AuditDefectLocation/Index",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "c657efb286a541bf8ee5a7f5a221edff",
+                        "Text": "配置Audit目标值",
+                        "Url": "/Audit/AuditGoal/Index",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "5dcd9019a84d445eada45bce9a065596",
+                        "Text": "缺陷等级",
+                        "Url": "/Audit/AuditDefectLevel/Index",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "7959070b72a943e498eda667f94e26c3",
+                        "Text": "分析诊断",
+                        "Url": "/Audit/AuditDiagnosticItem/Index",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "0032826c0a974e698cbec88995ec26b2",
+                        "Text": "Audit记录",
+                        "Url": "/Audit/AuditHistory/Index",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "a30904e028ad4d1eb06ef9be8734dfa5",
+                "Text": "关键件管理",
+                "Url": null,
+                "Icon": "fa fa-cogs",
+                "Children": [
+                    {
+                        "Id": "27085ee7ad564b52bd265ec39fa9c14a",
+                        "Text": "关键件类型维护",
+                        "Url": "/Quality/KpType/Index",
+                        "Icon": "fa fa-archive",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "9e98a982e75941da8640c7c4eeb8a0b0",
+                        "Text": "条码规则配置",
+                        "Url": "/Quality/KpRule/Index",
+                        "Icon": "fa fa-archive",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "c7540867c782414b8e18f530c6020119",
+                        "Text": "关键件配置",
+                        "Url": "/Quality/FeatureConfig/Index",
+                        "Icon": "fa fa-archive",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "1324416df455489d972ad3d31ea5d76b",
+                "Text": "过程质量",
+                "Url": null,
+                "Icon": "fa fa-automobile",
+                "Children": [
+                    {
+                        "Id": "13beb08537bc4e76959bf13ad8779838",
+                        "Text": "检测项目对应站点",
+                        "Url": "/Quality/ProjectQuality/StationProject",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "ad233e39d32c4834856c296c09c17c80",
+                        "Text": "检测项目维护",
+                        "Url": "/Quality/ProjectQuality/ProjectIndex",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "55a0dffb9f114f08bd6d29519bb0dab3",
+                        "Text": "缺陷内容",
+                        "Url": "/Quality/QualityQA/Index",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "82f0e043dccc463e8311a562bad8a5dc",
+                        "Text": "检测子项",
+                        "Url": "/Quality/ProjectQuality/Index",
+                        "Icon": "fa ",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    },
+                    {
+                        "Id": "e69d12305a1e4b72b60dd121b572d476",
+                        "Text": "检测项目对应车型",
+                        "Url": "/Quality/ProjectQuality/ModelProject",
+                        "Icon": "fa fa-",
+                        "Children": null,
+                        "data": {
+                            "IsTab": true
+                        }
+                    }
+                ],
+                "data": {
+                    "IsTab": true
+                }
+            }
+        ],
+        "data": {
+            "IsTab": true
+        }
+    },
+    {
+        "Id": "98d2538cdc514c2185a833580ba27826",
+        "Text": "报表管理",
+        "Url": null,
+        "Icon": "fa fa-bar-chart-o",
+        "Children": [
+            {
+                "Id": "8e48a29e00dd4158bd2f1bee1f1e3c32",
+                "Text": "异常报表",
+                "Url": "/Reports/ExceptionReport/index",
+                "Icon": "fa fa-arrows",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "1eda4f4b89df435bae401bf2ab88e364",
+                "Text": "在制过点",
+                "Url": "/Reports/WipRegionCount/Index",
+                "Icon": "fa ",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "4565eb2c511e40a5865fd5ac1d20d851",
+                "Text": "在制条件",
+                "Url": "/Reports/WipRegionCount/WipRegionManager",
+                "Icon": "fa ",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "36a7032c402941979502e883ce105e99",
+                "Text": "分段效率",
+                "Url": "/Reports/SectionEffective/Index",
+                "Icon": "fa ",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "1bb757cda5a14c658131598395076d21",
+                "Text": "产线视图",
+                "Url": "/Reports/LineView/Index",
+                "Icon": "fa ",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "e4c87bb2119f42db99ee0a70eac99a71",
+                "Text": "关键件查询",
+                "Url": "/Reports/KpManage/Index",
+                "Icon": "fa ",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "d0cdb3b78c794264a571ac83d8e414de",
+                "Text": "车身履历",
+                "Url": "/Reports/CarRecord/Index",
+                "Icon": "fa ",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "c6eb1aa001494dd58d61f189065ccbbc",
+                "Text": "过点明细",
+                "Url": "/Reports/Scan/Index",
+                "Icon": "fa ",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            }
+        ],
+        "data": {
+            "IsTab": true
+        }
+    },
+    {
+        "Id": "533c33ea3f52479d8e4e576a0224f6a2",
+        "Text": "工作流管理",
+        "Url": null,
+        "Icon": "fa fa-flag",
+        "Children": [
+            {
+                "Id": "0d97534dbe7d45e388e1d008b66d4839",
+                "Text": "新建工作流",
+                "Url": "/Document/WorkFlow/CreateApply",
+                "Icon": "fa fa-",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "6cd3b559839f4720ba5ee9a6eb22699b",
+                "Text": "流程管理",
+                "Url": "/Document/WorkFlow/WorkFlowManage",
+                "Icon": "fa fa-",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "ac9a1f5cba144e4b9b52ee321e5fb6fa",
+                "Text": "我的申请",
+                "Url": "/Document/WorkFlow/MyApply",
+                "Icon": "fa fa-",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "eda734bbdeb442589f58c5eb0c622a50",
+                "Text": "审批记录",
+                "Url": "/Document/WorkFlow/MyApproveHistory",
+                "Icon": "fa fa-",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            },
+            {
+                "Id": "fd3376f6db114355b419287e56fe7f43",
+                "Text": "待我审批",
+                "Url": "/Document/WorkFlow/MyApprove",
+                "Icon": "fa fa-",
+                "Children": null,
+                "data": {
+                    "IsTab": true
+                }
+            }
+        ],
+        "data": {
+            "IsTab": true
+        }
+    }
+]

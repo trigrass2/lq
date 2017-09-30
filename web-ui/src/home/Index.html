@@ -1,0 +1,572 @@
+﻿<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ewin MES</title>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../dep/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+    <link href="../../dep/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css" rel="stylesheet" />
+    <link href="../../dep/ace/css/jquery-ui.custom.min.css" rel="stylesheet" />
+    <link href="../../dep/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <link href="../../dep/bootstrap-sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="../../dep/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="../../dep/ace/css/ace.min.css" rel="stylesheet" />
+    <link href="../../dep/ace/css/ace-skins.min.css" rel="stylesheet" />
+    <!--[if lte IE 9]>
+      <link href="../../dep/ace/css/ace-ie.min.css" rel="stylesheet" />
+    <![endif]-->
+    <link href="../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../css/page/index/index.css" rel="stylesheet" />
+    <link href="../../css/bootstrap-small.css" rel="stylesheet" />
+    <script src="../../dep/ace/js/ace-extra.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="../../Scripts/html5shiv.min.js"></script>
+    <script src="../../dep/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+		a:hover,a:focus{
+		    outline: none;
+		    text-decoration: none;
+		}
+		.tabbable .nav-tabs{
+		    padding-left: 15px;
+/* 		    border-bottom: 4px solid #438eb9; */
+		}
+		.tabbable .nav-tabs li a{
+ 		    color: #fff; 
+/* 		    padding: 10px 20px; */
+		    margin-right: 10px;
+ 		    background: #438eb9; 
+		    text-shadow: 1px 1px 2px #000;
+		    border: none;
+		    border-radius: 0;
+		    opacity: 0.5;
+		    position: relative;
+		    transition: all 0.3s ease 0s;
+		}
+		.tabbable .nav-tabs li a:hover{
+ 		    background: #438eb9; 
+		    opacity: 0.8;
+		}
+		.tabbable .nav-tabs li.active a{
+		    opacity: 1;
+		}
+		.tabbable .nav-tabs li.active a,
+		.tabbable .nav-tabs li.active a:hover,
+		.tabbable .nav-tabs li.active a:focus{
+		    color: #fff;
+ 		    background: #438eb9; 
+		    border: none;
+		    border-radius: 0;
+		}
+		.tabbable .nav-tabs li a:before,
+		.tabbable .nav-tabs li a:after{
+		    content: "";
+		    border-top: 34px solid transparent;
+		    position: absolute;
+ 		    top: -1px;
+		}
+		.tabbable .nav-tabs li a:before{
+		    border-right: 15px solid #438eb9;
+		    left: -15px;
+		}
+		.tabbable .nav-tabs li a:after{
+		    border-left: 15px solid #438eb9;
+		    right: -15px;
+		}
+		.tabbable .nav-tabs li a i,
+		.tabbable .nav-tabs li.active a i{
+		    display: inline-block;
+		    padding-right: 5px;
+		    font-size: 15px;
+		    text-shadow: none;
+		}
+		.tabbable .nav-tabs li a span{
+		    display: inline-block;
+		    font-size: 14px;
+		    letter-spacing: -9px;
+		    opacity: 0;
+		    transition: all 0.3s ease 0s;
+		}
+		.tabbable .nav-tabs li a:hover span,
+		.tabbable .nav-tabs li.active a span{
+		    letter-spacing: 1px;
+		    opacity: 1;
+		    transition: all 0.3s ease 0s;
+		}
+        .msgBomb {
+            position: fixed;
+            right: 20px;
+            bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .no-skin .layui-layer-shade {
+            width: 0 !important;
+            height: 0 !important;
+        }
+        .no-skin .layui-layer {
+            left: 1569px !important;
+        }
+        .layui-layer-content {
+            background: #62a8d1;
+        }
+        .newsBomb {
+            height: 75px;
+            margin-top: 75px;
+            text-align: center;
+            font-size: 16px;
+            color: #fff;
+        }
+        .newsBomb a {
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #fff;
+            text-decoration: underline;
+        }
+	</style>
+</head>
+<body class="no-skin">
+    <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-container" id="navbar-container">
+            <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+                <span class="sr-only">Toggle sidebar</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-header pull-left">
+                <a href="#" class="navbar-brand">
+                    <img src="../../img/Admin/logo.png" alt="" style="height: 27px;margin-left: 12px;">
+                    <!--<small>-->
+                        <!--<i class="fa fa-leaf"></i>-->
+                        <!--Ewin MES-->
+                    <!--</small>-->
+                </a>
+            </div>
+            <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+                    <!--进度-->
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            任务<i class="ace-icon fa fa-tasks"></i>
+                            <span id="allId" class="badge badge-grey"></span>
+                        </a>
+
+                        <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+                            <li class="dropdown-header">
+                                <i class="ace-icon fa fa-check"></i>
+                                任务
+                            </li>
+
+                            <li class="dropdown-content">
+                                <ul class="dropdown-menu dropdown-navbar">
+                                    <li>
+                                        <a id="tskNews" href="#">
+                                            <div class="clearfix">
+                                                <span class="pull-left">
+                                                    <i class="btn btn-xs no-hover btn-info fa fa-eye-slash"></i>
+                                                    任务
+                                                </span>
+                                                <span id="tskId" class="pull-right badge badge-info"></span>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a id="andNews" href="#">
+                                            <div class="clearfix">
+                                                <span class="pull-left">
+                                                    <i class="btn btn-xs no-hover btn-info fa fa-lightbulb-o"></i>
+                                                    暗灯
+                                                </span>
+                                                <span id="andId" class="pull-right badge badge-info"></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li id="tskMore" class="dropdown-footer">
+                                <a href="#">
+                                    查看更多
+                                    <i class="ace-icon fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!--信息-->
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            通知<i class="ace-icon fa fa-bell icon-animated-bell"></i>
+                            <span id="ntcId" class="badge badge-important"></span>
+                        </a>
+
+                        <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
+                            <li class="dropdown-header">
+                                <i class="ace-icon fa fa-exclamation-triangle"></i>
+                                消息中心
+                            </li>
+
+                            <li class="dropdown-content">
+                                <ul class="dropdown-menu dropdown-navbar">
+                                    <li>
+                                        <a id="ntcNews" href="#">
+                                            <div class="clearfix">
+                                                <span class="pull-left">
+                                                    <i class="btn btn-xs no-hover btn-info fa fa-warning"></i>
+                                                    未读消息
+                                                </span>
+                                                <span id="notReadNotice" class="pull-right badge badge-info"></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-footer">
+                                <a href="#" id="newMsg">
+                                    查看更多
+                                    <i class="ace-icon fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!--信件-->
+                    <!--<li class="light-blue">-->
+                        <!--<a data-toggle="dropdown" class="dropdown-toggle" href="#">-->
+                            <!--<i class="ace-icon fa fa-envelope icon-animated-vertical"></i>-->
+                            <!--<span class="badge badge-success">5</span>-->
+                        <!--</a>-->
+
+                        <!--<ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">-->
+                            <!--<li class="dropdown-header">-->
+                                <!--<i class="ace-icon fa fa-envelope-o"></i>-->
+                                <!--5 Messages-->
+                            <!--</li>-->
+
+                            <!--<li class="dropdown-content">-->
+                                <!--<ul class="dropdown-menu dropdown-navbar">-->
+                                    <!--<li>-->
+                                        <!--<a href="#" class="clearfix">-->
+                                            <!--<img src="../../img/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />-->
+                                            <!--<span class="msg-body">-->
+                                                <!--<span class="msg-title">-->
+                                                    <!--<span class="blue">Alex:</span>-->
+                                                    <!--Ciao sociis natoque penatibus et auctor ...-->
+                                                <!--</span>-->
+                                                <!--<span class="msg-time">-->
+                                                    <!--<i class="ace-icon fa fa-clock-o"></i>-->
+                                                    <!--<span>a moment ago</span>-->
+                                                <!--</span>-->
+                                            <!--</span>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+
+                                    <!--<li>-->
+                                        <!--<a href="#" class="clearfix">-->
+                                            <!--<img src="../../img/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />-->
+                                            <!--<span class="msg-body">-->
+                                                <!--<span class="msg-title">-->
+                                                    <!--<span class="blue">Susan:</span>-->
+                                                    <!--Vestibulum id ligula porta felis euismod ...-->
+                                                <!--</span>-->
+                                                <!--<span class="msg-time">-->
+                                                    <!--<i class="ace-icon fa fa-clock-o"></i>-->
+                                                    <!--<span>20 minutes ago</span>-->
+                                                <!--</span>-->
+                                            <!--</span>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+
+                                    <!--<li>-->
+                                        <!--<a href="#" class="clearfix">-->
+                                            <!--<img src="../../img/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />-->
+                                            <!--<span class="msg-body">-->
+                                                <!--<span class="msg-title">-->
+                                                    <!--<span class="blue">Bob:</span>-->
+                                                    <!--Nullam quis risus eget urna mollis ornare ...-->
+                                                <!--</span>-->
+                                                <!--<span class="msg-time">-->
+                                                    <!--<i class="ace-icon fa fa-clock-o"></i>-->
+                                                    <!--<span>3:15 pm</span>-->
+                                                <!--</span>-->
+                                            <!--</span>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+
+                                    <!--<li>-->
+                                        <!--<a href="#" class="clearfix">-->
+                                            <!--<img src="../../img/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />-->
+                                            <!--<span class="msg-body">-->
+                                                <!--<span class="msg-title">-->
+                                                    <!--<span class="blue">Kate:</span>-->
+                                                    <!--Ciao sociis natoque eget urna mollis ornare ...-->
+                                                <!--</span>-->
+                                                <!--<span class="msg-time">-->
+                                                    <!--<i class="ace-icon fa fa-clock-o"></i>-->
+                                                    <!--<span>1:33 pm</span>-->
+                                                <!--</span>-->
+                                            <!--</span>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+
+                                    <!--<li>-->
+                                        <!--<a href="#" class="clearfix">-->
+                                            <!--<img src="../../img/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />-->
+                                            <!--<span class="msg-body">-->
+                                                <!--<span class="msg-title">-->
+                                                    <!--<span class="blue">Fred:</span>-->
+                                                    <!--Vestibulum id penatibus et auctor  ...-->
+                                                <!--</span>-->
+
+                                                <!--<span class="msg-time">-->
+                                                    <!--<i class="ace-icon fa fa-clock-o"></i>-->
+                                                    <!--<span>10:09 am</span>-->
+                                                <!--</span>-->
+                                            <!--</span>-->
+                                        <!--</a>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+
+                            <!--<li class="dropdown-footer">-->
+                                <!--<a href="inbox.html">-->
+                                    <!--See all messages-->
+                                    <!--<i class="ace-icon fa fa-arrow-right"></i>-->
+                                <!--</a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</li>-->
+
+                    <!--管理员-->
+                    <li class="light-blue">
+                        <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                            <img class="nav-user-photo" src="../../img/avatars/user.jpg" alt="@ViewBag.UserName" />
+                            <span class="user-info" style="line-height:34px;" id="userName">
+                                	管理员
+                            </span>
+
+                            <i class="ace-icon fa fa-caret-down"></i>
+                        </a>
+
+                        <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                            <li>
+                                <a href="javascript:changePassword()">
+                                    <i class="ace-icon fa fa-key"></i>
+                                    修改密码
+                                </a>
+                            </li>
+
+                            <li class="divider"></li>
+
+                            <li>
+                                <a href="javascript:exit();">
+                                    <i class="ace-icon fa fa-power-off"></i>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="main-container" id="main-container">
+        <div id="sidebar" class="sidebar responsive sidebar-fixed">
+        	
+            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                
+			<input type="text" placeholder="搜索" class="btn-ew">
+                <!--<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                    <span class="btn btn-success">系统配置</span>
+
+                    <span class="btn btn-info"></span>
+
+                    <span class="btn btn-warning"></span>
+
+                    <span class="btn btn-danger"></span>
+                </div>-->
+            </div><!-- /.sidebar-shortcuts -->
+
+            <ul class="nav nav-list">
+            	
+            	
+            </ul><!-- /.nav-list -->
+
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="tabbable">
+                <ul class="nav nav-tabs padding-12 background-blue" id="myTab" data-toggle="context">
+                    <li class="dropdown pull-right tabdrop hide"><a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="fa fa-bars"></i> <b class="caret"></b></a><ul class="dropdown-menu"></ul></li>
+                    <li class="active" id="home_page">
+                        <a href="#home" id="no_right" data-toggle="tab">
+                            <i class="green ace-icon fa fa-home bigger-120"></i>
+                            首页
+                        </a>
+                    </li>
+                </ul>
+                <div id="context-menu2">
+                    <ul class="dropdown-menu" role="menu">
+                        <li id="close_current"><a tabindex="-1">关闭当前标签页</a></li>
+                        <li id="close_all"><a tabindex="-1">关闭所有标签页</a></li>
+                        <li id="close_right"><a tabindex="-1">关闭右侧标签页</a></li>
+                        <li id="close_other"><a tabindex="-1">关闭其他标签页</a></li>
+                        <li id="full-page"><a tabindex="-1">全屏</a></li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" id="home" style="overflow-y:auto;">
+                        <img src="../../img/home.png" style="width: 1180px;height: 560px;" />
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="widget-config" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">首页部件配置</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div id="container" class="well" style="height:300px;">
+                        <ul class="sortable" style="list-style:none;">
+                            <li style="float:left; width:300px; height:30px;line-height:30px; border:1px solid #808080;">Item 1</li>
+                            <li style="float:left;width:200px;height:30px;line-height:30px; border:1px solid #808080;">Item 2</li>
+                            <li style="float:left;width:50px;height:30px;line-height:30px; border:1px solid #808080;">Item 3</li>
+                            <li style="float:left;width:50px;height:30px;line-height:30px; border:1px solid #808080;">Item 4</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改密码-->
+	<div class="modal fade" role="dialog" id="addModal">
+	    <div class="modal-dialog" style="top:70px;width:450px">
+	
+	        <div class="modal-content">
+	            <!-- box-header -->
+	            <div class="modal-header" style="border-bottom: 1px solid #F4F4F4;">
+	               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				   </button>
+	               <h4 class="modal-title" id="titleId">修改密码</h4>
+	            </div>
+	            
+	            <div class="modal-body" style="height:200px">
+	            <form class="form-horizontal" id="formId">
+	            	<div class="row" style="margin-bottom: 15px;">
+	                   <label for="noI" class="col-xs-3 control-label">用户名</label>
+	                      <div class="col-xs-8">
+	                          <p class="form-control-static" id="noId"></p>
+	                      </div>
+	           		</div>
+	           		<div class="row" style="margin-bottom: 15px;">
+	                   <label for="newPassword" class="col-xs-3 control-label">新密码</label>
+	                   <div class="col-xs-8">
+	                          <input type="text" autocomplete="off" required="" class="form-control" id="newPassword" name="newPassword">
+	                   </div>
+	           		</div>
+	           		<div class="row" style="margin-bottom: 15px;">
+	                   <label for="confirmPassword" class="col-xs-3 control-label">确认密码</label>
+	                   <div class="col-xs-8">
+	                          <input type="text" autocomplete="off" required="" class="form-control" id="confirmPassword" name="confirmPassword">
+	                   </div>
+	           		</div>
+	              </form>
+	            </div>
+    			<div class="modal-footer">
+                     <button type="button" class="btn btn-default saveBtn" onclick="editPassword()">保存</button>
+                     <button type="button" class="btn btn-default cancelBtn" data-dismiss="modal">取消</button>
+	            </div>
+	        </div>
+    	</div>
+    </div>
+    <!--消息弹框-->
+    <div class="msgBomb">
+        <!--<button id="showMsg">-->
+            <!--消息-->
+        <!--</button>-->
+    </div>
+    <script src="../../dep/jquery-1.9.1.min.js"></script>
+    <script src="../../dep/webSocket/sockjs.min.js"></script>
+    <script src="../../dep/webSocket/stomp.min.js"></script>
+    <script src="../../dep/jquery.cookie.js"></script>
+    <script src="../../js/extensions/jquery-ajax.js"></script>
+    <script src="../../dep/knockout-3.4.0.js"></script>
+    <script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../dep/bootbox.js"></script>
+    <script src="../../dep/jquery-ui.min.js"></script>
+    <script src="../../dep/toastr/toastr.min.js"></script>
+    <script src="../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+    <script src="../../dep/bootstrap-sweetalert/sweetalert.min.js"></script>
+    <script src="../../js/extensions/bootstrap-modal.js"></script>
+    <script src="../../dep/bootstrap-select/js/bootstrap-select.min.js"></script>
+    <script src="../../dep/ace/js/ace-elements.min.js"></script>
+    <script src="../../dep/ace/js/ace.min.js"></script>
+    <script src="../../dep/echarts.js"></script>
+    <script src="../../dep/svg.js/svg.js"></script>
+    <script src="../../dep/jquery.svg.pan.zoom.js"></script>
+    <script src="../../dep/boostrap-contextmenu/bootstrap-contextmenu.js"></script>
+    <script src="../../js/index/index.js"></script>
+    <script src="../../js/extensions/jquery.form.js"></script>
+    <script src="../../dep/knockout-3.4.0.min.js"></script>
+    <script src="../../dep/knockout.mapping-latest.js"></script>
+    <script src="../../dep/jquery.signalR-2.2.1.min.js"></script>
+    <script src="../../dep/bootstrap-table/bootstrap-table.min.js"></script>
+    <script src="../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../../dep/bootstrap/tooltip.js"></script>
+    <script src="../../dep/layui/layui.js" charset="utf-8"></script>
+    <script src="../../dep/layui/x-layui.js" charset="utf-8"></script>
+    <script src="../../js/global.js"></script>
+    <script src="../../js/EwinCommon/common.js"></script>
+    <script type="text/javascript">
+        var isheng = true
+        toastr.options.timeOut = 1000;
+        toastr.options.positionClass = "toast-center-center";
+        bootbox.setDefaults({ locale: "zh_CN" });
+        jQuery.support.cors = true;//跨域
+        
+        
+        function exit(){
+			$.ajax({
+				type: 'POST',
+		        url: apiUrl+"/system/user/logout",
+		        data: {},
+		        contentType:"application/json",
+		        dataType: 'JSON',
+		        success: function (data) {
+		        	var errcode = data.code;//在此做了错误代码的判断
+		            if(errcode != "10000"){
+		             	    	
+		            }
+		        }
+		    });
+        	sessionStorage.clear();
+        	window.location.href= "../Account/Login.html";
+        }
+        function iswind(){
+          return isheng
+        }
+    </script>
+</body>
+</html>

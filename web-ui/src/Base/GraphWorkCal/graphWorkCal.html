@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>图形化工作日历</title>
+    <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../dep/FullCanlendar/fullcalendar.css">
+    <link rel="stylesheet" href="../../../dep/FullCanlendar/fullcalendar.print.css" media='print'>
+    <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+    <link href="../../../css/worktime-pic.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../dep/TimeSlider/jquery.range.css">
+    <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../../dep/icheck-1.x/skins/minimal/grey.css" rel="stylesheet" media="all">
+    <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <link href="../../../dep/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-datapicker/dist-min/css/datepicker3.css" rel="stylesheet" />
+    <link href="../../../dep/zTree/css/metroStyle/metroStyle.css" rel="stylesheet" />
+    <link href="../../../css/EwinCommon/newcommon.css" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+    <script src="../../../Scripts/html5shiv.js"></script>
+    <script src="../../../Scripts/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="panel-body" id="work_cal">
+    <!--条件框-->
+    <div class="cont_left">
+        <div class="mes_title">条件设置</div>
+        <div class="title_top">
+            <div class="top_select">
+                <select class="cont_detail" id="combo1">
+                    <option value="">请选择</option>
+                    <option value="1">产线</option>
+                    <option value="2">仓库</option>
+                    <option value="3">设备</option>
+                </select>
+                <span class="title_sub">工作时间类型</span>
+                <div class="title_input">
+                    <input class="form-control" placeholder="请输入关键字" />
+                    <button class="btn btn-primary" style="float: right;">搜索</button>
+                </div>
+                <div class="product_line"></div>
+                <div id="contentCombo" style="float: left;width: 100%; margin-top: 20px"></div>
+            </div>
+        </div>
+        <div class="mes_title">结果列表</div>
+        <div class="title_bottom">
+
+            <div id="menuContent" class="menuContent" style=" width:100%;height: 440px; overflow: hidden;">
+                <ul id="treeDemo" class="ztree" style="margin-top:0;  "></ul>
+            </div>
+
+            <div id="table" class="bottom_table"></div>
+            <div id="tableEquip" class="bottom_equip"></div>
+        </div>
+    </div>
+
+    <div class="cont_right">
+        <div class="panel panel-default" style="margin-top:5px;height: 860px" id="right_calender">
+            <div id='calendar'></div>
+        </div>
+    </div>
+
+    <div id="cal_edit" class="open" onmouseover="chkIn()" onmouseout="chkOut()">
+        <ul class="dropdown-menu" role="menu">
+            <li id="liEdit"><a tabindex="-1" operator="top" onclick="colEdit()">编辑</a></li>
+            <li><a tabindex="-1" operator="bottom" onclick="copyModel()">根据模板设置</a></li>
+        </ul>
+    </div>
+
+    <form>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">编辑</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="work_box">
+                            <div class="col-xs-3 time_block">
+                                <label>上班时间设置</label>
+                                <div class="time_select">
+                                    <span class="time_plus" id="time_plus">+</span>
+                                    <span class="time_minus" id="time_minus">-</span>
+                                </div>
+                                <div class="time_shift_plus">
+                                    <span class="time_morn">早班</span>
+                                    <span class="time_noon">中班</span>
+                                    <span class="time_even">晚班</span>
+                                </div>
+                                <div class="time_shift_minus">
+                                    <span class="minus_morn">早班</span>
+                                    <span class="minus_noon">中班</span>
+                                    <span class="minus_even">晚班</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-9 time_line">
+                                <input type="hidden" value="" class="timeSlider" id="setWorkDate" onchange="InitRest()">
+                            </div>
+                        </div>
+                        <div class="work_box">
+                            <div class="col-xs-3 time_block">
+                                <label>早班休息时间</label>
+                                <div class="time_select">
+                                    <span class="morn_plus" id="morn_plus">+</span>
+                                    <span class="morn_minus" id="morn_minus">-</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-9 time_line">
+                                <input type="hidden" value="" class="timeSlider" id="txtZhao">
+                            </div>
+                            <!--<div class="col-xs-2 plan_line">-->
+                                <!--<p>-->
+                                    <!--<span>计划上线数</span><input class="plan_up" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')">-->
+                                <!--</p>-->
+                                <!--<p><span>计划下线数</span><input class="plan_down" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></p>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="work_box">
+                            <div class="col-xs-3 time_block">
+                                <label>中班休息时间</label>
+                                <div class="time_select">
+                                    <span class="noon_plus" id="noon_plus">+</span>
+                                    <span class="noon_minus" id="noon_minus">-</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-9 time_line">
+                                <input type="hidden" value="" class="timeSlider" id="txtZhong">
+                            </div>
+                            <!--<div class="col-xs-2 plan_line">-->
+                                <!--<p>-->
+                                    <!--<span>计划上线数</span><input class="plan_up" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')">-->
+                                <!--</p>-->
+                                <!--<p><span>计划下线数</span><input class="plan_down" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></p>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="work_box even_time">
+                            <div class="col-xs-3 time_block">
+                                <label>晚班休息时间</label>
+                                <div class="time_select">
+                                    <span class="even_plus" id="even_plus">+</span>
+                                    <span class="even_minus" id="even_minus">-</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-9 time_line">
+                                <input type="hidden" value="" class="timeSlider" id="txtWan">
+                            </div>
+                            <!--<div class="col-xs-2 plan_line">-->
+                                <!--<p>-->
+                                    <!--<span>计划上线数</span><input class="plan_up" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')">-->
+                                <!--</p>-->
+                                <!--<p><span>计划下线数</span><input class="plan_down" type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"></p>-->
+                            <!--</div>-->
+                        </div>
+                        <div id="divFoot" style="width: 820px; display: inline-block; text-align: right;">
+                            <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal" onclick="SaveEdit()">
+                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+</body>
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../../dep/TimeSlider/jquery.range.js"></script>
+<script src="../../../dep/jquery.cookie.js"></script>
+<script src="../../../js/extensions/jquery-ajax.js"></script>
+<script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../dep/bootstrap-table/bootstrap-table.js"></script>
+<script src="../../../js/extensions/bootstrap-table-resetView.js"></script>
+<script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<!--<script src="../../../dep/toastr/toastr.min.js"></script>-->
+<script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+<script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+<script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+<script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+<script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+<script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+<script src="../../../dep/select2-4.0.3/dist/js/select2.js"></script>
+<script src="../../../dep/bootstrap-datapicker/dist-min/js/bootstrap-datepicker.js"></script>
+<script src="../../../dep/zTree/js/jquery.ztree.all.min.js"></script>
+<script src="../../../js/EwinCommon/newcommon.js"></script>
+<script src="../../../dep/FullCanlendar/lib/moment.min.js"></script>
+<script src="../../../dep/FullCanlendar/nongLi.js"></script>
+<script src="../../../dep/FullCanlendar/fullcalendar.js"></script>
+<script src="../../../dep/FullCanlendar/lang-all.js"></script>
+<script src="graphWorkCal.js"></script>
+</html>

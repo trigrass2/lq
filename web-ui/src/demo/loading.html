@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>loading</title>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/layer/skin/default/layer.css" rel="stylesheet">
+    <link href="../../css/page/demo/demo-style1.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap-small.css">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../css/codemirror.css" rel="stylesheet">
+    <link href="../../css/rubyblue.css" rel="stylesheet">
+</head>
+<body>
+<button type="button" id="stopLoading" class="btn btn-success btn-xs t4l5">手动关闭loading</button>
+<section class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    加载中遮罩层
+                </header>
+                <div class="panel-body t-center l-height50">
+                    <button type="button" id="loading1s" class="btn btn-success">loading 1秒后关闭</button>
+                    <button type="button" id="loading3s" class="btn btn-success">loading 3秒后关闭（含文字）</button>
+                    <button type="button" id="loadingstart" class="btn btn-success">loading 手动关闭</button>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">加载中遮罩层</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="code" name="code">
+/* css start*/
+<link href="../../dep/layer/skin/default/layer.css" rel="stylesheet">
+/* css end*/
+
+/* html start*/
+<button type="button" id="codeLoading1s" class="btn btn-success">loading 1秒后关闭</button>
+<button type="button" id="codeLoading3s" class="btn btn-success">loading 3秒后关闭（含文字）</button>
+<button type="button" id="codeLoadingstart" class="btn btn-success">loading 手动关闭</button>
+/* html end*/
+
+/* js  start*/
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/layer/layer.js"></script>
+/*加载中遮罩层效果*/
+//打开加载中遮罩层
+$.loadMsg();
+//关闭加载中遮罩层
+layer.closeAll('loading');
+//含文字
+$.loadMsg('加载中...');
+//一秒后关闭
+$('body').on('click','#loading1s',function () {
+    $.loadMsg();
+    setTimeout(function () {
+        layer.closeAll('loading');
+    },1000);
+});
+//三秒后关闭并带文字说明
+$('body').on('click','#loading3s',function () {
+    $.loadMsg('加载中...');
+    setTimeout(function () {
+        layer.closeAll('loading');
+    },3000);
+});
+//弹出加载中
+$('body').on('click','#loadingstart',function () {
+    $.loadMsg();
+    $("#stopLoading").css('display','block');
+});
+//手动关闭加载中
+$('body').on('click','#stopLoading',function () {
+    layer.closeAll('loading');
+    $("#stopLoading").css('display','none');
+});
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../dep/layer/layer.js"></script>
+<!--<script src="../../../../dep/layer/layer-extend.js"></script>-->
+
+<!--代码格式显示js，无需引用-->
+<script src="../../js/codemirror.js"></script>
+<script src="../../js/vim.js"></script>
+<script src="../../js/javascript.js"></script>
+
+<script src="../../js/demo/loading/index.js"></script>

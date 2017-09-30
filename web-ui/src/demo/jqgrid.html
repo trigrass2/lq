@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/jqGrid-v5.2.1/css/ui.jqgrid-bootstrap.css" rel="stylesheet" />
+    <!-- The jQuery library is a prerequisite for all jqSuite products -->
+
+    <!--<meta charset="utf-8" />-->
+    <title>Drag/Drop Rows between jqGrids</title>
+</head>
+<body>
+<div style="margin-left:20px;">
+    <table id="jqGrid1"></table>
+    <div id="Pager1"></div>
+    <br>
+    <div> Try to drag rows from and to Grid1 and Grid2</div>
+    <br>
+    <table id="jqGrid2"></table>
+    <div id="Pager2"></div>
+</div>
+
+</body>
+
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<!-- This is the Javascript file of jqGrid -->
+<script src="../../dep/jqGrid-v5.2.1/js/jquery.jqGrid.min.js"></script>
+<script src="../../dep/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<!-- We support more than 40 localizations -->
+<script src="../../dep/jqGrid-v5.2.1/js/i18n/grid.locale-cn.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        var datagrid1 = [
+                {id1:"11",name1:"test1",values1:"One"},
+                {id1:"12",name1:"test2",values1:"Two"},
+                {id1:"13",name1:"test3",values1:"Three"}
+            ],
+            datagrid2 = [
+                {id2:"21",name2:"test21",values2:"One1"},
+                {id2:"22",name2:"test22",values2:"Two1"},
+                {id2:"23",name2:"test23",values2:"Three1"}
+            ];
+        $.jgrid.defaults.width = 780;
+//        $.jgrid.defaults.responsive = true;
+        $.jgrid.defaults.styleUI = 'Bootstrap';
+        jQuery("#jqGrid1").jqGrid({
+            datatype: "local",
+            data: datagrid1,
+            width : 780,
+            height: 100,
+//            multiselect: true,//定义是否可以多选
+            rownumbers: true,//如果为ture则会在表格左边新增一列，显示行顺序号，从1开始递增。此列名为'rn'
+            colModel: [
+                { label: "Id 1", name: "id1", index: "id", width: 100, key:true },
+                { label: "Name 1", name: "name1", index: "name", width: 100 },
+                { label: "Values 1", name: "values1", index: "values", width: 200 }
+            ],
+//            caption: 'Grid 1',
+            pager: "#Pager1"
+        });
+        jQuery("#jqGrid1").jqGrid('gridDnD',{connectWith:'#jqGrid2'});
+        $.jgrid.defaults.width = 780;
+//        $.jgrid.defaults.responsive = true;
+        $.jgrid.defaults.styleUI = 'Bootstrap';
+        jQuery("#jqGrid2").jqGrid({
+            datatype: "local",
+            data: datagrid2,
+            width: 780,
+            height: 100,
+//            multiselect: true,//定义是否可以多选
+            rownumbers: true,//如果为ture则会在表格左边新增一列，显示行顺序号，从1开始递增。此列名为'rn'
+            colModel: [
+                { label: "ID 2", name: "id2", index: "id", width: 100, key: true },
+                { label: "Name 2", name: "name2", index: "name", width: 100 },
+                { label: "Values 2", name: "values2", index: "values", width: 200 }
+            ],
+//            caption: 'Grid 2',
+            pager: "#Pager2"
+        });
+        jQuery("#jqGrid2").jqGrid('gridDnD',{connectWith:'#jqGrid1'});
+    });
+</script>
+</html>

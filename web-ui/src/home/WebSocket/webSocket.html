@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>WebSocket 广播式</title>
+	    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+	</head>
+	<body onload="disconnect()">
+		<noscript><h2 style="color: #ff0000">你的浏览器可能不支持websocket</h2></noscript>
+		<div>
+		    <div style="margin-left:20px;margin-top:15px">
+		        <button id="connect" onclick="connect();">连接</button>
+		        <button id="disconnect" disabled="disabled" onclick="disconnect();">断开连接</button>
+		    </div>
+		    <div id="conversationDiv1" style="margin-left:20px;margin-top:15px">
+		        <label>输入你的名字</label><input type="text" id="name" />
+		        <button id="sendName" onclick="sendName();">发送</button>
+		        <p id="responseName"></p>
+		    </div>
+			<div id="conversationDiv2" style="margin-left:20px;margin-top:15px">
+		        <button id="start" onclick="StrtOpc();">开始采集</button>
+		        <button id="end" onclick="EndOpc();">结束采集</button>
+		        <div id="responseOpc">
+		        </div>
+		    </div>
+		</div>
+		<script src="../../../dep/jquery-1.9.1.min.js"></script>
+		<script src="../../../dep/webSocket/sockjs.min.js"></script>
+		<script src="../../../dep/webSocket/stomp.min.js"></script>
+		<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+		<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+		<script src="../../../js/EwinCommon/common.js"></script>
+		<script src="webSocket.js"></script>
+	</body>
+</html>

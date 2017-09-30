@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html >
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+	    <title>工艺文件展示</title>
+        <link href="../../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="../../../dep/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+        <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+        <link href="../../../css/slider.css" rel="stylesheet" />
+        <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+        <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+        <link href="../../../dep/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+        <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+        <link href="../../../dep/select2-4.0.3/dist/css/select2.css" rel="stylesheet" />
+        <link href="../../../dep/bootstrap-datapicker/dist-min/css/datepicker3.css" rel="stylesheet" />
+        <link href="../../../css/EwinCommon/newcommon.css" rel="stylesheet" />
+        <style type="text/css">
+            html,body{
+                height: 100%;
+            }
+            .fixed-table-container{
+                position: static;
+            }
+        </style>
+
+	   <!--[if lt IE 9]>
+	    <script src="../../../Scripts/html5shiv.js"></script>
+	    <script src="../../../Scripts/respond.min.js"></script>
+	    <![endif]-->
+	</head>
+	<body style="min-width: 1024px">
+    <!--<section class="wrapper wrapper-Visual">-->
+		<div class="visualContent" style="padding-bottom:0px;">
+		<!--<div class="panel-body visualContent" style="padding-bottom:0px;">-->
+            <!--搜索框1-->
+            <div class="panel panel-default demoSearch visualContentBody" id="processSearch1"></div>
+            <!--搜索框2-->
+            <div class="panel panel-default demoSearch2 visualContentBody" id="processSearch2"></div>
+            <!--工艺文件展示-->
+            <div class="filesDisplayBanner visualContentBody" id='filesDisplay' style="float: left; width: 100%">
+            	工艺文件展示
+            <ul id='fileList'>
+			</ul>
+            </div>
+             <!--工艺内容表格-->
+            <div class="demoTableContent visualContentBody" id='processContentDisplay' style="float: left; width: 100%">工艺内容展示</div>
+             <!--站点BOM信息表格-->
+            <div class="demoTableUlocBom visualContentBody" id='UlocBomDisplay' style="float: left; width: 100%">站点BOM信息</div>
+            <!--站点内容表格-->
+            <div class="demoTableRouteUloc visualContentBody" id='routeUlocDisplay' style="float: left; width: 100%">站点内容</div>
+            <!-- 工作班次信息 -->
+            <div class="panel-body visualContentBody" id='workShiftQuery' style="float: left; width: 100%">工作班次信息
+                    <div class="form-group">
+                        <div class="col-sm-2"><label class="control-label">工作日期:</label><div id="workDate" style="display: inline;"></div></div>             
+                        <div class="col-sm-9"><label class="control-label">班次:</label><div id="shiftno" style="display: inline;"></div> </div>
+                     </div>
+                     <div class="form-group">         
+                        <div class="col-sm-11"><label class="control-label">当前过点数量:</label><div id="passNum" style="display: inline;"></div></div>
+                     </div>   
+                     <div class="form-group" class="col-xs-4" style="padding-left:0px;">   
+                        <div class="col-sm-2"><label class="control-label">产品计划上线:</label><div id="planOnlineNum" style="display: inline;"></div></div>                 
+                        <div class="col-sm-9"><label class="control-label">产品实际上线:</label><div id="actualOnlineNum" style="display: inline;"></div></div>
+                      </div>
+                   <div class="form-group" class="col-xs-4" style="padding-left:0px;">        
+                        <div class="col-sm-2"><label class="control-label">产品计划下线:</label><div id="planOfflineNum" style="display: inline;"></div></div>  
+                        <div class="col-sm-2"><label class="control-label">产品实际下线:</label><div id="actualOfflineNum" style="display: inline;"></div></div>
+                  </div>       
+            </div>
+             
+            <!--到达队列表格-->
+        	<div id="arriveQueue" class="col-xs-6 visualContentBody" style="float: left; width: 100%">
+        	    到达队列
+	            <div id="divContentRight">
+	                <ul id="myTab" class="nav nav-tabs">
+	                    <li class="active">
+	                    	<a href="#seq" data-toggle="tab">生产序列</a>
+	                    </li>
+	                    <li><a href="#order" data-toggle="tab">订单信息</a></li>
+	
+	                </ul>
+	                <div id="myTabContent" class="tab-content">
+	                    <div class="tab-pane fade in active" id="seq">
+	                    	<div class="demoTableManufactureQueue" style="float: left; width: 100%"></div>
+	                    </div>
+	
+	                    <div class="tab-pane fade" id="order">
+	                        <div class="demoTableOrder" style="float: left; width: 100%"></div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+            <div class="demoTablePassQueue visualContentBody" id='passQueue' style="float: left; width: 100%">通过队列</div>
+	          <!--<div id="passQueue" class="col-xs-6 visualContentBody" style="float: left; width: 100%">-->
+        	    <!--通过队列-->
+	            <!--<div id="divContentRight">-->
+	                <!--<div class="demoTablePassQueue" style="float: left; width: 100%"></div>-->
+	            <!--</div>-->
+	        <!--</div> -->
+	        
+	    </div>
+    <!--</section>-->
+    </body>
+    <script src="../../../dep/jquery-1.9.1.min.js"></script>
+    <script src="../../../dep/jquery.cookie.js"></script>
+    <script src="../../../js/extensions/jquery-ajax.js"></script>
+    <script src="../../../dep/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../../../dep/bootstrap-table/bootstrap-table.js"></script>
+    <!-- <script src="../../../js/extensions/bootstrap-table-resetView.js"></script> -->
+    <script src="../../../dep/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../../../dep/toastr/toastr.min.js"></script>
+    <script src="../../../dep/bootstrap-table/extensions/export/tableExport.js"></script>
+    <script src="../../../dep/bootstrap-table/extensions/export/bootstrap-table-export.js"></script>
+    <script src="../../../dep/bootstrap3-editable/js/bootstrap-editable.js"></script>
+    <link href="../../../dep/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+    <script src="../../../dep/bootstrap-table/extensions/editable/bootstrap-table-editable.min.js"></script>
+      <script src="../../../dep/jquery.slider.js"></script>
+      <script src="../../../dep/pdfobject.js"></script>
+    <script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+    <script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+    <script src="../../../dep/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <script src="../../../dep/bootstrapValidator/js/bootstrapValidator.min.js"></script>
+    <script src="../../../dep/select2-4.0.3/dist/js/select2.js"></script>
+    <script src="../../../dep/bootstrap-datapicker/dist-min/js/bootstrap-datepicker.js"></script>
+    <script src="../../../js/EwinCommon/newcommon.js"></script>
+    <script src="../../../js/global.js"></script>
+    <script src="pcProcessDisplay.js"></script>
+</html>

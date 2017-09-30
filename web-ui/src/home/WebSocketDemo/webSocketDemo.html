@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html style="height:100%;">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>WebSocket 广播式</title>
+	    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+	</head>
+	<body onload="disconnect()">
+		<noscript><h2 style="color: #ff0000">你的浏览器可能不支持websocket</h2></noscript>
+		<div>
+		    <div style="margin-left:20px;margin-top:15px">
+		    	广播发送消息
+		    	<br/><br/>
+		        <button id="connectBroadcost" onclick="connectBroadcost();">连接</button>
+		        <button id="disconnectBroadcost" disabled="disabled" onclick="disconnectBroadcost();">断开连接</button>
+		        <div id="conversationDiv1" style="margin-left:20px;margin-top:15px">
+			        <label>输入你的名称</label><input type="text" id="name" />
+			        <button id="sendBroadcost" onclick="sendBroadcost();">广播发送</button>
+			        <div id="responseBroadcost">
+			        </div>
+			    </div>
+		    </div>
+		    <div style="margin-left:20px;margin-top:15px">
+		    	用户发送消息
+		    	<br/><br/>
+		    	<label>发送人</label><input type="text" id="sendUser" /><br/>
+		    	<br/>
+		        <button id="connectUser" onclick="connectUser();">连接</button>
+		        <button id="disconnectUser" disabled="disabled" onclick="disconnectUser();">断开连接</button>
+		        <div id="conversationDiv2" style="margin-left:20px;margin-top:15px">
+			    	<label>接收人</label><input type="text" id="receiveUser" /><br/><br/>
+			    	<label>消息</label><input type="text" id="msg" /><br/><br/>
+			        <button id="sendUser" onclick="sendUser();">用户发送</button>
+			        <div id="responseUser">
+			        </div>
+			    </div>
+		    </div>
+		    <div style="margin-left:20px;margin-top:15px">
+		    	opc采集
+		    	<br/><br/>
+		        <button id="connectOpc" onclick="connectOpc();">连接OPC</button>
+		        <button id="disconnectOpc" disabled="disabled" onclick="disconnectOpc();">断开opc连接</button>
+		        <div id="conversationDiv3" style="margin-left:20px;margin-top:15px">
+			        <button id="start" onclick="StartOpc();">开始采集</button>
+			        <button id="end" onclick="EndOpc();">结束采集</button>
+			        <div id="responseOpc">
+			        </div>
+			    </div>
+		    </div>
+		</div>
+		<script src="../../../dep/jquery-1.9.1.min.js"></script>
+		<script src="../../../dep/webSocket/sockjs.min.js"></script>
+		<script src="../../../dep/webSocket/stomp.min.js"></script>
+		<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+		<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>
+		<script src="../../../js/EwinCommon/common.js"></script>
+		<script src="webSocketDemo.js"></script>
+	</body>
+</html>

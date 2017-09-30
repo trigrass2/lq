@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日历封装</title>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/bootstrap-datapicker/dist-min/css/datepicker3.css" rel="stylesheet">
+    <link href="../../dep/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/page/demo/demo-style1.css" rel="stylesheet">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../css/codemirror.css" rel="stylesheet">
+    <link href="../../css/rubyblue.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap-small.css">
+    <style type="text/css">
+        .form-datapicker{
+            max-width: 220px;
+        }
+    </style>
+</head>
+<body>
+<section class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    日期控件的使用
+                </header>
+                <div class="panel-body t-center">
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">日期</label>
+                        <div class="col-lg-8" id="Date1">
+                            <div class="form-group">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" placeholder="请选择日期">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">开始日期</label>
+                        <div class="col-lg-8">
+                            <div class="form-group" id="startDate">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" placeholder="请选择日期">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">结束日期</label>
+                        <div class="col-lg-8">
+                            <div class="form-group" id="endDate">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" placeholder="请选择日期">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">设置可选择开始日期(今天以前不能选)</label>
+                        <div class="col-lg-8">
+                            <div class="form-group" id="Date2">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" placeholder="请选择日期">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">禁用</label>
+                        <div class="col-lg-8">
+                            <div class="form-group" id="Date3">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" placeholder="请选择日期" disabled>
+                                    <div class="input-group-addon" >
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="row mt20">-->
+                    <!--<label class="col-lg-4 text-right" style="margin-top: 5px;">只读</label>-->
+                    <!--<div class="col-lg-8">-->
+                    <!--<input type="text" class="form-datapicker form-control" placeholder="请选择日期" id="Date3" disabled>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <div class="row mt20">
+                        <label class="col-lg-4 text-right" style="margin-top: 5px;">年月日</label>
+                        <div class="col-lg-8">
+                            <div class="form-group" id="yearDate">
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" placeholder="请选择日期">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">日期控件的使用</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="codeDatapicker" name="code">
+/* css start*/
+<link href="../../dep/bootstrap-datapicker/dist-min/css/datepicker3.css" rel="stylesheet">
+/* css end*/
+
+/* html start*/
+<div class="row">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">日期</label>
+    <div class="col-lg-8">
+        <input type="text" class="form-datapicker form-control" placeholder="请选择日期" id="codeDate1">
+    </div>
+</div>
+<div class="row">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">开始日期</label>
+    <div class="col-lg-8">
+        <input type="text" class="form-datapicker form-control" placeholder="请选择日期" id="codestartDate">
+    </div>
+</div>
+<div class="row">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">结束日期</label>
+    <div class="col-lg-8">
+        <input type="text" class="form-datapicker form-control" placeholder="请选择日期" id="codeendDate">
+    </div>
+</div>
+<div class="row">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">设置可选择开始日期(今天以前不能选)</label>
+    <div class="col-lg-8">
+        <input type="text" class="form-datapicker form-control" placeholder="请选择日期" id="codeDate2">
+    </div>
+</div>
+                                <!--禁用disabled-->
+<div class="row">
+    <label class="col-lg-4 text-right" style="margin-top: 5px;">只读</label>
+    <div class="col-lg-8">
+        <input type="text" class="form-datapicker form-control" placeholder="请选择日期" id="codeDate3" disabled>
+    </div>
+</div>
+/* html end*/
+
+/* js  start*/
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../dep/bootstrap-datapicker/dist-min/js/bootstrap-datepicker.js"></script>
+<script src="../../js/global.js"></script>
+/*日期初始化*/
+$("#Date1,#startDate,#endDate,#Date2").datepicker({
+    format: "yyyy-mm-dd",
+    weekStart: 1,
+    autoclose: true,
+    todayBtn: "linked",
+    language: "zh-CN"
+}).on("changeDate", function (ev) {
+});
+
+$("#startDate").datepicker("setDate", '2017-07-04');//设置日期初始值
+$("#endDate").datepicker("setDate", '2017-09-04');//设置日期初始值
+$("#Date2").datepicker("setDate", new Date().Format("yyyy-MM-dd"));//设置日期初始值
+$("#Date2").datepicker('setStartDate',new Date().Format("yyyy-MM-dd"));//设置可选开始时间
+$("#Date3").datepicker("setDate", new Date().Format("yyyy-MM-dd"));//设置日期初始值
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../dep/bootstrap-datapicker/dist-min/js/bootstrap-datepicker.js"></script>
+<script src="../../js/global.js"></script>
+
+<!--代码格式显示js，无需引用-->
+<script src="../../js/codemirror.js"></script>
+<script src="../../js/vim.js"></script>
+<script src="../../js/javascript.js"></script>
+
+<script src="../../js/demo/bootDatapicker/index.js"></script>

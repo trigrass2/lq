@@ -1,0 +1,84 @@
+﻿.bootstrap-tree {
+    min-height:200px;
+    padding:3px 5px;
+    margin-bottom:0px;
+    /*background-color:#fbfbfb;
+    border:1px solid #999;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);*/
+}
+.bootstrap-tree>ul {
+    padding:0;
+}
+.bootstrap-tree li {
+    list-style-type:none;
+    margin:0;
+    padding:10px 5px 0 5px;
+    position:relative;
+}
+.bootstrap-tree li::before, .bootstrap-tree li::after {
+    content:'';
+    left:-20px;
+    position:absolute;
+    right:auto;
+}
+.bootstrap-tree li::before {
+    border-left:1px solid #999;
+    bottom:50px;
+    height:100%;
+    top:0;
+    width:1px;
+}
+.bootstrap-tree li::after {
+    border-top:1px solid #999;
+    height:20px;
+    top:25px;
+    width:25px;
+}
+.bootstrap-tree li span {
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border:1px solid #999;
+    border-radius:5px;
+    display:inline-block;
+    padding:3px 8px;
+    text-decoration:none;
+    line-height:inherit;
+    font-weight:inherit;
+    white-space:inherit;
+    text-align:inherit;
+}
+.bootstrap-tree li span i {
+   margin-right:3px;
+}
+.bootstrap-tree li span input[type=checkbox] {
+    margin-right:6px;
+}
+.bootstrap-tree li>span {
+    cursor:pointer;
+}
+.bootstrap-tree>ul>li::before, .bootstrap-tree>ul>li::after {
+    border:0;
+}
+.bootstrap-tree li:last-child::before {
+    height:25px;
+}
+.bootstrap-tree li>span:hover {
+    background:#eee;
+    border:1px solid #94a0b4;
+    color:#000;
+}
+.bootstrap-tree-loading {
+    display:none;
+    top:42px;
+    right:0;
+    bottom:0;
+    left:0;
+    z-index:99;
+    background-color:#fff;
+    text-align:center
+}

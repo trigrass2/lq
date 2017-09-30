@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>工艺路径图形化</title>
+    <link href="../../../dep/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrapValidator/css/bootstrapValidator.min.css" rel="stylesheet" />
+    <link href="../../../dep/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../../../css/bootstrap-small.css" rel="stylesheet" />
+    <link href="../../../dep/select2-4.0.3/dist/css/select2.css" rel="stylesheet" />
+    <link href="../../../dep/layui/css/x-admin.css" rel="stylesheet" media="all">
+    <link href="../../../css/EwinCommon/newcommon.css" rel="stylesheet" />
+    <!--流程图begin-->
+    <link href="../../../dep/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet" />
+    <link href="../../../dep/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="../../../dep/bootstrap-BootSideMenu/BootSideMenu.css" rel="stylesheet" />
+    <link href="../../../css/ProcessPath/ProcessPath.css" rel="stylesheet" />
+    <!--流程图end-->
+
+    <!--[if lt IE 9]>
+    <script src="../../../Scripts/html5shiv.js"></script>
+    <script src="../../../Scripts/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .ui-dialog .ui-dialog-titlebar-close {
+            position: absolute;
+            right: 0.3em;
+            top: 50%;
+            width: 20px;
+            margin: -10px 0 0 0;
+            padding: 1px;
+            height: 20px;
+            display: none;
+        }
+        .aLabel {
+            background-color:white;
+            opacity:0.8;
+            padding:0.3em;
+            border-radius:0.5em;
+            font-size:8px;
+            border:1px solid #346789;
+            cursor:pointer;
+        }
+        .transform-top{
+            transform:rotate(90deg);
+        }
+        .transform-bottom{
+            transform:rotate(270deg);
+        }
+    </style>
+</head>
+<body style="cursor: auto;min-width: 1024px">
+<div class="panel-body" style="padding-bottom:0px;">
+    <!--搜索框-->
+    <div class="panel panel-default demoSearch"></div>
+
+    <!--流程图begin-->
+
+    <div class="modal fade" id="dialog-connect" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改链接线</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="txt_ordertype">类型</label>
+                        <select class="form-control" id="SELconnectType">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txt_flag">SEQ</label>
+                        <input type="text" name="SEQ" class="form-control" id="processSEQText" placeholder="SEQ">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="dialog_connect_submit" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span>确认</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>取消</button>
+                    <button type="button" id="dialog_connect_Delete" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="divHead">
+        <div class="divMenuBar">
+            <div class="divMenuBtn btn-default btn right-line" style="margin-left: 30px;" onclick="SaveProcessPath()">
+                <i class="fa fa-save"></i>保存
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="SelectAlignLeft()">
+                <i class="fa fa-align-left"></i>左对齐
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="SelectAlignCenter()">
+                <i class="fa fa-align-center"></i>居中对齐
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="SelectAlignRight()">
+                <i class="fa fa-align-right"></i>右对齐
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="SelectAlignTop()">
+                <i class="fa fa-align-left transform-top"></i>上对齐
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="SelectAlignMiddle()">
+                <i class="fa fa-reorder"></i>垂直居中
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="SelectAlignBottom()">
+                <i class="fa fa-align-left transform-bottom"></i>下对齐
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="SelectUpColse()">
+                <i class="fa fa-ellipsis-v"></i>上下靠拢
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="SelectLeftColse()">
+                <i class="fa fa-ellipsis-h"></i>左右靠拢
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="SelectSameHeight()">
+                <i class="fa fa-exchange transform-bottom"></i>同高
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="SelectSameWidth()">
+                <i class="fa fa-exchange"></i>同宽
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="delProcessOne()">
+                <i class="fa fa-trash-o"></i>删除当前
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="DeleteProcess()">
+                <i class="fa fa-trash"></i>删除所有
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="delLine()">
+                <i class="fa fa-trash-o"></i>删除连线
+            </div>
+            <div class="divMenuBtn btn-default btn right-line" onclick="delAll()">
+                <i class="fa fa-shopping-basket"></i>清空
+            </div>
+            <div class="divMenuBtn btn-default btn" id="choiceLine">
+                选择连线：
+                <select id="selectLine" class="select2" style="width: 200px;">
+                    <option value="0">请选择</option>
+                </select>
+                <i class="fa fa-long-arrow-right"></i>
+            </div>
+            <div id="processPathSpanDiv" style="color: black; float: right; margin-top: 15px;padding-right: 10px;">
+            </div>
+        </div>
+
+    </div>
+    <div id="connect-menu">
+        <ul class="dropdown-menu" role="menu">
+            <!--<li><a tabindex="-1" href="#" operator="edit">编辑</a></li>-->
+            <li><a tabindex="-1" href="#" operator="delete">删除</a></li>
+        </ul>
+    </div>
+    <div id="div-menu">
+        <ul class="dropdown-menu" role="menu">
+            <li><a tabindex="-1" href="#" operator="delete">删除当前</a></li>
+            <li><a tabindex="-1" href="#" operator="deleteAll">删除所有</a></li>
+        </ul>
+    </div>
+    <div id="divContent">
+        <div id="divContentLeftMenu">
+            <ul id="main-nav" class="nav nav-tabs nav-stacked" style="overflow: hidden;">
+            </ul>
+        </div>
+        <div id="divCenter" style="left:0px;top:0px;">
+        </div>
+    </div>
+
+    <!--流程图end-->
+
+
+
+</div>
+</body>
+<script src="../../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../../dep/jquery.cookie.js"></script>
+<script src="../../../js/extensions/jquery-ajax.js"></script>
+<script src="../../../dep/bootstrap/js/bootstrap.js"></script>
+<!--流程图begin-->
+<!--<script src="../../../js/ewin.extensionl.js"></script>-->
+<script src="../../../dep/jquery-ui-1.11.4.custom/jquery-ui.js"></script>
+<script src="../../../dep/jsPlumb-master/dist/js/jquery.jsPlumb-1.7.5.js"></script>
+<script src="../../../dep/toastr/toastr.min.js"></script>
+<script src="../../../dep/bootstrap-BootSideMenu/BootSideMenu.js"></script>
+<script src="../../../js/EwinCommon/EwinSelectArea.js"></script>
+<!--<script src="../../../js/linq.js"></script>-->
+<!--<script src="../../../js/EwinCommon/flowChar.js"></script>-->
+<!--流程图end-->
+
+<script src="../../../dep/bootstrapValidator/js/bootstrapValidator.js"></script>
+<script src="../../../dep/select2-4.0.3/dist/js/select2.js"></script>
+<script src="../../../dep/layui/layui.js" charset="utf-8"></script>
+<!--<script src="../../../dep/layui/x-layui.js" charset="utf-8"></script>-->
+<script src="../../../js/EwinCommon/newcommon.js"></script>
+
+<script src="../../../dep/boostrap-contextmenu/bootstrap-contextmenu.js"></script>
+<!--<script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"></script>-->
+
+<script src="../../../js/global.js"></script>
+<script src="basRouteGraphical.js"></script>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖动面板</title>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/font-awesome/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../css/page/demo/demo-style1.css" rel="stylesheet">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../css/codemirror.css" rel="stylesheet">
+    <link href="../../css/rubyblue.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap-small.css">
+    <style type="text/css">
+        .panels-content{
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<section class="wrapper draggablePanels">
+    <div class="panelBody1">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody2">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody3">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody4">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody5">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody6">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody7">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody8">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+</section>
+
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">可拖动面板</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="CodeMirrortable" name="code">
+/* css start*/
+<link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../css/bootstrap-small.css">
+/* css end*/
+
+/* html start*/
+<!--通过添加draggablePanels样式，控制只能在此区域拖动-->
+<section class="wrapper draggablePanels">
+    <div class="panelBody1">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody2">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody3">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody4">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody5">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody6">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody7">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+    <div class="panelBody8">
+        <p class="panels-content">这是一个可拖动面板</p>
+    </div>
+</section>
+/* html end*/
+
+/* js  start*/
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<script src="../../js/global.js"></script>
+    /*可拖动面板初始化*/
+    var $panelBody1 = $('.panelBody1')//可拖动元素1
+    var $panelBody2 = $('.panelBody2')//可拖动元素2
+    var $panelBody3 = $('.panelBody3')//可拖动元素3
+    var $panelBody4 = $('.panelBody4')//可拖动元素4
+    var $panelBody5 = $('.panelBody5')//可拖动元素5
+    var $panelBody6 = $('.panelBody6')//可拖动元素6
+    var $panelBody7 = $('.panelBody7')//可拖动元素7
+    var $panelBody8 = $('.panelBody8')//可拖动元素8
+    var mesCom=new mesComMethod();
+    /**
+     * 可拖动面板初始化方法
+     * @param containment--是否限制拖动范围，true限制，false不限制
+     * @param panelsList可拖动元素
+     * @param colNum--一行显示几个可拖动面板
+     * @param title--拖动面板标题
+     * @param colValue--colValue可拖动面板元素
+     */
+    mesCom.initDraggablePanels({
+        containment:true,
+        panelsList:[{
+            colNum:1,
+            title:['可拖动面板1'],
+            colValue:[$panelBody1]
+        },{
+            colNum:2,
+            title:['可拖动面板2','可拖动面板3'],
+            colValue:[$panelBody2,$panelBody3]
+        },{
+            colNum:2,
+            title:['可拖动面板4','可拖动面板5'],
+            colValue:[$panelBody4,$panelBody5]
+        },{
+            colNum:3,
+            title:['可拖动面板6','可拖动面板7','可拖动面板8'],
+            colValue:[$panelBody6,$panelBody7,$panelBody8]
+        }]
+    },function () {
+        // 拖动面板初始化完成的回调函数
+        console.log('可拖动面板初始化完成');
+    });
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+
+</body>
+</html>
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../dep/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<script src="../../js/global.js"></script>
+
+<!--代码格式显示js，无需引用-->
+<script src="../../js/codemirror.js"></script>
+<script src="../../js/vim.js"></script>
+<script src="../../js/javascript.js"></script>
+
+<script src="../../js/demo/draggable_panels/index.js"></script>

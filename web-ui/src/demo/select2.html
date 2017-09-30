@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../../dep/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../dep/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="../../css/page/demo/demo-style1.css" rel="stylesheet">
+
+    <!-- 代码高亮显示所需css 无需引用 -->
+    <link href="../../css/codemirror.css" rel="stylesheet">
+    <link href="../../css/rubyblue.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap-small.css">
+</head>
+<body>
+<section class="wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    無搜索框
+                </header>
+                <div class="panel-body t-center">
+                    <label for="" class="control-label">無搜索框：</label>
+                    <select id="selectId" class="select2" style="width: 200px;">
+                        <option value="0">请选择</option>
+                    </select>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">不带搜索框的下拉框</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="CodeMirrortable" name="code">
+/* css start*/
+<link href="../../dep/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
+/* css end*/
+
+/* html start*/
+<select id="codeSelectId" class="select2" style="width: 200px;">
+    <option value="0">请选择</option>
+</select>
+/* html end*/
+
+/* js  start*/
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/select2-4.0.3/dist/js/select2.min.js"></script>
+var selectData=[{ id: 0, text: 'iPhone' },
+                        { id: 1, text: 'oppo' },
+                        { id: 2, text: '三星' },
+                        { id: 3, text: '小米' },
+                        { id: 4, text: '華為' },
+                        { id: 5, text: '魅族' }];
+$("#codeSelectId").select2({
+    multiple: false,//是否多選
+    minimumResultsForSearch: -1,//去掉搜索框
+    data: selectData
+});
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    有搜索框
+                </header>
+                <div class="panel-body t-center">
+                    <label for="" class="control-label">有搜索框：</label>
+                    <select id="selectId2" class="select2" style="width: 200px;">
+                        <option value="0">请选择</option>
+                    </select>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="wrapper mt0">
+    <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading f-weight">
+                    code<span class="f-right">带搜索框的下拉框</span>
+                </header>
+                <div class="panel-body">
+                    <div class="CodeMirrorDiv">
+                        <form>
+                            <textarea id="code" name="code">
+/* css start*/
+<link href="../../dep/select2-4.0.3/dist/css/select2.min.css" rel="stylesheet" />
+/* css end*/
+
+/* html start*/
+<select id="codeSelectId2" class="select2" style="width: 200px;">
+    <option value="0">请选择</option>
+</select>
+/* html end*/
+
+/* js  start*/
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/select2-4.0.3/dist/js/select2.min.js"></script>
+var selectData=[{ id: 0, text: 'iPhone' },
+                        { id: 1, text: 'oppo' },
+                        { id: 2, text: '三星' },
+                        { id: 3, text: '小米' },
+                        { id: 4, text: '華為' },
+                        { id: 5, text: '魅族' }];
+$("#selectId2").select2({
+    multiple: false,//是否多選
+    data: selectData
+});
+ /* js end*/
+                            </textarea>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+<script src="../../dep/jquery-1.9.1.min.js"></script>
+<script src="../../dep/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../dep/select2-4.0.3/dist/js/select2.min.js"></script>
+<!--代码格式显示js，无需引用-->
+<script src="../../js/codemirror.js"></script>
+<script src="../../js/vim.js"></script>
+<script src="../../js/javascript.js"></script>
+
+<script src="../../js/demo/select2/index.js"></script>
